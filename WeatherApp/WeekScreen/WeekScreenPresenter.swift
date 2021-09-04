@@ -28,10 +28,11 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       print("No interactor")
       return
     }
-//    interactor.get { cities in      print(cities)}
-    DayScreenInteractor().getWeatherForDay(cityId: 10, day: Date(), complition: {})
-//    SearchScreenInteractor().searchWithPrefix(prefix: "Mos") { cities in
-//      print(cities)
-//    }
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy/mm/dd"
+    let date = dateFormatter.date(from: "2020/4/18")!
+    interactor.getWeekForecast(cityId: 2122265) { _ in }
+    DayScreenInteractor().getWeatherForDay(cityId: 2122265, day: date, complition: { _ in })
+    SearchScreenInteractor().searchWithPrefix(prefix: "Abs") { cities in print(cities.last) }
   }
 }

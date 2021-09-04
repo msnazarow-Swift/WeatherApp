@@ -16,7 +16,7 @@ enum WeatherService {
   case getImage(abbreviation: String)
   case getCities(query: String)
   case getWeek(woeid: Int)
-  case getDay(woeid: Int, date: String)
+  case getDay(woeid: Int, date: Date)
 }
 
 // MARK: - TargetType Protocol Implementation
@@ -29,7 +29,10 @@ extension WeatherService: TargetType {
     case .getWeek(let woeid):
       return "/api/location/\(woeid)/"
     case .getDay(let woeid, let date):
-      return "/api/location/\(woeid)/\(date)/"
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "yyyy/mm/dd"
+      let dateString = dateFormatter.string(from: date)
+      return "/api/location/\(woeid)/\(dateString)/"
     case .getCities(let query):
       return "/api/location/search/"
     }

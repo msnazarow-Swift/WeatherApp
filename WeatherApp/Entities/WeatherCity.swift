@@ -12,12 +12,6 @@ struct WeatherCity: Codable {
   let locationType: String
   let title: String
   let woeid: Int
-  enum CodingKeys: String, CodingKey {
-    case lattLong = "latt_long"
-    case locationType = "location_type"
-    case title
-    case woeid
-  }
 }
 
  struct City {
