@@ -1,5 +1,5 @@
 //
-//  MainScreenInteractor.swift
+//  WeekScreenInteractor.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -9,27 +9,24 @@
 import Foundation
 import Moya
 
-protocol MainScreenInteractorInput: class {
-  var presenter: MainScreenInteractorOutput? { get set }
+protocol WeekScreenInteractorInput: class {
+  var presenter: WeekScreenInteractorOutput? { get set }
   func get(complition: @escaping () -> Void)
 }
 
-protocol MainScreenInteractorOutput: class {
+protocol WeekScreenInteractorOutput: class {
 }
 
-class MainScreenInteractor: MainScreenInteractorInput {
-  weak var presenter: MainScreenInteractorOutput?
+class WeekScreenInteractor: WeekScreenInteractorInput {
+  weak var presenter: WeekScreenInteractorOutput?
   func get(complition: @escaping () -> Void) {
     let provider = MoyaProvider<WeatherService>()
     provider.request(.getCities(query: "Mos")) { [weak self] result in
       switch result {
       case .success(let response):
-        let data = response.data
-
         do {
           let json = try response.map([WeatherCity].self).map { City($0) }
           print(json[0].lattLong)
-          let result = try JSONDecoder().decode(WeatherApiResults<WeatherCity>.self, from: data)
         } catch { print(error) }
       case .failure(let error):
         print(error)

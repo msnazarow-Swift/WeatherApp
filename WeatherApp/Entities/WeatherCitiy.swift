@@ -24,11 +24,11 @@ struct City {
   let lattLong: [Float]
   let locationType: String
   let title: String
-  let woeid: Int
+  let woeids: Int
   init(_ weatherCity: WeatherCity) {
     self.locationType = weatherCity.locationType
     self.title = weatherCity.title
-    self.woeid = weatherCity.woeid
+    self.woeids = weatherCity.woeid
     self.lattLong = weatherCity.lattLong.split(separator: ",").map { Float($0)! }
   }
 }

@@ -1,5 +1,5 @@
 //
-//  MainScreenRouter.swift
+//  SearchScreenRouter.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -7,7 +7,8 @@
 //
 
 import Foundation
-protocol Router {
-}
-class MainScreenRouter: Router {
+
+class SearchScreenRouter: Router {
+  init(appRouter: AppRouter?) {
+  }
 }
