@@ -8,9 +8,12 @@
 
 import Foundation
 protocol Router {
+//  var presenter: WeekScreenViewOutput?
 }
 
 class WeekScreenRouter: Router {
+  var presenter: WeekScreenViewOutput?
+
   init(appRouter: AppRouter?) {
   }
 }
