@@ -16,55 +16,25 @@ protocol WeekScreenViewInput: class {
   func setWeatherLabel(weather: String)
   func setDegreeLabel(degree: Int)
   func setMinMaxDegreeLabel(min: Int, max: Int)
+  func updateForSections(_ sections: [DaySectionModel])
 }
 
 class WeekScreenViewController: UIViewController {
   var presenter: WeekScreenViewOutput?
+  var viewController: UIViewController { return self }
 
-  let cellNames = ["НАПРАВЛЕНИЕ ВЕТРА", "ВЕТЕР", "ВЛАЖНОСТЬ", "ДАВЛЕНИЕ", "ВИДИМОСТЬ"]
+  var sections: [DaySectionModel] = []
 
-  var sections: [WeatherSectionModel] = []
-
-  let cityLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont(name: "Roboto-Medium", size: 25)
-    return (label)
-  }()
-
-  let weatherLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont(name: "Roboto-Regular", size: 12)
-    return (label)
-  }()
-
-  let degreeLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont(name: "Roboto-Light", size: 60)
-    return (label)
-  }()
-
-  let minMaxLabel: UILabel = {
-    let label = UILabel()
-    label.font = UIFont(name: "Roboto-Regular", size: 12)
-    return (label)
-  }()
-
-  lazy var vStack: UIStackView = {
-    let stack = UIStackView(arrangedSubviews: [cityLabel, weatherLabel, degreeLabel, minMaxLabel])
-    stack.axis = .vertical
-    stack.spacing = 5
-    stack.alignment = .center
-    return (stack)
-  }()
-  let infoTableView: UITableView = {
+  let vStack = DaySummaryStackView()
+  let weekForecastTableView: UITableView = {
     let tableView = UITableView()
     tableView.backgroundColor = .brown
     tableView.register(PropertyTableViewCell.self, forCellReuseIdentifier: PropertyTableViewCell.identifier)
+    tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
+    tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     return tableView
   }()
-
-  var viewController: UIViewController { return self }
 
   override func loadView() {
     super.loadView()
@@ -79,60 +49,61 @@ class WeekScreenViewController: UIViewController {
     }
     presenter.viewDidLoad()
   }
+
+  override func viewDidLayoutSubviews() {
+    weekForecastTableView.rowHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
+//    weekForecastTableView.rowHeight /= CGFloat(sections.count)
+  }
+
   func setUI() {
     view.backgroundColor = .white
     view.addSubview(vStack)
-    view.addSubview(infoTableView)
-    infoTableView.delegate = self
-    infoTableView.dataSource = self
+    view.addSubview(weekForecastTableView)
+    weekForecastTableView.delegate = self
+    weekForecastTableView.dataSource = self
     vStack.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
       make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
     }
-    infoTableView.snp.makeConstraints { make in
+    weekForecastTableView.snp.makeConstraints { make in
       make.left.equalToSuperview()
       make.right.equalToSuperview()
       make.top.equalTo(vStack.snp.bottom)
       make.bottom.greaterThanOrEqualToSuperview()
     }
-    infoTableView.isScrollEnabled = false
+    weekForecastTableView.isScrollEnabled = false
   }
-  override func viewDidLayoutSubviews() {
-    infoTableView.rowHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12) / 5
-  }
-
-  func updateForSections(_ sections: [WeatherSectionModel]) {
-          self.sections = sections
-
-    infoTableView.reloadData()
-      }
 }
 extension WeekScreenViewController: WeekScreenViewInput {
   func setCityLabel(city: String) {
-    cityLabel.text = city
+    vStack.cityLabel.text = city
   }
 
   func setWeatherLabel(weather: String) {
-    weatherLabel.text = weather
+    vStack.weatherLabel.text = weather
   }
 
   func setDegreeLabel(degree: Int) {
-    degreeLabel.text = "\(degree)°"
+    vStack.degreeLabel.text = "\(degree)°"
   }
 
   func setMinMaxDegreeLabel(min: Int, max: Int) {
-    minMaxLabel.text = "Макс. \(min)°, мин. \(max)°"
+    vStack.minMaxLabel.text = "Макс. \(min)°, мин. \(max)°"
+  }
+
+  func updateForSections(_ sections: [DaySectionModel]) {
+    self.sections = sections
+    weekForecastTableView.reloadData()
   }
 }
 
-
 extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//      return  (view.bounds.height - vStack.bounds.height) / 5
-//    }
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-          return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
+      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return weekForecastTableView.rowHeight / CGFloat(sections.count)
       }
+//  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
+//  }
   func numberOfSections(in tableView: UITableView) -> Int {
     return sections.count
   }
@@ -142,14 +113,8 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = sections[indexPath.section].rows[indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
-            cell.model = model
-            return cell
-//    guard let cell = tableView.dequeueReusableCell(withIdentifier: PropertyTableViewCell.identifier, for: indexPath) as? PropertyTableViewCell else {
-//      return UITableViewCell()
-//    }
-//    cell.textLabel?.text = cellNames[indexPath.row]
-//    cell.detailTextLabel?.text = "Ю-З"
-//    return (cell)
+    let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
+    cell.model = model
+    return cell
   }
 }

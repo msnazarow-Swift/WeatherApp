@@ -7,19 +7,19 @@
 
 import Foundation
 
-protocol WeatherSectionModelDelegate: class {
+protocol DescriptionSectionModelDelegate: class {
     func didTapCall(withPhone phoneNumber: String)
     func didTapText(withEmail email: String)
 }
 
-class WeatherSectionModel: SectionRowsRepresentable {
+class DescriptionSectionModel: SectionRowsRepresentable {
   var rows: [CellIdentifiable]
 
-     weak var delegate: WeatherSectionModelDelegate?
+     weak var delegate: DescriptionSectionModelDelegate?
 
-     init(_ property: WeatherProperty) {
+     init(_ property: DescriptionProperty) {
          rows = [CellIdentifiable]()
 
-         rows.append(PropertyCellModel(property))
+         rows.append(DescriptionPropertyCellModel(property))
      }
 }

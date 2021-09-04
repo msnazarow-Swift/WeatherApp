@@ -25,7 +25,7 @@ extension WeatherService: TargetType {
   var path: String {
     switch self {
     case .getImage(let abbreviation):
-      return "/static/img/weather/\(abbreviation).svg"
+      return "/static/img/weather/ico/\(abbreviation).ico"
     case .getWeek(let woeid):
       return "/api/location/\(woeid)/"
     case .getDay(let woeid, let date):
@@ -33,7 +33,7 @@ extension WeatherService: TargetType {
       dateFormatter.dateFormat = "yyyy/mm/dd"
       let dateString = dateFormatter.string(from: date)
       return "/api/location/\(woeid)/\(dateString)/"
-    case .getCities(let query):
+    case .getCities:
       return "/api/location/search/"
     }
   }

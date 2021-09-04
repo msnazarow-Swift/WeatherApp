@@ -20,6 +20,6 @@ class DaySectionModel: SectionRowsRepresentable {
      init(_ property: DayModel) {
          rows = [CellIdentifiable]()
 
-         rows.append(PropertyCellModel(property))
+         rows.append(DayCellModel(property))
      }
 }

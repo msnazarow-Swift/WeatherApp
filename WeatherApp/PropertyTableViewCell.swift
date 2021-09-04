@@ -20,8 +20,8 @@ class PropertyTableViewCell: UITableViewCell {
     }
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-    detailTextLabel?.font = UIFont(name: "Roboto-Regular", size: 30)
-    textLabel?.font = UIFont(name: "Roboto-Regular", size: 11)
+    detailTextLabel?.font = UIFont(name: "Roboto-Regular", size: 30 * fontTrans)
+    textLabel?.font = UIFont(name: "Roboto-Regular", size: 11 * fontTrans)
     textLabel?.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
   }
 

@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct WeatherProperty {
+struct DescriptionProperty {
   let title: String
   let description: String
 }
 
-class PropertyCellModel: WeatherCellModel {
+class DescriptionPropertyCellModel: WeatherCellModel {
     override var cellIdentifier: String {
-        return "PropertyCell"
+        return "DescriptionPropertyCell"
     }
 
     var title: String
     var description: String
   // TODO: - Why var ? 
-    init(_ property: WeatherProperty) {
+    init(_ property: DescriptionProperty) {
       title = property.title
       description = property.description
     }

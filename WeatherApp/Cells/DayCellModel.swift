@@ -9,7 +9,7 @@ import Foundation
 
 struct DayModel {
   var dayOfWeek: String
-  var weatherImg: URL
+  var weatherImg: String
   var maxTemp: Int
   var minTemp: Int
 }
@@ -20,7 +20,7 @@ class DayCellModel: WeatherCellModel {
     }
 
   let dayOfWeek: String
-  let weatherImg: URL
+  let weatherImg: String
   let maxTemp: Int
   let minTemp: Int
 
