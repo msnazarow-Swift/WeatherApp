@@ -25,7 +25,7 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
       switch result {
       case .success(let response):
         do {
-          let json = try response.map([WeatherCity].self).map { City($0) }
+          let json = try response.map([WeatherCity].self)// .map { City($0) }
           print(json[0].lattLong)
         } catch { print(error) }
       case .failure(let error):

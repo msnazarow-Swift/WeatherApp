@@ -7,9 +7,10 @@
 //
 
 import Foundation
-
+import Moya
 protocol SearchScreenInteractorInput: class {
     var presenter: SearchScreenInteractorOutput? { get set }
+  func searchWithPrefix(prefix: String, complition: @escaping ([City]) -> Void)
 }
 
 protocol SearchScreenInteractorOutput: class {
@@ -17,4 +18,19 @@ protocol SearchScreenInteractorOutput: class {
 
 class SearchScreenInteractor: SearchScreenInteractorInput {
     weak var presenter: SearchScreenInteractorOutput?
+
+  func searchWithPrefix(prefix: String, complition: @escaping ([City]) -> Void) {
+    let provider = MoyaProvider<WeatherService>()
+    provider.request(.getCities(query: prefix)) { [weak self] result in
+      switch result {
+      case .success(let response):
+        do {
+          let cities = try response.map([WeatherCity].self).map { City($0) }
+          complition(cities)
+        } catch { print(error) }
+      case .failure(let error):
+        print(error)
+      }
+    }
+  }
 }

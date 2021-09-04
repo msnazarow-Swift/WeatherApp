@@ -20,15 +20,15 @@ struct WeatherCity: Codable {
   }
 }
 
-struct City {
-  let lattLong: [Float]
+ struct City {
+  let lattLong: [Double]
   let locationType: String
   let title: String
-  let woeids: Int
+  let woeid: Int
   init(_ weatherCity: WeatherCity) {
     self.locationType = weatherCity.locationType
     self.title = weatherCity.title
-    self.woeids = weatherCity.woeid
-    self.lattLong = weatherCity.lattLong.split(separator: ",").map { Float($0)! }
+    self.woeid = weatherCity.woeid
+    self.lattLong = weatherCity.lattLong.split(separator: ",").map { Double($0)! }
   }
-}
+ }

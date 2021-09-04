@@ -28,7 +28,10 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       print("No interactor")
       return
     }
-    interactor.get {
-    }
+//    interactor.get { cities in      print(cities)}
+    DayScreenInteractor().getWeatherForDay(cityId: 10, day: Date(), complition: {})
+//    SearchScreenInteractor().searchWithPrefix(prefix: "Mos") { cities in
+//      print(cities)
+//    }
   }
 }

@@ -16,7 +16,7 @@ enum WeatherService {
   case getImage(abbreviation: String)
   case getCities(query: String)
   case getWeek(woeid: Int)
-  case getDay(woeid: String, date: Date)
+  case getDay(woeid: Int, date: String)
 }
 
 // MARK: - TargetType Protocol Implementation
