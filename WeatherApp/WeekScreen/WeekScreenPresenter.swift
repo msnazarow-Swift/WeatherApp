@@ -10,26 +10,22 @@ import Foundation
 
 
 protocol WeekScreenViewOutput: class {
-  func viewDidLoad()
+  func loadForCity(cityId: Int)
   func tableViewDidSelect(row: Int)
   func searchButtonTapped()
 }
 
 class WeekScreenPresenter: WeekScreenViewOutput {
   weak var view: WeekScreenViewInput?
-
   private let router: WeekScreenRouterInput
-
   var interactor: WeekScreenInteractorInput?
 
   var weatherWeek: WeatherWeek!
-
-  var cityId: Int!
   init(router: WeekScreenRouterInput) {
     self.router = router
   }
 
-  func viewDidLoad() {
+  func loadForCity(cityId: Int) {
     guard let interactor = interactor, let view = view else {
       print("WeekScreenAssemble error")
       return
@@ -41,9 +37,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       interactor.saveImages(images)
     }
 
-
-    interactor.getWeekForecast(cityId: 2122265) { weatherWeek in
-      //      print(weekWeather.consolidatedWeather.first)
+    interactor.getWeekForecast(cityId: cityId) { weatherWeek in
       self.weatherWeek = weatherWeek
       let weekFormatter = DateFormatter()
       weekFormatter.dateFormat = "EEEE"

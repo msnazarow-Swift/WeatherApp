@@ -21,6 +21,7 @@ class SearchScreenRouter: SearchScreenRouterInput {
       return
     }
     let weekScreen = WeekScreenAssembly().createWeekScreen(appRouter: nil)
+    weekScreen.loadForCity(cityId: cityId)
     if let viewController = weekScreen as? UIViewController {
       view.pushViewController(viewController, animated: true)
     }

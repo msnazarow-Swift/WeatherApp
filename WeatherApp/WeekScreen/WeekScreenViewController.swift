@@ -17,12 +17,13 @@ protocol WeekScreenViewInput: class {
   func setDegreeLabel(degree: Int)
   func setMinMaxDegreeLabel(min: Int, max: Int)
   func updateForSections(_ sections: [DaySectionModel])
+  func loadForCity(cityId: Int)
 }
 
 class WeekScreenViewController: UIViewController {
   var presenter: WeekScreenViewOutput?
   var viewController: UIViewController { return self }
-
+  var cityId: Int = 2122265
   var sections: [DaySectionModel] = []
   var tableViewHeight: CGFloat!
   let vStack = DaySummaryStackView()
@@ -47,7 +48,7 @@ class WeekScreenViewController: UIViewController {
       print("No presenter")
       return
     }
-    presenter.viewDidLoad()
+    presenter.loadForCity(cityId: cityId)
   }
 
   override func viewDidLayoutSubviews() {
@@ -89,7 +90,7 @@ extension WeekScreenViewController: WeekScreenViewInput {
   }
 
   func setMinMaxDegreeLabel(min: Int, max: Int) {
-    vStack.minMaxLabel.text = "Макс. \(min)°, мин. \(max)°"
+    vStack.minMaxLabel.text = "Макс. \(max)°, мин. \(min)°"
   }
 
   func updateForSections(_ sections: [DaySectionModel]) {
@@ -98,6 +99,9 @@ extension WeekScreenViewController: WeekScreenViewInput {
   }
   @objc func searchButtonTapped() {
     presenter?.searchButtonTapped()
+  }
+  func loadForCity(cityId: Int) {
+    self.cityId = cityId
   }
 }
 
