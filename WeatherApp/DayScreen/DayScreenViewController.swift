@@ -30,10 +30,8 @@ class DayScreenViewController: UIViewController {
   let vStack = DaySummaryStackView()
   let infoTableView: UITableView = {
     let tableView = UITableView()
-    tableView.backgroundColor = .brown
-    tableView.register(PropertyTableViewCell.self, forCellReuseIdentifier: PropertyTableViewCell.identifier)
+    tableView.backgroundColor = .white
     tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     tableView.allowsSelection = false
     return tableView
   }()
@@ -134,11 +132,5 @@ extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
     cell.model = model
     return cell
-    //    guard let cell = tableView.dequeueReusableCell(withIdentifier: PropertyTableViewCell.identifier, for: indexPath) as? PropertyTableViewCell else {
-    //      return UITableViewCell()
-    //    }
-    //    cell.textLabel?.text = cellNames[indexPath.row]
-    //    cell.detailTextLabel?.text = "Ю-З"
-    //    return (cell)
   }
 }

@@ -4,8 +4,7 @@ import UIKit
 class DesignableUITextField: UITextField {
   // Provides left padding for images
   override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-    var textRect = super.leftViewRect(forBounds: bounds)
-//    textRect.origin.x += leftPadding
+    let textRect = super.leftViewRect(forBounds: bounds)
     return textRect.offsetBy(dx: leftPadding, dy: 0).insetBy(dx: -rightPadding, dy: 0)
   }
 

@@ -15,8 +15,8 @@
             filePath = "WeatherApp/Cells/DayCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "updateViews()"
             landmarkType = "7">
          </BreakpointContent>
@@ -32,8 +32,8 @@
             filePath = "WeatherApp/WeekScreen/WeekScreenInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "getImages(complition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -48,8 +48,8 @@
             filePath = "WeatherApp/WeekScreen/WeekScreenInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "getImages(complition:)"
             landmarkType = "7">
          </BreakpointContent>

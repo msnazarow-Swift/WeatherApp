@@ -21,6 +21,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
   var interactor: WeekScreenInteractorInput?
 
   var weatherWeek: WeatherWeek!
+
   init(router: WeekScreenRouterInput) {
     self.router = router
   }
@@ -30,9 +31,11 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       print("WeekScreenAssemble error")
       return
     }
+
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy/mm/dd"
     let date = dateFormatter.date(from: "2020/4/18")!
+
     interactor.getImages { images in
       interactor.saveImages(images)
     }
@@ -44,16 +47,18 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       let days = weatherWeek.consolidatedWeather
       var sections: [DaySectionModel] = []
       var models: [DayModel] = []
+
       days.forEach { day in
         //        print(day)
         let model = DayModel(
           dayOfWeek: weekFormatter.string(from: day.applicableDate),
           weatherImg: day.weatherStateAbbr,
-          maxTemp: Int(day.maxTemp!),
-          minTemp: Int(day.minTemp!)
+          maxTemp: Int(day.maxTemp ?? 0),
+          minTemp: Int(day.minTemp ?? 0)
         )
         models.append(model)
       }
+
       sections.append(DaySectionModel(models))
       view.updateForSections(sections)
       view.setCityLabel(city: weatherWeek.title)
@@ -65,23 +70,14 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       if let minTemp = day.minTemp, let maxTemp = day.maxTemp {
         view.setMinMaxDegreeLabel(min: Int(minTemp), max: Int(maxTemp))
       }
-
-      //    SearchScreenInteractor().searchWithPrefix(prefix: "Abs") { cities in print(cities.last) }
     }
   }
+
   func tableViewDidSelect(row: Int) {
     router.routeToDaySrceen(title: weatherWeek.title, day: weatherWeek.consolidatedWeather[row])
   }
+
   func searchButtonTapped() {
     router.routeToSearchScreen()
-  }
-}
-extension WeekScreenPresenter: DescriptionSectionModelDelegate {
-  func didTapText(withEmail email: String) {
-    print("Will text to \(email)")
-  }
-
-  func didTapCall(withPhone phoneNumber: String) {
-    print("Will call to \(phoneNumber)")
   }
 }

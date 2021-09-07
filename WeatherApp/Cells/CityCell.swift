@@ -17,15 +17,14 @@ class CityCell: WeatherCell {
   }
   override func updateViews() {
     guard let model = model as? CityCellModel,
-          let textLabel = textLabel,
-          let detailTextLabel = detailTextLabel
+          let textLabel = textLabel
     else {
       print("DescriptionPropertyCell Error")
       return
     }
     textLabel.text = model.title.capitalized
     textLabel.adjustsFontSizeToFitWidth = true
-    textLabel.font = UIFont(name: "Roboto-Regular", size: 11 * fontTrans)
+    textLabel.font = UIFont(name: "Roboto-Regular", size: 16 * fontTrans)
   }
 
   override func layoutSubviews() {

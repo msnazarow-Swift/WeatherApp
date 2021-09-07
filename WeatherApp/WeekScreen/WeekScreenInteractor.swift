@@ -34,7 +34,7 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
           complition(weatherWeek)
         } catch {
           do {
-            let notFound = try response.map(NotFound.self, using: decoder)
+            _ = try response.map(NotFound.self, using: decoder)
             print("Error: cityId = \(cityId) not found")
           } catch {
             print(error)
@@ -48,18 +48,17 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
 
   func getImages(complition: @escaping ([String: Image]) -> Void) {
     var images: [String: Image] = [:]
-    let queue = DispatchQueue(label: "imagesDispatchQueue")
     let group = DispatchGroup()
     for abbr in abbreviations {
       group.enter()
       provider.request(.getImage(abbreviation: abbr)) { result in
         switch result {
         case .success(let response):
-            do {
-              images[abbr] = try response.mapImage()
-            } catch let error {
-              print(error)
-            }
+          do {
+            images[abbr] = try response.mapImage()
+          } catch let error {
+            print(error)
+          }
         case .failure(let error):
           print(error)
         }

@@ -33,7 +33,7 @@ class DayScreenInteractor: DayScreenInteractorInput {
           complition(weatherDay)
         } catch {
           do {
-              try response.map(NotFound.self, using: decoder)
+              _ = try response.map(NotFound.self, using: decoder)
             print("Error: cityId = \(cityId) with day = \(day) Not found")
           } catch {
             print(error)

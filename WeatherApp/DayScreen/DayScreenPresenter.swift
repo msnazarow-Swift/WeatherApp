@@ -13,13 +13,13 @@ protocol DayScreenViewOutput: class {
 }
 
 class DayScreenPresenter: DayScreenViewOutput {
-    weak var view: DayScreenViewInput?
+  weak var view: DayScreenViewInput?
 
-    private let router: DayScreenRouter
+  private let router: DayScreenRouter
 
-    var interactor: DayScreenInteractorInput?
+  var interactor: DayScreenInteractorInput?
 
-    init(router: DayScreenRouter) {
-        self.router = router
-    }
+  init(router: DayScreenRouter) {
+    self.router = router
+  }
 }

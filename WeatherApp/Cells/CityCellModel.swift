@@ -12,12 +12,12 @@ struct CityModel {
 }
 
 class CityCellModel: WeatherCellModel {
+  let title: String
+
   override var cellIdentifier: String {
     return "CityCell"
   }
 
-  var title: String
-  // TODO: - Why var ? 
   init(_ property: CityModel) {
     title = property.title
   }

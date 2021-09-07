@@ -38,7 +38,7 @@ extension SearchScreenPresenter: SearchScreenViewOutput {
       print("SearchScreenAssemle Error")
       return
     }
-    interactor.searchWithPrefix(prefix: city) { cities in
+    interactor.searchWithSubstring(city) { cities in
       self.cities = cities
       cities.forEach { city in
         let model = CityModel(title: city.title)

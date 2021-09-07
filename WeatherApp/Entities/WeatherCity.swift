@@ -14,7 +14,7 @@ struct WeatherCity: Codable {
   let woeid: Int
 }
 
- struct City {
+struct City {
   let lattLong: [Double]
   let locationType: String
   let title: String
@@ -27,4 +27,4 @@ struct WeatherCity: Codable {
       Double($0.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
     }
   }
- }
+}

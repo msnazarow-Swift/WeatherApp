@@ -45,23 +45,6 @@ class DayCell: WeatherCell {
       make.height.equalTo(24 * fontTrans)
       make.width.equalTo(24 * fontTrans)
     }
-//    stack.translatesAutoresizingMaskIntoConstraints = false
-
-    //
-
-    //    stack.spacing = 40
-    //    stack.setCustomSpacing(93.0 * fontTrans, after: weatherImg)
-    //    stack.setCustomSpacing(25.0 * fontTrans, after: maxTempLabel)
-    //    dayOfWeekLabel.contentMode = .scaleToFill
-
-    //    weatherImg.clipsToBounds = true
-    //    maxTempLabel.contentMode = .scaleToFill
-    //    minTempLabel.contentMode = .scaleToFill
-    //    weatherImg.snp.makeConstraints { make in
-    //      make.height.equalTo(24)
-    //      make.width.equalTo(24)
-    //    }
-    //    stack.alignment = .fill
     return stack
   }()
   override func updateViews() {
@@ -77,7 +60,6 @@ class DayCell: WeatherCell {
     vstack.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-    //      addSubview(vstack)
   }
   override func layoutSubviews() {
     super.layoutSubviews()

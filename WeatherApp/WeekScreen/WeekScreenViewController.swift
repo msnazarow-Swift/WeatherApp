@@ -29,11 +29,8 @@ class WeekScreenViewController: UIViewController {
   let vStack = DaySummaryStackView()
   let weekForecastTableView: UITableView = {
     let tableView = UITableView()
-    tableView.backgroundColor = .brown
-    tableView.register(PropertyTableViewCell.self, forCellReuseIdentifier: PropertyTableViewCell.identifier)
-    tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
+    tableView.backgroundColor = .white
     tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     return tableView
   }()
 
@@ -57,6 +54,7 @@ class WeekScreenViewController: UIViewController {
   }
 
   func setUI() {
+    title = "Неделя"
     navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
     view.backgroundColor = .white
     view.addSubview(vStack)

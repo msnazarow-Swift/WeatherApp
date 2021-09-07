@@ -9,12 +9,15 @@ import UIKit
 
 class DescriptionPropertyCell: WeatherCell {
   static let identifier = "DescriptionPropertyCell"
+
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
   }
+
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
   override func updateViews() {
     guard let model = model as? DescriptionPropertyCellModel,
           let textLabel = textLabel,
@@ -23,7 +26,7 @@ class DescriptionPropertyCell: WeatherCell {
       print("DescriptionPropertyCell Error")
       return
     }
-    textLabel.text = model.title.capitalized
+    textLabel.text = model.title.uppercased()
     textLabel.adjustsFontSizeToFitWidth = true
     textLabel.font = UIFont(name: "Roboto-Regular", size: 11 * fontTrans)
     textLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -34,7 +37,6 @@ class DescriptionPropertyCell: WeatherCell {
 
   override func layoutSubviews() {
     super.layoutSubviews()
-
     contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
   }
 }

@@ -12,7 +12,6 @@ class StorageService {
   var images: [String: UIImage] = [:]
 
   func saveImages(_ images: [String: UIImage]) {
-    print(images.keys)
     self.images = images
   }
 

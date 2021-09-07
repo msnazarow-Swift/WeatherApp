@@ -33,9 +33,16 @@ class WeekScreenRouter: WeekScreenRouterInput {
     }
     dayScrenController.setDescriptionTable(day: day)
     if let viewController = dayScrenController as? UIViewController {
-      let weekFormatter = DateFormatter()
-      weekFormatter.dateFormat = "EEEE"
-      viewController.title = weekFormatter.string(from: day.applicableDate)
+      let days = Calendar.current.dateComponents([.day], from: Date(), to: day.applicableDate).day!
+      if days == 0 {
+        viewController.title = "Cегодня"
+      } else if days == 1 {
+        viewController.title = "Завтра"
+      } else {
+        let weekFormatter = DateFormatter()
+        weekFormatter.dateFormat = "EEEE"
+        viewController.title = weekFormatter.string(from: day.applicableDate)
+      }
       view.pushViewController(viewController, animated: true)
     }
   }

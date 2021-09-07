@@ -13,13 +13,12 @@ struct DescriptionPropertyModel {
 }
 
 class DescriptionPropertyCellModel: WeatherCellModel {
+  let title: String
+  let description: String
   override var cellIdentifier: String {
     return "DescriptionPropertyCell"
   }
 
-  var title: String
-  var description: String
-  // TODO: - Why var ? 
   init(_ property: DescriptionPropertyModel) {
     title = property.title
     description = property.description
