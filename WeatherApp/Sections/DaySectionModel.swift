@@ -8,18 +8,18 @@
 import Foundation
 
 protocol DaySectionModelDelegate: class {
-    func didTapCall(withPhone phoneNumber: String)
-    func didTapText(withEmail email: String)
+  func didTapCall(withPhone phoneNumber: String)
+  func didTapText(withEmail email: String)
 }
 
 class DaySectionModel: SectionRowsRepresentable {
   var rows: [CellIdentifiable]
 
-     weak var delegate: DaySectionModelDelegate?
+  weak var delegate: DaySectionModelDelegate?
 
-     init(_ property: DayModel) {
-         rows = [CellIdentifiable]()
+  init(_ property: DayModel) {
+    rows = [CellIdentifiable]()
 
-         rows.append(DayCellModel(property))
-     }
+    rows.append(DayCellModel(property))
+  }
 }

@@ -8,24 +8,24 @@
 import UIKit
 
 class WeatherCellModel: CellIdentifiable {
-    let automaticHeight: Float = -1.0
+  let automaticHeight: Float = -1.0
 
-    var cellIdentifier: String {
-        return ""
-    }
+  var cellIdentifier: String {
+    return ""
+  }
 
-    var cellHeight: Float {
-        return automaticHeight
-    }
+  var cellHeight: Float {
+    return automaticHeight
+  }
 }
 
 class WeatherCell: UITableViewCell, ModelRepresentable {
-    var model: CellIdentifiable? {
-        didSet {
-            updateViews()
-        }
+  var model: CellIdentifiable? {
+    didSet {
+      updateViews()
     }
+  }
 
-    func updateViews() {
-    }
+  func updateViews() {
+  }
 }

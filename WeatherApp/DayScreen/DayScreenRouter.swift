@@ -8,7 +8,13 @@
 
 import Foundation
 
-class DayScreenRouter: Router {
+protocol DayScreenRouterInput {
+}
+
+class DayScreenRouter: DayScreenRouterInput {
+  func routeToDaySrceen(title: String, day: WeatherDay) {
+  }
+
   init(appRouter: AppRouter?) {
   }
 }

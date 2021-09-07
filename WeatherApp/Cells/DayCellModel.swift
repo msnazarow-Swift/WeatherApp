@@ -15,9 +15,9 @@ struct DayModel {
 }
 
 class DayCellModel: WeatherCellModel {
-    override var cellIdentifier: String {
-        return "DayCell"
-    }
+  override var cellIdentifier: String {
+    return "DayCell"
+  }
 
   let dayOfWeek: String
   let weatherImg: String
@@ -29,5 +29,5 @@ class DayCellModel: WeatherCellModel {
     weatherImg = day.weatherImg
     maxTemp = day.maxTemp
     minTemp = day.minTemp
-    }
+  }
 }

@@ -11,47 +11,46 @@ import Foundation
 
 protocol WeekScreenViewOutput: class {
   func viewDidLoad()
+  func tableViewDidSelect(row: Int)
 }
 
 class WeekScreenPresenter: WeekScreenViewOutput {
   weak var view: WeekScreenViewInput?
 
-  private let router: WeekScreenRouter
+  private let router: WeekScreenRouterInput
 
   var interactor: WeekScreenInteractorInput?
 
-  init(router: WeekScreenRouter) {
+  var weatherWeek: WeatherWeek!
+
+  init(router: WeekScreenRouterInput) {
     self.router = router
   }
 
   func viewDidLoad() {
     guard let interactor = interactor, let view = view else {
-      print("Assemble error")
+      print("WeekScreenAssemble error")
       return
     }
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy/mm/dd"
     let date = dateFormatter.date(from: "2020/4/18")!
-    view.setCityLabel(city: "Москва")
-    view.setDegreeLabel(degree: 21)
-    view.setWeatherLabel(weather: "Солнечно")
-    view.setMinMaxDegreeLabel(min: 11, max: 30)
-
     interactor.getImages { images in
       interactor.saveImages(images)
     }
 
 
-    interactor.getWeekForecast(cityId: 2122265) { weekWeather in
-      print(weekWeather.consolidatedWeather.first)
+    interactor.getWeekForecast(cityId: 2122265) { weatherWeek in
+      //      print(weekWeather.consolidatedWeather.first)
+      self.weatherWeek = weatherWeek
       let weekFormatter = DateFormatter()
       weekFormatter.dateFormat = "EEEE"
-      let days = weekWeather.consolidatedWeather
+      let days = weatherWeek.consolidatedWeather
       var sections: [DaySectionModel] = []
 
-//      guard let days = weekWeather.consolidatedWeather.first else { print("NoData"); return }
+      //      guard let days = weekWeather.consolidatedWeather.first else { print("NoData"); return }
       days.forEach { day in
-        print(day)
+        //        print(day)
         let model = DayModel(
           dayOfWeek: weekFormatter.string(from: day.applicableDate),
           weatherImg: day.weatherStateAbbr,
@@ -60,10 +59,24 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         )
         sections.append(DaySectionModel(model))
       }
-      view.updateForSections(sections)
-    }
 
-    //    SearchScreenInteractor().searchWithPrefix(prefix: "Abs") { cities in print(cities.last) }
+
+      view.updateForSections(sections)
+      view.setCityLabel(city: weatherWeek.title)
+      guard let day = days.first else { return }
+      if let temp = day.theTemp {
+        view.setDegreeLabel(degree: Int(temp))
+      }
+      view.setWeatherLabel(weather: day.weatherStateName)
+      if let minTemp = day.minTemp, let maxTemp = day.maxTemp {
+        view.setMinMaxDegreeLabel(min: Int(minTemp), max: Int(maxTemp))
+      }
+
+      //    SearchScreenInteractor().searchWithPrefix(prefix: "Abs") { cities in print(cities.last) }
+    }
+  }
+  func tableViewDidSelect(row: Int) {
+    router.routeToDaySrceen(title: weatherWeek.title, day: weatherWeek.consolidatedWeather[row])
   }
 }
 extension WeekScreenPresenter: DescriptionSectionModelDelegate {

@@ -21,6 +21,7 @@ class WeekScreenAssembly {
     presenter.interactor = interactor
     presenter.view = viewController
     viewController.presenter = presenter
+    router.view = viewController
 
     return viewController
   }

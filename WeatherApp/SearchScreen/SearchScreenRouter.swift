@@ -8,7 +8,10 @@
 
 import Foundation
 
-class SearchScreenRouter: Router {
+protocol SearchScreenRouterInput {
+}
+
+class SearchScreenRouter: SearchScreenRouterInput {
   init(appRouter: AppRouter?) {
   }
 }

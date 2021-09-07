@@ -24,7 +24,7 @@ class WeekScreenViewController: UIViewController {
   var viewController: UIViewController { return self }
 
   var sections: [DaySectionModel] = []
-
+  var tableViewHeight: CGFloat = 0
   let vStack = DaySummaryStackView()
   let weekForecastTableView: UITableView = {
     let tableView = UITableView()
@@ -51,7 +51,7 @@ class WeekScreenViewController: UIViewController {
   }
 
   override func viewDidLayoutSubviews() {
-    weekForecastTableView.rowHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
+    tableViewHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
 //    weekForecastTableView.rowHeight /= CGFloat(sections.count)
   }
 
@@ -99,7 +99,7 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
 extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return weekForecastTableView.rowHeight / CGFloat(sections.count)
+        return tableViewHeight / CGFloat(sections.count)
       }
 //  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
@@ -110,7 +110,12 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return sections[section].rows.count
   }
-
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let presenter = presenter else {
+      return
+    }
+    return presenter.tableViewDidSelect(row: indexPath.section)
+  }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = sections[indexPath.section].rows[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
