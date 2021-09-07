@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in City.init(_:):WeatherCity.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
       </ContextState>
       <ContextState
@@ -18,6 +21,14 @@
       </ContextState>
       <ContextState
          contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "abbreviations">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "closure #1 in SearchScreenInteractor.searchWithPrefix(prefix:complition:):SearchScreenInteractor.swift">

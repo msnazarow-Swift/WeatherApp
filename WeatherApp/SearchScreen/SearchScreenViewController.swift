@@ -41,7 +41,7 @@ class SearchScreenViewController: UIViewController {
   }
 
   func setupUI() {
-    title = "Поиск Города"
+    title = "Поиск города"
     view.addSubview(searchTextField)
     view.addSubview(citiesTableView)
     view.backgroundColor = .white

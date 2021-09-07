@@ -29,6 +29,9 @@ class SearchScreenPresenter {
 
 extension SearchScreenPresenter: SearchScreenViewOutput {
   func searchForCity(city: String) {
+    guard !city.isEmpty else {
+      return
+    }
     var sections: [CitySectionModel] = []
     var models: [CityModel] = []
     guard let interactor = interactor, let view = view else {
