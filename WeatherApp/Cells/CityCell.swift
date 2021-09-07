@@ -23,7 +23,6 @@ class CityCell: WeatherCell {
       return
     }
     textLabel.text = model.title.capitalized
-    textLabel.adjustsFontSizeToFitWidth = true
     textLabel.font = UIFont(name: "Roboto-Regular", size: 16 * fontTrans)
   }
 

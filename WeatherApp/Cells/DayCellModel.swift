@@ -18,7 +18,9 @@ class DayCellModel: WeatherCellModel {
   override var cellIdentifier: String {
     return "DayCell"
   }
-
+  override var cellHeight: Float {
+    Float(30 * fontTrans)
+  }
   let dayOfWeek: String
   let weatherImg: String
   let maxTemp: Int

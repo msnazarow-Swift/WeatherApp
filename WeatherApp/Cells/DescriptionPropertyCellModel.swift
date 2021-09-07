@@ -18,7 +18,9 @@ class DescriptionPropertyCellModel: WeatherCellModel {
   override var cellIdentifier: String {
     return "DescriptionPropertyCell"
   }
-
+  override var cellHeight: Float {
+    67
+  }
   init(_ property: DescriptionPropertyModel) {
     title = property.title
     description = property.description

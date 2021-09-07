@@ -49,7 +49,6 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       var models: [DayModel] = []
 
       days.forEach { day in
-        //        print(day)
         let model = DayModel(
           dayOfWeek: weekFormatter.string(from: day.applicableDate),
           weatherImg: day.weatherStateAbbr,

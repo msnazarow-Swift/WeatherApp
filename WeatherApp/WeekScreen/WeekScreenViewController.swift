@@ -71,7 +71,7 @@ class WeekScreenViewController: UIViewController {
       make.top.equalTo(vStack.snp.bottom)
       make.bottom.greaterThanOrEqualToSuperview()
     }
-    weekForecastTableView.isScrollEnabled = false
+    weekForecastTableView.bounces = false
   }
 }
 extension WeekScreenViewController: WeekScreenViewInput {
@@ -105,11 +105,10 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
 extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableViewHeight / CGFloat(sections[indexPath.section].rows.count)
+        return max(tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
+                   CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight),
+                   UITableView.automaticDimension)
       }
-//  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
-//  }
   func numberOfSections(in tableView: UITableView) -> Int {
     return sections.count
   }

@@ -27,11 +27,9 @@ class DescriptionPropertyCell: WeatherCell {
       return
     }
     textLabel.text = model.title.uppercased()
-    textLabel.adjustsFontSizeToFitWidth = true
     textLabel.font = UIFont(name: "Roboto-Regular", size: 11 * fontTrans)
     textLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
     detailTextLabel.text = model.description
-    detailTextLabel.adjustsFontSizeToFitWidth = true
     detailTextLabel.font = UIFont(name: "Roboto-Regular", size: 30 * fontTrans)
   }
 
