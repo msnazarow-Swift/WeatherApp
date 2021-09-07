@@ -17,9 +17,10 @@ class DaySectionModel: SectionRowsRepresentable {
 
   weak var delegate: DaySectionModelDelegate?
 
-  init(_ property: DayModel) {
+  init(_ properties: [DayModel]) {
     rows = [CellIdentifiable]()
-
-    rows.append(DayCellModel(property))
+    properties.forEach { property in
+      rows.append(DayCellModel(property))
+    }
   }
 }

@@ -48,8 +48,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
       weekFormatter.dateFormat = "EEEE"
       let days = weatherWeek.consolidatedWeather
       var sections: [DaySectionModel] = []
-
-      //      guard let days = weekWeather.consolidatedWeather.first else { print("NoData"); return }
+      var models: [DayModel] = []
       days.forEach { day in
         //        print(day)
         let model = DayModel(
@@ -58,10 +57,9 @@ class WeekScreenPresenter: WeekScreenViewOutput {
           maxTemp: Int(day.maxTemp!),
           minTemp: Int(day.minTemp!)
         )
-        sections.append(DaySectionModel(model))
+        models.append(model)
       }
-
-
+      sections.append(DaySectionModel(models))
       view.updateForSections(sections)
       view.setCityLabel(city: weatherWeek.title)
       guard let day = days.first else { return }

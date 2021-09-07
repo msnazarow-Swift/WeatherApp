@@ -1,5 +1,5 @@
 //
-//  DescriptionPropertyCell.swift
+//  CityCell.swift
 //  WeatherApp
 //
 //  Created by out-nazarov2-ms on 04.09.2021.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class DescriptionPropertyCell: WeatherCell {
-  static let identifier = "DescriptionPropertyCell"
+class CityCell: WeatherCell {
+  static let identifier = "CityCell"
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
   }
@@ -16,7 +16,7 @@ class DescriptionPropertyCell: WeatherCell {
     fatalError("init(coder:) has not been implemented")
   }
   override func updateViews() {
-    guard let model = model as? DescriptionPropertyCellModel,
+    guard let model = model as? CityCellModel,
           let textLabel = textLabel,
           let detailTextLabel = detailTextLabel
     else {
@@ -26,10 +26,6 @@ class DescriptionPropertyCell: WeatherCell {
     textLabel.text = model.title.capitalized
     textLabel.adjustsFontSizeToFitWidth = true
     textLabel.font = UIFont(name: "Roboto-Regular", size: 11 * fontTrans)
-    textLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-    detailTextLabel.text = model.description
-    detailTextLabel.adjustsFontSizeToFitWidth = true
-    detailTextLabel.font = UIFont(name: "Roboto-Regular", size: 30 * fontTrans)
   }
 
   override func layoutSubviews() {

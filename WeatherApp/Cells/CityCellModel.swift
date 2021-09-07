@@ -1,5 +1,5 @@
 //
-//  DescriptionPropertyCellModel.swift
+//  CityCellModel.swift
 //  WeatherApp
 //
 //  Created by out-nazarov2-ms on 04.09.2021.
@@ -7,21 +7,18 @@
 
 import Foundation
 
-struct DescriptionPropertyModel {
+struct CityModel {
   let title: String
-  let description: String
 }
 
-class DescriptionPropertyCellModel: WeatherCellModel {
+class CityCellModel: WeatherCellModel {
   override var cellIdentifier: String {
-    return "DescriptionPropertyCell"
+    return "CityCell"
   }
 
   var title: String
-  var description: String
   // TODO: - Why var ? 
   init(_ property: DescriptionPropertyModel) {
     title = property.title
-    description = property.description
   }
 }

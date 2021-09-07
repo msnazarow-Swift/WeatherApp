@@ -34,6 +34,7 @@ class DayScreenViewController: UIViewController {
     tableView.register(PropertyTableViewCell.self, forCellReuseIdentifier: PropertyTableViewCell.identifier)
     tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    tableView.allowsSelection = false
     return tableView
   }()
 
@@ -97,24 +98,26 @@ extension DayScreenViewController: DayScreenViewInput {
   }
   func setDescriptionTable(day: WeatherDay) {
     var sections: [DescriptionSectionModel] = []
-    sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Направление Ветра", description: day.windDirectionCompass)))
-    sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Ветер", description: "\(String(format: "%.1f", day.windSpeed)) м/с")))
+    var models: [DescriptionPropertyModel] = []
+    models.append(DescriptionPropertyModel(title: "Направление Ветра", description: day.windDirectionCompass))
+    models.append(DescriptionPropertyModel(title: "Ветер", description: "\(String(format: "%.1f", day.windSpeed)) м/с"))
     if let humidity = day.humidity {
-      sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Влажность", description: "\(humidity) %")))
+      models.append(DescriptionPropertyModel(title: "Влажность", description: "\(humidity) %"))
     }
     if let airPressure = day.airPressure {
-      sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Давление", description: "\(Int(airPressure)) мм рт.cт")))
+      models.append(DescriptionPropertyModel(title: "Давление", description: "\(Int(airPressure)) мм рт.cт"))
     }
     if let visibility = day.visibility {
-      sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Видимость", description: "\(String(format: "%.2f", visibility)) км")))
+      models.append(DescriptionPropertyModel(title: "Видимость", description: "\(String(format: "%.2f", visibility)) км"))
     }
+    sections.append(DescriptionSectionModel(models))
     updateForSections(sections)
   }
 }
 
 extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return  tableViewHeight / CGFloat(sections.count)
+        return  tableViewHeight / CGFloat(sections[indexPath.section].rows.count)
       }
 //  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)

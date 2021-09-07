@@ -103,7 +103,7 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
 extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableViewHeight / CGFloat(sections.count)
+        return tableViewHeight / CGFloat(sections[indexPath.section].rows.count)
       }
 //  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)

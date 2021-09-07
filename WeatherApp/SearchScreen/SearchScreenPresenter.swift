@@ -10,9 +10,10 @@ import Foundation
 
 
 protocol SearchScreenViewOutput: class {
+  func searchForCity(city: String)
 }
 
-class SearchScreenPresenter: SearchScreenViewOutput {
+class SearchScreenPresenter {
     weak var view: SearchScreenViewInput?
 
     private let router: SearchScreenRouter
@@ -22,4 +23,14 @@ class SearchScreenPresenter: SearchScreenViewOutput {
     init(router: SearchScreenRouter) {
         self.router = router
     }
+}
+
+extension SearchScreenPresenter: SearchScreenViewOutput {
+  func searchForCity(city: String) {
+    interactor?.searchWithPrefix(prefix: city) { cities in
+      cities.forEach { city in
+        let model = CityModel(title: city.title)
+      }
+    }
+  }
 }
