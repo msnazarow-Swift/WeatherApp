@@ -56,6 +56,7 @@ class WeekScreenViewController: UIViewController {
   }
 
   func setUI() {
+    navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
     view.backgroundColor = .white
     view.addSubview(vStack)
     view.addSubview(weekForecastTableView)
@@ -94,6 +95,9 @@ extension WeekScreenViewController: WeekScreenViewInput {
   func updateForSections(_ sections: [DaySectionModel]) {
     self.sections = sections
     weekForecastTableView.reloadData()
+  }
+  @objc func searchButtonTapped() {
+    presenter?.searchButtonTapped()
   }
 }
 

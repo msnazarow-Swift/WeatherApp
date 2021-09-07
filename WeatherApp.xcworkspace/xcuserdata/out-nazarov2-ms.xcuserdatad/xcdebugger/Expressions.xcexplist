@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DayCell.vstack.getter:DayCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "maxTempLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayCell.updateViews():DayCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weatherImg.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

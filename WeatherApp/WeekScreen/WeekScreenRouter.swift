@@ -10,6 +10,7 @@ import UIKit
 
 protocol WeekScreenRouterInput {
   func routeToDaySrceen(title: String, day: WeatherDay)
+  func routeToSearchScreen()
 }
 
 class WeekScreenRouter: WeekScreenRouterInput {
@@ -35,6 +36,15 @@ class WeekScreenRouter: WeekScreenRouterInput {
       let weekFormatter = DateFormatter()
       weekFormatter.dateFormat = "EEEE"
       viewController.title = weekFormatter.string(from: day.applicableDate)
+      view.pushViewController(viewController, animated: true)
+    }
+  }
+  func routeToSearchScreen() {
+    guard let view = view?.viewController.navigationController else {
+      return
+    }
+    let searchScreen = SearchScreenAssembly().createSearchScreen(appRouter: nil)
+    if let viewController = searchScreen as? UIViewController {
       view.pushViewController(viewController, animated: true)
     }
   }

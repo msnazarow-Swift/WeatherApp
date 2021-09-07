@@ -12,6 +12,7 @@ import Foundation
 protocol WeekScreenViewOutput: class {
   func viewDidLoad()
   func tableViewDidSelect(row: Int)
+  func searchButtonTapped()
 }
 
 class WeekScreenPresenter: WeekScreenViewOutput {
@@ -77,6 +78,9 @@ class WeekScreenPresenter: WeekScreenViewOutput {
   }
   func tableViewDidSelect(row: Int) {
     router.routeToDaySrceen(title: weatherWeek.title, day: weatherWeek.consolidatedWeather[row])
+  }
+  func searchButtonTapped() {
+    router.routeToSearchScreen()
   }
 }
 extension WeekScreenPresenter: DescriptionSectionModelDelegate {
