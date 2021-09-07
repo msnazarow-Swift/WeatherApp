@@ -24,6 +24,8 @@ class SearchScreenRouter: SearchScreenRouterInput {
     weekScreen.loadForCity(cityId: cityId)
     if let viewController = weekScreen as? UIViewController {
       view.pushViewController(viewController, animated: true)
+      //TODO - Хз будут ли лики
+      view.setViewControllers([view.viewControllers[0], view.viewControllers[2]], animated: false)
     }
   }
 }

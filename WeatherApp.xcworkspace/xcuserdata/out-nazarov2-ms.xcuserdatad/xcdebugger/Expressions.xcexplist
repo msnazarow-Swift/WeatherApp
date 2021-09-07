@@ -3,7 +3,35 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in DayCell.vstack.getter:DayCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fontTrans">
+            </PersistentString>
+            <PersistentString
+               value = "24 * fontTrans">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SearchScreenInteractor.searchWithPrefix(prefix:complition:):SearchScreenInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DayCell.updateViews():DayCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weatherImg.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WeekScreenViewController.tableView(_:cellForRowAt:):WeekScreenViewController.swift">
       </ContextState>
       <ContextState
          contextName = "DayCell.vstack.getter:DayCell.swift">
@@ -14,10 +42,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DayCell.updateViews():DayCell.swift">
+         contextName = "SearchScreenViewController.updateForSections(_:):SearchScreenViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DesignableUITextField.leftViewRect(forBounds:):DesignableUITextField.swift">
          <PersistentStrings>
             <PersistentString
-               value = "weatherImg.image">
+               value = "rightPadding">
+            </PersistentString>
+            <PersistentString
+               value = "leftPadding">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

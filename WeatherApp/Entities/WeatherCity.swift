@@ -23,6 +23,8 @@ struct WeatherCity: Codable {
     self.locationType = weatherCity.locationType
     self.title = weatherCity.title
     self.woeid = weatherCity.woeid
-    self.lattLong = weatherCity.lattLong.split(separator: ",").map { Double($0)! }
+    self.lattLong = weatherCity.lattLong.components(separatedBy: ", ").map {
+      Double($0.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+    }
   }
  }

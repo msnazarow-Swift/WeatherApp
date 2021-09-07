@@ -18,8 +18,8 @@ protocol SearchScreenViewInput: class {
 class SearchScreenViewController: UIViewController {
   var presenter: SearchScreenViewOutput?
   var viewController: UIViewController { return self }
-  let searchTextField: UITextField = {
-    let textField = UITextField()
+  let searchTextField: SearchTextField = {
+    let textField = SearchTextField()
     textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEndOnExit)
     return textField
   }()
@@ -45,10 +45,16 @@ class SearchScreenViewController: UIViewController {
     view.addSubview(searchTextField)
     view.addSubview(citiesTableView)
     view.backgroundColor = .white
+//    searchTextField.backgroundColor = .white
+//
+//    let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")!)
+//    searchTextField.leftView = imageView
+//    searchTextField.leftViewMode = .always
+
     searchTextField.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide)
-      make.left.equalTo(view.safeAreaLayoutGuide)
-      make.right.equalTo(view.safeAreaLayoutGuide)
+      make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+      make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
+      make.right.equalTo(view.safeAreaLayoutGuide).inset(20)
       make.height.equalTo(40)
     }
     citiesTableView.snp.makeConstraints { make in

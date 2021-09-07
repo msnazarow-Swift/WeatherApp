@@ -32,15 +32,16 @@ class DayCell: WeatherCell {
     return label
   }()
   lazy var vstack: UIStackView = {
-    let view = UIView()
-    view.addSubview(weatherImg)
-    let stack = UIStackView(arrangedSubviews: [dayOfWeekLabel, view, maxTempLabel, minTempLabel])
+    let img = UIView()
+    img.addSubview(weatherImg)
+    let stack = UIStackView(arrangedSubviews: [dayOfWeekLabel, img, maxTempLabel, minTempLabel])
     stack.axis = .horizontal
     stack.distribution = .fillEqually
-    stack.setCustomSpacing(-50, after: maxTempLabel)
+    stack.setCustomSpacing(-70, after: maxTempLabel)
     weatherImg.contentMode = .scaleAspectFit
     weatherImg.snp.makeConstraints { make in
-      make.center.equalToSuperview()
+      make.right.equalToSuperview()
+      make.centerY.equalToSuperview()
       make.height.equalTo(24 * fontTrans)
       make.width.equalTo(24 * fontTrans)
     }
