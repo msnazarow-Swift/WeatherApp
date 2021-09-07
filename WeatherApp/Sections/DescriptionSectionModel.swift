@@ -17,7 +17,7 @@ class DescriptionSectionModel: SectionRowsRepresentable {
 
   weak var delegate: DescriptionSectionModelDelegate?
 
-  init(_ property: DescriptionProperty) {
+  init(_ property: DescriptionPropertyModel) {
     rows = [CellIdentifiable]()
 
     rows.append(DescriptionPropertyCellModel(property))

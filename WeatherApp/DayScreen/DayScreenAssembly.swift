@@ -13,10 +13,10 @@ class DayScreenAssembly {
         let router = DayScreenRouter(appRouter: appRouter)
         let presenter = DayScreenPresenter(router: router)
         let viewController = self.createDayScreenView()
-
+        let interactor = DayScreenInteractor()
         presenter.view = viewController
         viewController.presenter = presenter
-
+        presenter.interactor = interactor
         return viewController
     }
 

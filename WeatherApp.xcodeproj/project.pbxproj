@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F903D78CB135D3E6474F651 /* Pods_WeatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFD52F80B61633998701949 /* Pods_WeatherAppTests.framework */; };
+		3E25704526E7A88000640CC3 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E25704426E7A88000640CC3 /* Launch Screen.storyboard */; };
 		3E292AC726E3DF3D00E0A119 /* FontTranform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292AC626E3DF3D00E0A119 /* FontTranform.swift */; };
 		3E292ACD26E4069600E0A119 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292ACC26E4069600E0A119 /* StorageService.swift */; };
 		3E34B70326E7792B005C95B7 /* DayScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */; };
@@ -63,10 +64,8 @@
 		3EB06FD426E3C04C00118882 /* DaySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB06FD326E3C04C00118882 /* DaySectionModel.swift */; };
 		3ED2464526E17C830036CE2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2464426E17C830036CE2E /* AppDelegate.swift */; };
 		3ED2464726E17C830036CE2E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2464626E17C830036CE2E /* SceneDelegate.swift */; };
-		3ED2464C26E17C830036CE2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ED2464A26E17C830036CE2E /* Main.storyboard */; };
 		3ED2464F26E17C830036CE2E /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2464D26E17C830036CE2E /* WeatherApp.xcdatamodeld */; };
 		3ED2465126E17C840036CE2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ED2465026E17C840036CE2E /* Assets.xcassets */; };
-		3ED2465426E17C840036CE2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ED2465226E17C840036CE2E /* LaunchScreen.storyboard */; };
 		3ED2465F26E17C850036CE2E /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2465E26E17C850036CE2E /* WeatherAppTests.swift */; };
 		3ED2466A26E17C850036CE2E /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2466926E17C850036CE2E /* WeatherAppUITests.swift */; };
 		3ED2B1CF26E3C9AD005C1E89 /* DaySummaryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2B1CE26E3C9AD005C1E89 /* DaySummaryStackView.swift */; };
@@ -94,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		338EC61D5DF585E9ABA394FD /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E25704426E7A88000640CC3 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3E292AC626E3DF3D00E0A119 /* FontTranform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTranform.swift; sourceTree = "<group>"; };
 		3E292ACC26E4069600E0A119 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayScreenAssembly.swift; sourceTree = "<group>"; };
@@ -150,10 +150,8 @@
 		3ED2464126E17C830036CE2E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED2464426E17C830036CE2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ED2464626E17C830036CE2E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3ED2464B26E17C830036CE2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3ED2464E26E17C830036CE2E /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		3ED2465026E17C840036CE2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3ED2465326E17C840036CE2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3ED2465526E17C840036CE2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3ED2465A26E17C850036CE2E /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED2465E26E17C850036CE2E /* WeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppTests.swift; sourceTree = "<group>"; };
@@ -332,6 +330,7 @@
 		3ED2464326E17C830036CE2E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				3E25704426E7A88000640CC3 /* Launch Screen.storyboard */,
 				3ED2B1D326E3C9B6005C1E89 /* UIItems */,
 				3EB06FCA26E3B0FC00118882 /* Sections */,
 				3EB06F9D26E3AA7300118882 /* Cells */,
@@ -343,9 +342,7 @@
 				3EEB51C626E2BB290069A3A1 /* Services */,
 				3ED2464626E17C830036CE2E /* SceneDelegate.swift */,
 				3ED2464426E17C830036CE2E /* AppDelegate.swift */,
-				3ED2464A26E17C830036CE2E /* Main.storyboard */,
 				3ED2465026E17C840036CE2E /* Assets.xcassets */,
-				3ED2465226E17C840036CE2E /* LaunchScreen.storyboard */,
 				3ED2465526E17C840036CE2E /* Info.plist */,
 				3ED2464D26E17C830036CE2E /* WeatherApp.xcdatamodeld */,
 				3E8B82B226E38DBB00D54F57 /* SummaryTableViewCell.swift */,
@@ -521,10 +518,10 @@
 				3E8B829F26E37B7A00D54F57 /* Apache License.txt in Resources */,
 				3E8B829726E37B7A00D54F57 /* Roboto-Medium.ttf in Resources */,
 				3E8B82A926E37B7A00D54F57 /* Roboto-Black.ttf in Resources */,
+				3E25704526E7A88000640CC3 /* Launch Screen.storyboard in Resources */,
 				3E8B82A226E37B7A00D54F57 /* RobotoCondensed-Regular.ttf in Resources */,
 				3E8B829B26E37B7A00D54F57 /* Roboto-Regular.ttf in Resources */,
 				3E8B82A026E37B7A00D54F57 /* RobotoCondensed-LightItalic.ttf in Resources */,
-				3ED2465426E17C840036CE2E /* LaunchScreen.storyboard in Resources */,
 				3E8B82A626E37B7A00D54F57 /* Roboto-BlackItalic.ttf in Resources */,
 				3E8B829826E37B7A00D54F57 /* Roboto-Light.ttf in Resources */,
 				3E8B829A26E37B7A00D54F57 /* RobotoCondensed-Light.ttf in Resources */,
@@ -535,7 +532,6 @@
 				3E8B829E26E37B7A00D54F57 /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				3E8B82A126E37B7A00D54F57 /* Roboto-ThinItalic.ttf in Resources */,
 				3E8B829C26E37B7A00D54F57 /* Roboto-MediumItalic.ttf in Resources */,
-				3ED2464C26E17C830036CE2E /* Main.storyboard in Resources */,
 				3E8B829D26E37B7A00D54F57 /* RobotoCondensed-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,25 +768,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		3ED2464A26E17C830036CE2E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3ED2464B26E17C830036CE2E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3ED2465226E17C840036CE2E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3ED2465326E17C840036CE2E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		3ED2466C26E17C850036CE2E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -917,6 +894,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -937,6 +915,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -70,7 +70,6 @@ class DayCell: WeatherCell {
     dayOfWeekLabel.text = model.dayOfWeek
     // TODO: - Ячейка обращается напрямую к сервису
     weatherImg.image = StorageService.shared.getImageForKey(model.weatherImg)
-    //    weatherImg.image
     maxTempLabel.text = String(model.maxTemp)
     minTempLabel.text = String(model.minTemp)
     contentView.addSubview(vstack)

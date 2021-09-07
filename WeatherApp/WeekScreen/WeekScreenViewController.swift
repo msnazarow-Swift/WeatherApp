@@ -24,7 +24,7 @@ class WeekScreenViewController: UIViewController {
   var viewController: UIViewController { return self }
 
   var sections: [DaySectionModel] = []
-  var tableViewHeight: CGFloat = 0
+  var tableViewHeight: CGFloat!
   let vStack = DaySummaryStackView()
   let weekForecastTableView: UITableView = {
     let tableView = UITableView()
@@ -51,8 +51,8 @@ class WeekScreenViewController: UIViewController {
   }
 
   override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
     tableViewHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
-//    weekForecastTableView.rowHeight /= CGFloat(sections.count)
   }
 
   func setUI() {

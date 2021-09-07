@@ -16,11 +16,27 @@ protocol SearchScreenViewInput: class {
 
 class SearchScreenViewController: UIViewController, SearchScreenViewInput {
 	var presenter: SearchScreenViewOutput?
-
+  let searchTextField = UITextField()
+  let citiesTableView = UITableView()
     var viewController: UIViewController { return self }
 
     override func loadView() {
         super.loadView()
+      view.addSubview(searchTextField)
+      view.addSubview(citiesTableView)
+      view.backgroundColor = .white
+      searchTextField.snp.makeConstraints { make in
+        make.top.equalTo(view.safeAreaLayoutGuide)
+        make.left.equalTo(view.safeAreaLayoutGuide)
+        make.right.equalTo(view.safeAreaLayoutGuide)
+        make.height.equalTo(40)
+      }
+      citiesTableView.snp.makeConstraints { make in
+        make.top.equalTo(searchTextField.snp.bottom)
+        make.left.equalTo(view.safeAreaLayoutGuide)
+        make.right.equalTo(view.safeAreaLayoutGuide)
+        make.bottom.equalTo(view.safeAreaLayoutGuide)
+      }
     }
 
     override func viewDidLoad() {

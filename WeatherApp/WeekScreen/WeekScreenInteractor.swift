@@ -48,19 +48,24 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
 
   func getImages(complition: @escaping ([String: Image]) -> Void) {
     var images: [String: Image] = [:]
+    let queue = DispatchQueue(label: "imagesDispatchQueue")
     for abbr in abbreviations {
+      //      provider.request(<#T##target: WeatherService##WeatherService#>, callbackQueue: <#T##DispatchQueue?#>, progress: <#T##ProgressBlock?##ProgressBlock?##(ProgressResponse) -> Void#>, completion: <#T##Completion##Completion##(Result<Response, MoyaError>) -> Void#>)
       provider.request(.getImage(abbreviation: abbr)) { result in
         switch result {
         case .success(let response):
-          do {
-            images[abbr] = try response.mapImage()
-          } catch let error {
-            print(error)
+          queue.sync {
+            do {
+              images[abbr] = try response.mapImage()
+            } catch let error {
+              print(error)
+            }
           }
         case .failure(let error):
           print(error)
         }
         if abbr == abbreviations.last {
+          // TODO: - Иногда грузятся не все картинки
           complition(images)
         }
       }

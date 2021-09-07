@@ -31,7 +31,7 @@ class WeekScreenRouter: WeekScreenRouterInput {
     if let min = day.minTemp, let max = day.maxTemp {
       dayScrenController.setMinMaxDegreeLabel(min: Int(min), max: Int(max))
     }
-
+    dayScrenController.setDescriptionTable(day: day)
     if let viewController = dayScrenController as? UIViewController {
       let weekFormatter = DateFormatter()
       weekFormatter.dateFormat = "EEEE"

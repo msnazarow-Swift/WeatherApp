@@ -16,6 +16,7 @@ protocol DayScreenViewInput: class {
   func setWeatherLabel(weather: String)
   func setDegreeLabel(degree: Int)
   func setMinMaxDegreeLabel(min: Int, max: Int)
+  func setDescriptionTable(day: WeatherDay)
   func updateForSections(_ sections: [DescriptionSectionModel])
 }
 
@@ -23,7 +24,7 @@ class DayScreenViewController: UIViewController {
   var presenter: DayScreenViewOutput?
   var viewController: UIViewController { return self }
   let cellNames = ["НАПРАВЛЕНИЕ ВЕТРА", "ВЕТЕР", "ВЛАЖНОСТЬ", "ДАВЛЕНИЕ", "ВИДИМОСТЬ"]
-
+  var tableViewHeight: CGFloat!
   var sections: [DescriptionSectionModel] = []
 
   let vStack = DaySummaryStackView()
@@ -31,6 +32,7 @@ class DayScreenViewController: UIViewController {
     let tableView = UITableView()
     tableView.backgroundColor = .brown
     tableView.register(PropertyTableViewCell.self, forCellReuseIdentifier: PropertyTableViewCell.identifier)
+    tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     return tableView
   }()
@@ -46,7 +48,7 @@ class DayScreenViewController: UIViewController {
       print("No presenter")
       return
     }
-    presenter.viewDidLoad()
+    //    presenter.viewDidLoad()
   }
   func setUI() {
     view.backgroundColor = .white
@@ -67,7 +69,8 @@ class DayScreenViewController: UIViewController {
     infoTableView.isScrollEnabled = false
   }
   override func viewDidLayoutSubviews() {
-    infoTableView.rowHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12) / 5
+    super.viewDidLayoutSubviews()
+    tableViewHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
   }
 }
 
@@ -92,15 +95,30 @@ extension DayScreenViewController: DayScreenViewInput {
     self.sections = sections
     infoTableView.reloadData()
   }
+  func setDescriptionTable(day: WeatherDay) {
+    var sections: [DescriptionSectionModel] = []
+    sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Направление Ветра", description: day.windDirectionCompass)))
+    sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Ветер", description: "\(String(format: "%.1f", day.windSpeed)) м/с")))
+    if let humidity = day.humidity {
+      sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Влажность", description: "\(humidity) %")))
+    }
+    if let airPressure = day.airPressure {
+      sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Давление", description: "\(Int(airPressure)) мм рт.cт")))
+    }
+    if let visibility = day.visibility {
+      sections.append(DescriptionSectionModel(DescriptionPropertyModel(title: "Видимость", description: "\(String(format: "%.2f", visibility)) км")))
+    }
+    updateForSections(sections)
+  }
 }
 
 extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
-  //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-  //      return  (view.bounds.height - vStack.bounds.height) / 5
-  //    }
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
-  }
+      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return  tableViewHeight / CGFloat(sections.count)
+      }
+//  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
+//  }
   func numberOfSections(in tableView: UITableView) -> Int {
     return sections.count
   }
