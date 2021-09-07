@@ -118,7 +118,7 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
     guard let presenter = presenter else {
       return
     }
-    return presenter.tableViewDidSelect(row: indexPath.section)
+    return presenter.tableViewDidSelect(row: indexPath.row)
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = sections[indexPath.section].rows[indexPath.row]

@@ -24,6 +24,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
 
   var weatherWeek: WeatherWeek!
 
+  var cityId: Int!
   init(router: WeekScreenRouterInput) {
     self.router = router
   }

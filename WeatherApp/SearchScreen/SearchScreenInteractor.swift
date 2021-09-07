@@ -29,7 +29,9 @@ class SearchScreenInteractor: SearchScreenInteractorInput {
         do {
           let cities = try response.map([WeatherCity].self, using: decoder).map { City($0) }
           complition(cities)
-        } catch { print(error) }
+        } catch {
+          print(error)
+        }
       case .failure(let error):
         print(error)
       }

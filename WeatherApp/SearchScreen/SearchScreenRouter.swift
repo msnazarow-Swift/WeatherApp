@@ -6,12 +6,23 @@
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SearchScreenRouterInput {
+  func routeToWeekScreen(cityId: Int)
 }
 
 class SearchScreenRouter: SearchScreenRouterInput {
+  weak var view: SearchScreenViewInput?
   init(appRouter: AppRouter?) {
+  }
+  func routeToWeekScreen(cityId: Int) {
+    guard let view = view?.viewController.navigationController else {
+      return
+    }
+    let weekScreen = WeekScreenAssembly().createWeekScreen(appRouter: nil)
+    if let viewController = weekScreen as? UIViewController {
+      view.pushViewController(viewController, animated: true)
+    }
   }
 }

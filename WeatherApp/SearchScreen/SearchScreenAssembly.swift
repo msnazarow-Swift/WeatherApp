@@ -9,21 +9,22 @@
 import UIKit
 
 class SearchScreenAssembly {
-    func createSearchScreen(appRouter: AppRouter?) -> SearchScreenViewInput {
-        let router = SearchScreenRouter(appRouter: appRouter)
-        let presenter = SearchScreenPresenter(router: router)
-        let viewController = self.createSearchScreenView()
+  func createSearchScreen(appRouter: AppRouter?) -> SearchScreenViewInput {
+    let router = SearchScreenRouter(appRouter: appRouter)
+    let presenter = SearchScreenPresenter(router: router)
+    let viewController = self.createSearchScreenView()
+    let interactor = SearchScreenInteractor()
+    presenter.view = viewController
+    presenter.interactor = interactor
+    viewController.presenter = presenter
+    router.view = viewController
+    return viewController
+  }
 
-        presenter.view = viewController
-        viewController.presenter = presenter
+  private
+  func createSearchScreenView() -> SearchScreenViewController {
+    let viewController = SearchScreenViewController()
 
-        return viewController
-    }
-
-    private
-    func createSearchScreenView() -> SearchScreenViewController {
-        let viewController = SearchScreenViewController()
-
-        return viewController
-    }
+    return viewController
+  }
 }

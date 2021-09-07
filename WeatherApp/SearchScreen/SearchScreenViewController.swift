@@ -12,18 +12,23 @@ import SnapKit
 protocol SearchScreenViewInput: class {
   var viewController: UIViewController { get }
   var presenter: SearchScreenViewOutput? { get set }
+  func updateForSections(_ sections: [CitySectionModel])
 }
 
-class SearchScreenViewController: UIViewController, SearchScreenViewInput {
+class SearchScreenViewController: UIViewController {
   var presenter: SearchScreenViewOutput?
+  var viewController: UIViewController { return self }
   let searchTextField: UITextField = {
     let textField = UITextField()
-    textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEnd)
+    textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEndOnExit)
     return textField
   }()
-  let citiesTableView = UITableView()
-  var viewController: UIViewController { return self }
-
+  let citiesTableView: UITableView = {
+    let tableView = UITableView()
+    tableView.register(CityCell.self, forCellReuseIdentifier: CityCell.identifier)
+    return tableView
+  }()
+  var sections: [CitySectionModel] = []
   override func loadView() {
     super.loadView()
   }
@@ -31,6 +36,8 @@ class SearchScreenViewController: UIViewController, SearchScreenViewInput {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    citiesTableView.delegate = self
+    citiesTableView.dataSource = self
   }
 
   func setupUI() {
@@ -55,5 +62,36 @@ class SearchScreenViewController: UIViewController, SearchScreenViewInput {
     if let presenter = presenter, let text = searchTextField.text {
       presenter.searchForCity(city: text)
     }
+  }
+}
+
+extension SearchScreenViewController: SearchScreenViewInput {
+  func updateForSections(_ sections: [CitySectionModel]) {
+    self.sections = sections
+    citiesTableView.reloadData()
+  }
+}
+
+extension SearchScreenViewController: UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
+  }
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return sections.count
+  }
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return sections[section].rows.count
+  }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let presenter = presenter else {
+      return
+    }
+    return presenter.tableViewDidSelect(row: indexPath.row)
+  }
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let model = sections[indexPath.section].rows[indexPath.row]
+    let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
+    cell.model = model
+    return cell
   }
 }

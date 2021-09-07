@@ -18,7 +18,7 @@ class CityCellModel: WeatherCellModel {
 
   var title: String
   // TODO: - Why var ? 
-  init(_ property: DescriptionPropertyModel) {
+  init(_ property: CityModel) {
     title = property.title
   }
 }

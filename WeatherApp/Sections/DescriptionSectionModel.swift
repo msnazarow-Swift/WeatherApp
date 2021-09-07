@@ -13,12 +13,11 @@ protocol DescriptionSectionModelDelegate: class {
 }
 
 class DescriptionSectionModel: SectionRowsRepresentable {
-  var rows: [CellIdentifiable]
+  var rows: [CellIdentifiable] = []
 
   weak var delegate: DescriptionSectionModelDelegate?
 
   init(_ properties: [DescriptionPropertyModel]) {
-    rows = [CellIdentifiable]()
     properties.forEach { property in
       rows.append(DescriptionPropertyCellModel(property))
     }
