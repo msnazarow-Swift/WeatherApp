@@ -24,33 +24,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4FCB362-DC36-4516-BDEF-D45702BAADEC"
+            uuid = "DD399F11-D7D0-47A4-8813-620032C542A8"
             shouldBeEnabled = "Yes"
-            condition = "images.count != 10"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/WeekScreen/WeekScreenInteractor.swift"
+            filePath = "Pods/Moya/Sources/Moya/Response.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "getImages(complition:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "mapJSON(failsOnEmptyData:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "58C7A4F7-391C-4FD8-8309-B599DEAEC532"
+            uuid = "482002FA-86AA-45EB-B8AD-8491E26A8AFB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/WeekScreen/WeekScreenInteractor.swift"
+            filePath = "Pods/Moya/Sources/Moya/MoyaProvider+Internal.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "getImages(complition:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "requestNormal(_:callbackQueue:progress:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

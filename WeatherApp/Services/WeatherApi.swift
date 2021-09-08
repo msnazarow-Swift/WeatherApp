@@ -30,7 +30,7 @@ extension WeatherService: TargetType {
       return "/api/location/\(woeid)/"
     case .getDay(let woeid, let date):
       let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "yyyy/mm/dd"
+      dateFormatter.dateFormat = "YYYY/MM/dd"
       let dateString = dateFormatter.string(from: date)
       return "/api/location/\(woeid)/\(dateString)/"
     case .getCities:

@@ -3,24 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in City.init(_:):WeatherCity.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in DayCell.vstack.getter:DayCell.swift">
+         contextName = "DayCell.updateViews():DayCell.swift">
          <PersistentStrings>
             <PersistentString
-               value = "fontTrans">
-            </PersistentString>
-            <PersistentString
-               value = "24 * fontTrans">
+               value = "weatherImg.image">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
+         contextName = "closure #1 in City.init(_:):WeatherCity.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WeekScreenViewController.tableView(_:cellForRowAt:):WeekScreenViewController.swift">
       </ContextState>
       <ContextState
          contextName = "WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
@@ -31,18 +25,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in SearchScreenInteractor.searchWithPrefix(prefix:complition:):SearchScreenInteractor.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DayCell.updateViews():DayCell.swift">
+         contextName = "closure #1 in WeekScreenInteractor.getMaxForecast(cityId:complition:):WeekScreenInteractor.swift">
          <PersistentStrings>
             <PersistentString
-               value = "weatherImg.image">
+               value = "weatherDays[2][7].applicableDate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "WeekScreenViewController.tableView(_:cellForRowAt:):WeekScreenViewController.swift">
+         contextName = "closure #1 in SearchScreenInteractor.searchWithPrefix(prefix:complition:):SearchScreenInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DesignableUITextField.leftViewRect(forBounds:):DesignableUITextField.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "rightPadding">
+            </PersistentString>
+            <PersistentString
+               value = "leftPadding">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WeekScreenInteractor.getMaxForecast(cityId:complition:):WeekScreenInteractor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&quot;\(day)&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MoyaProvider.requestNormal(_:callbackQueue:progress:completion:):MoyaProvider+Internal.swift">
       </ContextState>
       <ContextState
          contextName = "DayCell.vstack.getter:DayCell.swift">
@@ -56,15 +69,24 @@
          contextName = "SearchScreenViewController.updateForSections(_:):SearchScreenViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "DesignableUITextField.leftViewRect(forBounds:):DesignableUITextField.swift">
+         contextName = "WeekScreenInteractor.saveImages(_:):WeekScreenInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in DayCell.vstack.getter:DayCell.swift">
          <PersistentStrings>
             <PersistentString
-               value = "rightPadding">
+               value = "fontTrans">
             </PersistentString>
             <PersistentString
-               value = "leftPadding">
+               value = "24 * fontTrans">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

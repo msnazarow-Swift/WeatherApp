@@ -7,5 +7,5 @@
 
 import UIKit
 
-let fontTrans = UIScreen.main.bounds.height / 667.0
+let fontTrans = max(UIScreen.main.bounds.height / 667.0, 1)
 let abbreviations = ["sn", "sl", "h", "t", "hr", "lr", "s", "hc", "lc", "c"]

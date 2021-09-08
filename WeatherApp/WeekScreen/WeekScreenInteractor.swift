@@ -12,6 +12,7 @@ import Moya
 protocol WeekScreenInteractorInput: class {
   var presenter: WeekScreenInteractorOutput? { get set }
   func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeek) -> Void)
+  func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDay]) -> Void)
   func getImages(complition: @escaping ([String: Image]) -> Void)
   func saveImages(_ images: [String: Image])
 }
@@ -43,6 +44,45 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
       case .failure(let error):
         print(error)
       }
+    }
+  }
+
+  func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDay]) -> Void) {
+    var day = Date()
+    day = Calendar.current.date(byAdding: .day, value: 6, to: day)!
+    var nextDayExist = true
+    var weatherDays: [WeatherDay] = []
+    let group = DispatchGroup()
+    for i in 0...3 {
+      group.enter()
+      provider.request(.getDay(woeid: cityId, date: day)) { result in
+        switch result {
+        case .success(let response):
+          let decoder = JSONDecoder()
+          decoder.dateDecodingStrategyFormatters = [DateFormatter.iso8601Full, DateFormatter.yyyyMMdd]
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+          do {
+            if let day = try response.map([WeatherDay].self, using: decoder).first {
+              weatherDays.append(day)
+            }
+          } catch {
+            do {
+              nextDayExist = false
+              _ = try response.map(NotFound.self, using: decoder)
+              print("Error: cityId = \(cityId) not found")
+            } catch {
+              print(error)
+            }
+          }
+        case .failure(let error):
+          print(error)
+        }
+        group.leave()
+      }
+      day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
+    }
+    group.notify(queue: .main) {
+      complition(weatherDays)
     }
   }
 
