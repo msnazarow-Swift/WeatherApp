@@ -19,9 +19,7 @@ class WeekScreenRouter: WeekScreenRouterInput {
     init(appRouter _: AppRouter?) {}
 
     func routeToDaySrceen(title: String, day: WeatherDay) {
-        guard let view = view?.viewController.navigationController else {
-            return
-        }
+        guard let view = view?.viewController.navigationController else { return }
         let dayScrenController = DayScreenAssembly().createDayScreen(appRouter: nil)
         dayScrenController.setCityLabel(city: title)
         if let temp = day.theTemp {

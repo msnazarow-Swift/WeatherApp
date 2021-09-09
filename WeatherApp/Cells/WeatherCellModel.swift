@@ -8,17 +8,11 @@
 import UIKit
 
 extension CellIdentifiable {
-    var automaticHeight: Float {
-        -1.0
-    }
+    var automaticHeight: Float { return -1.0 }
 
-    var cellIdentifier: String {
-        return ""
-    }
+    var cellIdentifier: String { return "" }
 
-    var cellHeight: Float {
-        return automaticHeight
-    }
+    var cellHeight: Float { return automaticHeight }
 }
 
 class WeatherCell: UITableViewCell, ModelRepresentable {

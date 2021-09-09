@@ -15,13 +15,9 @@ struct DescriptionPropertyModel {
 struct DescriptionPropertyCellModel: CellIdentifiable {
     let title: String
     let description: String
-    var cellIdentifier: String {
-        return "DescriptionPropertyCell"
-    }
+    var cellIdentifier: String { return "DescriptionPropertyCell" }
 
-    var cellHeight: Float {
-        67
-    }
+    var cellHeight: Float { return 67 }
 
     init(_ property: DescriptionPropertyModel) {
         title = property.title

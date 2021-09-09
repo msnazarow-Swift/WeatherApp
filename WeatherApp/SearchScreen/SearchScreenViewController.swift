@@ -68,7 +68,7 @@ class SearchScreenViewController: UIViewController {
     }
 
     @objc func editingDidEnd() {
-        if let presenter = presenter, let text = searchTextField.text {
+        if let presenter = presenter, let text = searchTextField.text, !text.isEmpty {
             presenter.searchForCity(city: text)
         }
     }

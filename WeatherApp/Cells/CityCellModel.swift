@@ -14,9 +14,7 @@ struct CityModel {
 class CityCellModel: CellIdentifiable {
     let title: String
 
-    var cellIdentifier: String {
-        return "CityCell"
-    }
+    var cellIdentifier: String { return "CityCell" }
 
     init(_ property: CityModel) {
         title = property.title

@@ -51,9 +51,7 @@ class DayCell: WeatherCell {
     }()
 
     override func updateViews() {
-        guard let model = model as? DayCellModel else {
-            return
-        }
+        guard let model = model as? DayCellModel else { return }
         dayOfWeekLabel.text = model.dayOfWeek
         // TODO: - Ячейка обращается напрямую к сервису
         weatherImg.image = StorageService.shared.getImageForKey(model.weatherImg)
