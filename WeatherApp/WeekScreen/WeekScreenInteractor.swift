@@ -10,7 +10,6 @@ import Foundation
 import Moya
 
 protocol WeekScreenInteractorInput: class {
-    var presenter: WeekScreenInteractorOutput? { get set }
     func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeek) -> Void)
     func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDay]) -> Void)
     func getImages(complition: @escaping ([String: Image]) -> Void)

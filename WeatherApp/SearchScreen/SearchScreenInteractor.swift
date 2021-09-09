@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 protocol SearchScreenInteractorInput: class {
-    var presenter: SearchScreenInteractorOutput? { get set }
     func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void)
 }
 

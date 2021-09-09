@@ -32,17 +32,17 @@ class WeekScreenRouter: WeekScreenRouterInput {
             dayScrenController.setMinMaxDegreeLabel(min: Int(min), max: Int(max))
         }
         dayScrenController.setDescriptionTable(day: day)
-            let days = Calendar.current.dateComponents([.day], from: Date(), to: day.applicableDate).day!
-            if days == 0 {
-                dayScrenController.title = "Cегодня"
-            } else if days == 1 {
-                dayScrenController.title = "Завтра"
-            } else {
-                let weekFormatter = DateFormatter()
-                weekFormatter.dateFormat = "EEEE"
-                dayScrenController.title = weekFormatter.string(from: day.applicableDate)
-            }
-            view.pushViewController(dayScrenController, animated: true)
+        let days = Calendar.current.dateComponents([.day], from: Date(), to: day.applicableDate).day!
+        if days == 0 {
+            dayScrenController.title = "Cегодня"
+        } else if days == 1 {
+            dayScrenController.title = "Завтра"
+        } else {
+            let weekFormatter = DateFormatter()
+            weekFormatter.dateFormat = "EEEE"
+            dayScrenController.title = weekFormatter.string(from: day.applicableDate)
+        }
+        view.pushViewController(dayScrenController, animated: true)
     }
 
     func routeToSearchScreen() {
@@ -50,6 +50,6 @@ class WeekScreenRouter: WeekScreenRouterInput {
             return
         }
         let searchScreen = SearchScreenAssembly.createSearchScreen()
-                   view.pushViewController(searchScreen, animated: true)
-           }
+        view.pushViewController(searchScreen, animated: true)
+    }
 }

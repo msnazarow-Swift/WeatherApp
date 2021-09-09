@@ -30,9 +30,6 @@ class WeekScreenPresenter: WeekScreenViewOutput {
             return
         }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/mm/dd"
-
         interactor.getImages { images in
             interactor.saveImages(images)
         }
@@ -40,35 +37,51 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         interactor.getWeekForecast(cityId: cityId) { [weak self] weatherWeek in
             self?.title = weatherWeek.title
             self?.weatherDays = weatherWeek.consolidatedWeather
-            let weekFormatter = DateFormatter()
-            weekFormatter.dateFormat = "EEEE"
             var sections: [DaySectionModel] = []
-            var models: [DayModel] = []
+
             interactor.getMaxForecast(cityId: cityId) { days in
                 self?.weatherDays?.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
-                self?.weatherDays?.forEach { day in
-                    let model = DayModel(
-                        dayOfWeek: weekFormatter.string(from: day.applicableDate),
-                        weatherImg: day.weatherStateAbbr,
-                        maxTemp: Int(day.maxTemp ?? 0),
-                        minTemp: Int(day.minTemp ?? 0)
-                    )
-                    models.append(model)
+                if let models = self?.makeModels() {
+                    sections.append(DaySectionModel(models))
                 }
-                sections.append(DaySectionModel(models))
-                view.updateForSections(sections)
-                if let title = self?.title {
-                    view.setCityLabel(city: title)
-                }
-                guard let day = days.first else { return }
-                if let temp = day.theTemp {
-                    view.setDegreeLabel(degree: Int(temp))
-                }
-                view.setWeatherLabel(weather: day.weatherStateName)
-                if let minTemp = day.minTemp, let maxTemp = day.maxTemp {
-                    view.setMinMaxDegreeLabel(min: Int(minTemp), max: Int(maxTemp))
-                }
+                self?.updateView(sections: sections)
             }
+        }
+    }
+
+	private
+    func makeModels() -> [DayModel] {
+        var models: [DayModel] = []
+        let weekFormatter = DateFormatter()
+        weekFormatter.dateFormat = "EEEE"
+
+        self.weatherDays?.forEach { day in
+            let model = DayModel(
+                dayOfWeek: weekFormatter.string(from: day.applicableDate),
+                weatherImg: day.weatherStateAbbr,
+                maxTemp: Int(day.maxTemp ?? 0),
+                minTemp: Int(day.minTemp ?? 0)
+            )
+            models.append(model)
+        }
+        return models
+    }
+
+    private
+    func updateView(sections: [DaySectionModel]) {
+        guard let view = view else { return }
+
+        view.updateForSections(sections)
+        if let title = self.title {
+            view.setCityLabel(city: title)
+        }
+        guard let day = weatherDays?.first else { return }
+        if let temp = day.theTemp {
+            view.setDegreeLabel(degree: Int(temp))
+        }
+        view.setWeatherLabel(weather: day.weatherStateName)
+        if let minTemp = day.minTemp, let maxTemp = day.maxTemp {
+            view.setMinMaxDegreeLabel(min: Int(minTemp), max: Int(maxTemp))
         }
     }
 

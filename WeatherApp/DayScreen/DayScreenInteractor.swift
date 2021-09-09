@@ -10,7 +10,6 @@ import Foundation
 import Moya
 
 protocol DayScreenInteractorInput: class {
-    var presenter: DayScreenInteractorOutput? { get set }
     func getWeatherForDay(cityId: Int, day: Date, complition: @escaping ([WeatherDay]) -> Void)
 }
 

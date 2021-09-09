@@ -34,11 +34,13 @@ class DayScreenViewController: UIViewController {
         return view
     }()
 
-    let infoTableView: UITableView = {
+    lazy var infoTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
+        tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
 
@@ -56,21 +58,19 @@ class DayScreenViewController: UIViewController {
         view.addSubview(vStack)
         view.addSubview(stroke)
         view.addSubview(infoTableView)
-        infoTableView.separatorColor = .clear
-        infoTableView.delegate = self
-        infoTableView.dataSource = self
+
         vStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
         }
-        stroke.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(vStack.snp.bottom)
-        }
+//        stroke.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(vStack.snp.bottom)
+//        }
         infoTableView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.top.equalTo(stroke.snp.bottom)
+            make.top.equalTo(vStack.snp.bottom)
             make.bottom.greaterThanOrEqualToSuperview()
         }
         infoTableView.bounces = false
