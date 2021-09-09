@@ -28,7 +28,7 @@ extension WeatherService: TargetType {
       return "/static/img/weather/ico/\(abbreviation).ico"
     case .getWeek(let woeid):
       return "/api/location/\(woeid)/"
-    case .getDay(let woeid, let date):
+    case let .getDay(woeid, date):
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "YYYY/MM/dd"
       let dateString = dateFormatter.string(from: date)

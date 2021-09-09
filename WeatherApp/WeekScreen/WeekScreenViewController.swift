@@ -105,9 +105,11 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
 extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return max(tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
-                   CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight),
-                   UITableView.automaticDimension)
+        return max(
+          tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
+          CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight),
+          UITableView.automaticDimension
+        )
       }
   func numberOfSections(in tableView: UITableView) -> Int {
     return sections.count
@@ -123,8 +125,11 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = sections[indexPath.section].rows[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
+    if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
     cell.model = model
     return cell
+    } else {
+      return UITableViewCell()
+    }
   }
 }

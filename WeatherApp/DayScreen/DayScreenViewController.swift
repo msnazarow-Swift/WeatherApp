@@ -23,8 +23,7 @@ protocol DayScreenViewInput: class {
 class DayScreenViewController: UIViewController {
   var presenter: DayScreenViewOutput?
   var viewController: UIViewController { return self }
-  let cellNames = ["НАПРАВЛЕНИЕ ВЕТРА", "ВЕТЕР", "ВЛАЖНОСТЬ", "ДАВЛЕНИЕ", "ВИДИМОСТЬ"]
-  var tableViewHeight: CGFloat!
+  var tableViewHeight: CGFloat = 0
   var sections: [DescriptionSectionModel] = []
 
   let vStack = DaySummaryStackView()
@@ -43,11 +42,6 @@ class DayScreenViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setUI()
-    guard let presenter = presenter else {
-      print("No presenter")
-      return
-    }
-    //    presenter.viewDidLoad()
   }
   func setUI() {
     view.backgroundColor = .white

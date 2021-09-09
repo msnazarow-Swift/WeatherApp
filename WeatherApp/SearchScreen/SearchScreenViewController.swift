@@ -45,11 +45,11 @@ class SearchScreenViewController: UIViewController {
     view.addSubview(searchTextField)
     view.addSubview(citiesTableView)
     view.backgroundColor = .white
-//    searchTextField.backgroundColor = .white
-//
-//    let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")!)
-//    searchTextField.leftView = imageView
-//    searchTextField.leftViewMode = .always
+    //    searchTextField.backgroundColor = .white
+    //
+    //    let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")!)
+    //    searchTextField.leftView = imageView
+    //    searchTextField.leftViewMode = .always
 
     searchTextField.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
@@ -96,8 +96,11 @@ extension SearchScreenViewController: UITableViewDelegate, UITableViewDataSource
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let model = sections[indexPath.section].rows[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
-    cell.model = model
-    return cell
+    if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
+      cell.model = model
+      return cell
+    } else {
+      return UITableViewCell()
+    }
   }
 }

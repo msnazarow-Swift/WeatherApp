@@ -50,10 +50,9 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
   func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDay]) -> Void) {
     var day = Date()
     day = Calendar.current.date(byAdding: .day, value: 6, to: day)!
-    var nextDayExist = true
     var weatherDays: [WeatherDay] = []
     let group = DispatchGroup()
-    for i in 0...3 {
+    for _ in 0...3 {
       group.enter()
       provider.request(.getDay(woeid: cityId, date: day)) { result in
         switch result {
@@ -67,7 +66,6 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
             }
           } catch {
             do {
-              nextDayExist = false
               _ = try response.map(NotFound.self, using: decoder)
               print("Error: cityId = \(cityId) not found")
             } catch {
