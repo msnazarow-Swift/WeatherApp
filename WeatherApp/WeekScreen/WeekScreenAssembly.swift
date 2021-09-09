@@ -11,23 +11,16 @@ import UIKit
 protocol AppRouter {}
 
 class WeekScreenAssembly {
-    func createWeekScreen(appRouter: AppRouter?) -> WeekScreenViewInput {
-        let router = WeekScreenRouter(appRouter: appRouter)
+    func createWeekScreen(appRouter: AppRouter?) -> WeekScreenViewController {
+        let viewController = WeekScreenViewController()
+        let router = WeekScreenRouter(view: viewController)
         let presenter = WeekScreenPresenter(router: router)
-        let viewController = createWeekScreenView()
         let interactor = WeekScreenInteractor()
 
         presenter.interactor = interactor
         presenter.view = viewController
         viewController.presenter = presenter
         router.view = viewController
-
-        return viewController
-    }
-
-    private
-    func createWeekScreenView() -> WeekScreenViewController {
-        let viewController = WeekScreenViewController()
 
         return viewController
     }

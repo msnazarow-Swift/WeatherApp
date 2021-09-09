@@ -8,10 +8,6 @@
 import Foundation
 import Moya
 
-struct WeatherApiResults<T: Decodable>: Decodable {
-    let results: [T]
-}
-
 enum WeatherService {
     case getImage(abbreviation: String)
     case getCities(query: String)
@@ -23,6 +19,7 @@ enum WeatherService {
 
 extension WeatherService: TargetType {
     var baseURL: URL { return URL(string: "https://www.metaweather.com")! }
+
     var path: String {
         switch self {
         case let .getImage(abbreviation):
@@ -39,9 +36,7 @@ extension WeatherService: TargetType {
         }
     }
 
-    var method: Moya.Method {
-        return .get
-    }
+    var method: Moya.Method { return .get }
 
     var task: Task {
         switch self {
@@ -52,23 +47,15 @@ extension WeatherService: TargetType {
         }
     }
 
-    var sampleData: Data {
-        return Data()
-    }
+    var sampleData: Data { return Data() }
 
-    var headers: [String: String]? {
-        return ["Content-type": "application/json"]
-    }
+    var headers: [String: String]? { return ["Content-type": "application/json"] }
 }
 
 // MARK: - Helpers
 
 private extension String {
-    var urlEscaped: String {
-        return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-    }
+    var urlEscaped: String { return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)! }
 
-    var utf8Encoded: Data {
-        return data(using: .utf8)!
-    }
+    var utf8Encoded: Data { return data(using: .utf8)! }
 }

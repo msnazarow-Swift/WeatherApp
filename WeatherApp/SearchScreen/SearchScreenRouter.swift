@@ -13,13 +13,13 @@ protocol SearchScreenRouterInput {
 }
 
 class SearchScreenRouter: SearchScreenRouterInput {
-    weak var view: SearchScreenViewInput?
-    init(appRouter _: AppRouter?) {}
+    weak var view: SearchScreenViewController?
+    init(view: SearchScreenViewController?) {
+        self.view = view
+    }
 
     func routeToWeekScreen(cityId: Int) {
-        guard let view = view?.viewController.navigationController else {
-            return
-        }
+        guard let view = view?.viewController.navigationController else { return }
         let weekScreen = WeekScreenAssembly().createWeekScreen(appRouter: nil)
         weekScreen.loadForCity(cityId: cityId)
         if let viewController = weekScreen as? UIViewController {

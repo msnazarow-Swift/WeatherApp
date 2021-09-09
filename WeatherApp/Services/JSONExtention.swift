@@ -27,11 +27,8 @@ extension JSONDecoder {
                 let dateString = try container.decode(String.self)
 
                 for formatter in formatters {
-                    if let date = formatter.date(from: dateString) {
-                        return date
-                    }
+                    if let date = formatter.date(from: dateString) { return date }
                 }
-
                 throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
             }
         }

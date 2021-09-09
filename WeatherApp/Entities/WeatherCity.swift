@@ -19,6 +19,7 @@ struct City {
     let locationType: String
     let title: String
     let woeid: Int
+
     init(_ weatherCity: WeatherCity) {
         locationType = weatherCity.locationType
         title = weatherCity.title

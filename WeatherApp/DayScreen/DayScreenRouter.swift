@@ -11,7 +11,9 @@ import Foundation
 protocol DayScreenRouterInput {}
 
 class DayScreenRouter: DayScreenRouterInput {
-    func routeToDaySrceen(title _: String, day _: WeatherDay) {}
+    weak var view: DayScreenViewController?
 
-    init(appRouter _: AppRouter?) {}
+    init(view: DayScreenViewController?) {
+        self.view = view
+    }
 }

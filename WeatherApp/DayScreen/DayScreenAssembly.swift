@@ -9,21 +9,14 @@
 import UIKit
 
 class DayScreenAssembly {
-    func createDayScreen(appRouter: AppRouter?) -> DayScreenViewInput {
-        let router = DayScreenRouter(appRouter: appRouter)
+    func createDayScreen(appRouter: AppRouter?) -> DayScreenViewController {
+        let viewController = DayScreenViewController()
+        let router = DayScreenRouter(view: viewController)
         let presenter = DayScreenPresenter(router: router)
-        let viewController = createDayScreenView()
         let interactor = DayScreenInteractor()
         presenter.view = viewController
         viewController.presenter = presenter
         presenter.interactor = interactor
-        return viewController
-    }
-
-    private
-    func createDayScreenView() -> DayScreenViewController {
-        let viewController = DayScreenViewController()
-
         return viewController
     }
 }

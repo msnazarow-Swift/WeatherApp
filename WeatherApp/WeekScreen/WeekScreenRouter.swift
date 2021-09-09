@@ -14,9 +14,11 @@ protocol WeekScreenRouterInput {
 }
 
 class WeekScreenRouter: WeekScreenRouterInput {
-    weak var view: WeekScreenViewInput?
+    weak var view: WeekScreenViewController?
 
-    init(appRouter _: AppRouter?) {}
+    init(view: WeekScreenViewController?) {
+        self.view = view
+    }
 
     func routeToDaySrceen(title: String, day: WeatherDay) {
         guard let view = view?.viewController.navigationController else { return }
