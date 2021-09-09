@@ -27,10 +27,18 @@ class WeekScreenViewController: UIViewController {
   var sections: [DaySectionModel] = []
   var tableViewHeight: CGFloat!
   let vStack = DaySummaryStackView()
+  let stroke: UIView = {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 1))
+    view.bounds = view.bounds.insetBy(dx: -0.5, dy: -0.5)
+    view.layer.borderWidth = 1
+    view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
+    return view
+  }()
   let weekForecastTableView: UITableView = {
     let tableView = UITableView()
     tableView.backgroundColor = .white
     tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
+    tableView.separatorColor = .clear
     return tableView
   }()
 
@@ -58,13 +66,22 @@ class WeekScreenViewController: UIViewController {
     navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
     view.backgroundColor = .white
     view.addSubview(vStack)
+//    view.addSubview(stroke)
     view.addSubview(weekForecastTableView)
     weekForecastTableView.delegate = self
     weekForecastTableView.dataSource = self
     vStack.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
       make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
+      make.height.greaterThanOrEqualTo(143)
     }
+    vStack.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
+//    stroke.snp.makeConstraints { make in
+//      make.center.equalToSuperview()
+//      make.top.equalTo(vStack.snp.bottom).offset(17)
+//      make.height.equalTo(1)
+//      make.width.equalToSuperview()
+//    }
     weekForecastTableView.snp.makeConstraints { make in
       make.left.equalToSuperview()
       make.right.equalToSuperview()

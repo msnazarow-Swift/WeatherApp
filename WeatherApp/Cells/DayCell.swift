@@ -10,13 +10,11 @@ class DayCell: WeatherCell {
   static let identifier = "DayCell"
   let dayOfWeekLabel: UILabel = {
     let label = UILabel()
-    //    label.frame = CGRect(x: 0, y: 0, width: 100 * fontTrans, height: 16 * fontTrans)
     label.font = UIFont(name: "Roboto-Regular", size: 14 * fontTrans)
     return label
   }()
   let weatherImg: UIImageView = {
     let imageView = UIImageView()
-//    imageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     return imageView
   }()
   let maxTempLabel: UILabel = {
@@ -63,7 +61,6 @@ class DayCell: WeatherCell {
   }
   override func layoutSubviews() {
     super.layoutSubviews()
-
     contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 14))
   }
 }

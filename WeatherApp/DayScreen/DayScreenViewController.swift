@@ -27,6 +27,15 @@ class DayScreenViewController: UIViewController {
   var sections: [DescriptionSectionModel] = []
 
   let vStack = DaySummaryStackView()
+
+  let stroke: UIView = {
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 0))
+    view.bounds = view.bounds.insetBy(dx: -0.5, dy: -0.5)
+    view.layer.borderWidth = 1
+    view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
+    return view
+  }()
+
   let infoTableView: UITableView = {
     let tableView = UITableView()
     tableView.backgroundColor = .white
@@ -46,17 +55,23 @@ class DayScreenViewController: UIViewController {
   func setUI() {
     view.backgroundColor = .white
     view.addSubview(vStack)
+    view.addSubview(stroke)
     view.addSubview(infoTableView)
+    infoTableView.separatorColor = .clear
     infoTableView.delegate = self
     infoTableView.dataSource = self
     vStack.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
       make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
     }
+    stroke.snp.makeConstraints { make in
+      make.centerX.equalToSuperview()
+      make.top.equalTo(vStack.snp.bottom)
+    }
     infoTableView.snp.makeConstraints { make in
       make.left.equalToSuperview()
       make.right.equalToSuperview()
-      make.top.equalTo(vStack.snp.bottom)
+      make.top.equalTo(stroke.snp.bottom)
       make.bottom.greaterThanOrEqualToSuperview()
     }
     infoTableView.bounces = false
@@ -108,11 +123,11 @@ extension DayScreenViewController: DayScreenViewInput {
 }
 
 extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
-      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return  max(tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
-                    CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight),
-                    UITableView.automaticDimension)
-      }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return  max(tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
+                CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight),
+                UITableView.automaticDimension)
+  }
   func numberOfSections(in tableView: UITableView) -> Int {
     return sections.count
   }

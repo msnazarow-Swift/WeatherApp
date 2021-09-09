@@ -7,8 +7,10 @@
 
 import UIKit
 
-class WeatherCellModel: CellIdentifiable {
-  let automaticHeight: Float = -1.0
+extension CellIdentifiable {
+  var automaticHeight: Float {
+    -1.0
+  }
 
   var cellIdentifier: String {
     return ""

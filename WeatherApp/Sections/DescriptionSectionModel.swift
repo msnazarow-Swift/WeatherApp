@@ -7,15 +7,8 @@
 
 import Foundation
 
-protocol DescriptionSectionModelDelegate: class {
-  func didTapCall(withPhone phoneNumber: String)
-  func didTapText(withEmail email: String)
-}
-
 class DescriptionSectionModel: SectionRowsRepresentable {
   var rows: [CellIdentifiable] = []
-
-  weak var delegate: DescriptionSectionModelDelegate?
 
   init(_ properties: [DescriptionPropertyModel]) {
     properties.forEach { property in

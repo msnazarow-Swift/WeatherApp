@@ -11,10 +11,10 @@ struct CityModel {
   let title: String
 }
 
-class CityCellModel: WeatherCellModel {
+class CityCellModel: CellIdentifiable {
   let title: String
 
-  override var cellIdentifier: String {
+  var cellIdentifier: String {
     return "CityCell"
   }
 

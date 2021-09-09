@@ -37,6 +37,7 @@ class DaySummaryStackView: UIStackView {
     addArrangedSubview(weatherLabel)
     addArrangedSubview(degreeLabel)
     addArrangedSubview(minMaxLabel)
+//    cityLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
     axis = .vertical
     spacing = 5
     alignment = .center

@@ -12,13 +12,13 @@ struct DescriptionPropertyModel {
   let description: String
 }
 
-class DescriptionPropertyCellModel: WeatherCellModel {
+struct DescriptionPropertyCellModel: CellIdentifiable {
   let title: String
   let description: String
-  override var cellIdentifier: String {
+  var cellIdentifier: String {
     return "DescriptionPropertyCell"
   }
-  override var cellHeight: Float {
+  var cellHeight: Float {
     67
   }
   init(_ property: DescriptionPropertyModel) {

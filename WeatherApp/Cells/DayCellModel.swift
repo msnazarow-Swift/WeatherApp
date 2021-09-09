@@ -14,11 +14,11 @@ struct DayModel {
   var minTemp: Int
 }
 
-class DayCellModel: WeatherCellModel {
-  override var cellIdentifier: String {
+struct DayCellModel: CellIdentifiable {
+  var cellIdentifier: String {
     return "DayCell"
   }
-  override var cellHeight: Float {
+  var cellHeight: Float {
     Float(30 * fontTrans)
   }
   let dayOfWeek: String

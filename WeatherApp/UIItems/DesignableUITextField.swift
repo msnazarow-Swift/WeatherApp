@@ -1,6 +1,5 @@
 import UIKit
 
-@IBDesignable
 class DesignableUITextField: UITextField {
   // Provides left padding for images
   override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
@@ -8,15 +7,15 @@ class DesignableUITextField: UITextField {
     return textRect.offsetBy(dx: leftPadding, dy: 0).insetBy(dx: -rightPadding, dy: 0)
   }
 
-  @IBInspectable var leftImage: UIImage? {
+  var leftImage: UIImage? {
     didSet {
       updateView()
     }
   }
 
-  @IBInspectable var leftPadding: CGFloat = 0
-  @IBInspectable var rightPadding: CGFloat = 0
-  @IBInspectable var color: UIColor = UIColor.lightGray {
+  var leftPadding: CGFloat = 0
+  var rightPadding: CGFloat = 0
+  var color = UIColor.lightGray {
     didSet {
       updateView()
     }
