@@ -8,11 +8,11 @@
 import Foundation
 
 class CitySectionModel: SectionRowsRepresentable {
-  var rows: [CellIdentifiable] = []
+    var rows: [CellIdentifiable] = []
 
-  init(_ properties: [CityModel]) {
-    properties.forEach { property in
-      rows.append(CityCellModel(property))
+    init(_ properties: [CityModel]) {
+        properties.forEach { property in
+            rows.append(CityCellModel(property))
+        }
     }
-  }
 }

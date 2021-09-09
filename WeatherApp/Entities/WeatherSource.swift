@@ -8,8 +8,8 @@
 import Foundation
 
 struct WeatherSource: Codable {
-  let crawlRate: Int
-  let slug: String
-  let title: String
-  let url: URL
+    let crawlRate: Int
+    let slug: String
+    let title: String
+    let url: URL
 }

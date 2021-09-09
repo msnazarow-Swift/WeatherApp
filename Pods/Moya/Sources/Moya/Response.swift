@@ -2,7 +2,6 @@ import Foundation
 
 /// Represents a response to a `MoyaProvider.request`.
 public final class Response: CustomDebugStringConvertible, Equatable {
-
     /// The status code of the response.
     public let statusCode: Int
 
@@ -40,14 +39,13 @@ public final class Response: CustomDebugStringConvertible, Equatable {
 }
 
 public extension Response {
-
     /**
-     Returns the `Response` if the `statusCode` falls within the specified range.
+      Returns the `Response` if the `statusCode` falls within the specified range.
 
-     - parameters:
-        - statusCodes: The range of acceptable status codes.
-     - throws: `MoyaError.statusCode` when others are encountered.
-    */
+      - parameters:
+         - statusCodes: The range of acceptable status codes.
+      - throws: `MoyaError.statusCode` when others are encountered.
+     */
     func filter<R: RangeExpression>(statusCodes: R) throws -> Response where R.Bound == Int {
         guard statusCodes.contains(statusCode) else {
             throw MoyaError.statusCode(self)
@@ -56,32 +54,32 @@ public extension Response {
     }
 
     /**
-     Returns the `Response` if it has the specified `statusCode`.
+      Returns the `Response` if it has the specified `statusCode`.
 
-     - parameters:
-        - statusCode: The acceptable status code.
-     - throws: `MoyaError.statusCode` when others are encountered.
-    */
+      - parameters:
+         - statusCode: The acceptable status code.
+      - throws: `MoyaError.statusCode` when others are encountered.
+     */
     func filter(statusCode: Int) throws -> Response {
-        return try filter(statusCodes: statusCode...statusCode)
+        return try filter(statusCodes: statusCode ... statusCode)
     }
 
     /**
-     Returns the `Response` if the `statusCode` falls within the range 200 - 299.
+      Returns the `Response` if the `statusCode` falls within the range 200 - 299.
 
-     - throws: `MoyaError.statusCode` when others are encountered.
-    */
+      - throws: `MoyaError.statusCode` when others are encountered.
+     */
     func filterSuccessfulStatusCodes() throws -> Response {
-        return try filter(statusCodes: 200...299)
+        return try filter(statusCodes: 200 ... 299)
     }
 
     /**
-     Returns the `Response` if the `statusCode` falls within the range 200 - 399.
+      Returns the `Response` if the `statusCode` falls within the range 200 - 399.
 
-     - throws: `MoyaError.statusCode` when others are encountered.
-    */
+      - throws: `MoyaError.statusCode` when others are encountered.
+     */
     func filterSuccessfulStatusAndRedirectCodes() throws -> Response {
-        return try filter(statusCodes: 200...399)
+        return try filter(statusCodes: 200 ... 399)
     }
 
     /// Maps data received from the signal into an Image.
@@ -100,7 +98,7 @@ public extension Response {
         do {
             return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
         } catch {
-            if data.count < 1 && !failsOnEmptyData {
+            if data.count < 1, !failsOnEmptyData {
                 return NSNull()
             }
             throw MoyaError.jsonMapping(self)
@@ -114,8 +112,9 @@ public extension Response {
         if let keyPath = keyPath {
             // Key path was provided, try to parse string at key path
             guard let jsonDictionary = try mapJSON() as? NSDictionary,
-                let string = jsonDictionary.value(forKeyPath: keyPath) as? String else {
-                    throw MoyaError.stringMapping(self)
+                  let string = jsonDictionary.value(forKeyPath: keyPath) as? String
+            else {
+                throw MoyaError.stringMapping(self)
             }
             return string
         } else {
@@ -131,8 +130,8 @@ public extension Response {
     ///
     /// - parameter atKeyPath: Optional key path at which to parse object.
     /// - parameter using: A `JSONDecoder` instance which is used to decode data to an object.
-    func map<D: Decodable>(_ type: D.Type, atKeyPath keyPath: String? = nil, using decoder: JSONDecoder = JSONDecoder(), failsOnEmptyData: Bool = true) throws -> D {
-        let serializeToData: (Any) throws -> Data? = { (jsonObject) in
+    func map<D: Decodable>(_: D.Type, atKeyPath keyPath: String? = nil, using decoder: JSONDecoder = JSONDecoder(), failsOnEmptyData: Bool = true) throws -> D {
+        let serializeToData: (Any) throws -> Data? = { jsonObject in
             guard JSONSerialization.isValidJSONObject(jsonObject) else {
                 return nil
             }
@@ -165,7 +164,7 @@ public extension Response {
                 }
                 do {
                     return try decoder.decode(DecodableWrapper<D>.self, from: wrappedJsonData).value
-                } catch let error {
+                } catch {
                     throw MoyaError.objectMapping(error, self)
                 }
             }
@@ -173,7 +172,7 @@ public extension Response {
             jsonData = data
         }
         do {
-            if jsonData.count < 1 && !failsOnEmptyData {
+            if jsonData.count < 1, !failsOnEmptyData {
                 if let emptyJSONObjectData = "{}".data(using: .utf8), let emptyDecodableValue = try? decoder.decode(D.self, from: emptyJSONObjectData) {
                     return emptyDecodableValue
                 } else if let emptyJSONArrayData = "[{}]".data(using: .utf8), let emptyDecodableValue = try? decoder.decode(D.self, from: emptyJSONArrayData) {
@@ -181,7 +180,7 @@ public extension Response {
                 }
             }
             return try decoder.decode(D.self, from: jsonData)
-        } catch let error {
+        } catch {
             throw MoyaError.objectMapping(error, self)
         }
     }

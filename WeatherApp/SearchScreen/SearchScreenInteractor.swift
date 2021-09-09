@@ -9,32 +9,31 @@
 import Foundation
 import Moya
 protocol SearchScreenInteractorInput: class {
-  var presenter: SearchScreenInteractorOutput? { get set }
-  func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void)
+    var presenter: SearchScreenInteractorOutput? { get set }
+    func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void)
 }
 
-protocol SearchScreenInteractorOutput: class {
-}
+protocol SearchScreenInteractorOutput: class {}
 
 class SearchScreenInteractor: SearchScreenInteractorInput {
-  weak var presenter: SearchScreenInteractorOutput?
+    weak var presenter: SearchScreenInteractorOutput?
 
-  func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void) {
-    let provider = MoyaProvider<WeatherService>()
-    provider.request(.getCities(query: substring)) { result in
-      switch result {
-      case .success(let response):
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-          let cities = try response.map([WeatherCity].self, using: decoder).map { City($0) }
-          complition(cities)
-        } catch {
-          print(error)
+    func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void) {
+        let provider = MoyaProvider<WeatherService>()
+        provider.request(.getCities(query: substring)) { result in
+            switch result {
+            case let .success(response):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    let cities = try response.map([WeatherCity].self, using: decoder).map { City($0) }
+                    complition(cities)
+                } catch {
+                    print(error)
+                }
+            case let .failure(error):
+                print(error)
+            }
         }
-      case .failure(let error):
-        print(error)
-      }
     }
-  }
 }

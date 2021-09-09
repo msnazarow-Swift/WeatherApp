@@ -8,23 +8,23 @@
 import Foundation
 
 struct WeatherCity: Codable {
-  let lattLong: String
-  let locationType: String
-  let title: String
-  let woeid: Int
+    let lattLong: String
+    let locationType: String
+    let title: String
+    let woeid: Int
 }
 
 struct City {
-  let lattLong: [Double]
-  let locationType: String
-  let title: String
-  let woeid: Int
-  init(_ weatherCity: WeatherCity) {
-    self.locationType = weatherCity.locationType
-    self.title = weatherCity.title
-    self.woeid = weatherCity.woeid
-    self.lattLong = weatherCity.lattLong.components(separatedBy: ", ").map {
-      Double($0.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+    let lattLong: [Double]
+    let locationType: String
+    let title: String
+    let woeid: Int
+    init(_ weatherCity: WeatherCity) {
+        locationType = weatherCity.locationType
+        title = weatherCity.title
+        woeid = weatherCity.woeid
+        lattLong = weatherCity.lattLong.components(separatedBy: ", ").map {
+            Double($0.trimmingCharacters(in: .whitespacesAndNewlines)) ?? 0
+        }
     }
-  }
 }

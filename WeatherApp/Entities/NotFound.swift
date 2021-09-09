@@ -8,5 +8,5 @@
 import Foundation
 
 struct NotFound: Codable {
-  let detail: String
+    let detail: String
 }

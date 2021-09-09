@@ -8,11 +8,11 @@
 import Foundation
 
 class DaySectionModel: SectionRowsRepresentable {
-  var rows: [CellIdentifiable] = []
+    var rows: [CellIdentifiable] = []
 
-  init(_ properties: [DayModel]) {
-    properties.forEach { property in
-      rows.append(DayCellModel(property))
+    init(_ properties: [DayModel]) {
+        properties.forEach { property in
+            rows.append(DayCellModel(property))
+        }
     }
-  }
 }

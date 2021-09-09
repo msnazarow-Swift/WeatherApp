@@ -8,10 +8,9 @@
 
 import Foundation
 
-
 protocol SearchScreenViewOutput: class {
-  func searchForCity(city: String)
-  func tableViewDidSelect(row: Int)
+    func searchForCity(city: String)
+    func tableViewDidSelect(row: Int)
 }
 
 class SearchScreenPresenter {
@@ -21,34 +20,35 @@ class SearchScreenPresenter {
 
     var interactor: SearchScreenInteractorInput?
 
-  var cities: [City] = []
+    var cities: [City] = []
     init(router: SearchScreenRouter) {
         self.router = router
     }
 }
 
 extension SearchScreenPresenter: SearchScreenViewOutput {
-  func searchForCity(city: String) {
-    guard !city.isEmpty else {
-      return
+    func searchForCity(city: String) {
+        guard !city.isEmpty else {
+            return
+        }
+        var sections: [CitySectionModel] = []
+        var models: [CityModel] = []
+        guard let interactor = interactor, let view = view else {
+            print("SearchScreenAssemle Error")
+            return
+        }
+        interactor.searchWithSubstring(city) { cities in
+            self.cities = cities
+            cities.forEach { city in
+                let model = CityModel(title: city.title)
+                models.append(model)
+            }
+            sections.append(CitySectionModel(models))
+            view.updateForSections(sections)
+        }
     }
-    var sections: [CitySectionModel] = []
-    var models: [CityModel] = []
-    guard let interactor = interactor, let view = view else {
-      print("SearchScreenAssemle Error")
-      return
+
+    func tableViewDidSelect(row: Int) {
+        router.routeToWeekScreen(cityId: cities[row].woeid)
     }
-    interactor.searchWithSubstring(city) { cities in
-      self.cities = cities
-      cities.forEach { city in
-        let model = CityModel(title: city.title)
-        models.append(model)
-      }
-      sections.append(CitySectionModel(models))
-      view.updateForSections(sections)
-    }
-  }
-  func tableViewDidSelect(row: Int) {
-    router.routeToWeekScreen(cityId: cities[row].woeid)
-  }
 }

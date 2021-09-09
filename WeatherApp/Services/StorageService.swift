@@ -7,15 +7,15 @@
 
 import UIKit
 class StorageService {
-  static let shared = StorageService()
+    static let shared = StorageService()
 
-  var images: [String: UIImage] = [:]
+    var images: [String: UIImage] = [:]
 
-  func saveImages(_ images: [String: UIImage]) {
-    self.images = images
-  }
+    func saveImages(_ images: [String: UIImage]) {
+        self.images = images
+    }
 
-  func getImageForKey(_ key: String) -> UIImage? {
-    return self.images[key]
-  }
+    func getImageForKey(_ key: String) -> UIImage? {
+        return images[key]
+    }
 }

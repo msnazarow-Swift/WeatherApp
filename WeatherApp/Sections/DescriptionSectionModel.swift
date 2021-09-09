@@ -8,11 +8,11 @@
 import Foundation
 
 class DescriptionSectionModel: SectionRowsRepresentable {
-  var rows: [CellIdentifiable] = []
+    var rows: [CellIdentifiable] = []
 
-  init(_ properties: [DescriptionPropertyModel]) {
-    properties.forEach { property in
-      rows.append(DescriptionPropertyCellModel(property))
+    init(_ properties: [DescriptionPropertyModel]) {
+        properties.forEach { property in
+            rows.append(DescriptionPropertyCellModel(property))
+        }
     }
-  }
 }

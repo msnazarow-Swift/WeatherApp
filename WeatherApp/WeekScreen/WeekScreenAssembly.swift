@@ -8,28 +8,27 @@
 
 import UIKit
 
-protocol AppRouter {
-}
+protocol AppRouter {}
 
 class WeekScreenAssembly {
-  func createWeekScreen(appRouter: AppRouter?) -> WeekScreenViewInput {
-    let router = WeekScreenRouter(appRouter: appRouter)
-    let presenter = WeekScreenPresenter(router: router)
-    let viewController = self.createWeekScreenView()
-    let interactor = WeekScreenInteractor()
+    func createWeekScreen(appRouter: AppRouter?) -> WeekScreenViewInput {
+        let router = WeekScreenRouter(appRouter: appRouter)
+        let presenter = WeekScreenPresenter(router: router)
+        let viewController = createWeekScreenView()
+        let interactor = WeekScreenInteractor()
 
-    presenter.interactor = interactor
-    presenter.view = viewController
-    viewController.presenter = presenter
-    router.view = viewController
+        presenter.interactor = interactor
+        presenter.view = viewController
+        viewController.presenter = presenter
+        router.view = viewController
 
-    return viewController
-  }
+        return viewController
+    }
 
-  private
-  func createWeekScreenView() -> WeekScreenViewController {
-    let viewController = WeekScreenViewController()
+    private
+    func createWeekScreenView() -> WeekScreenViewController {
+        let viewController = WeekScreenViewController()
 
-    return viewController
-  }
+        return viewController
+    }
 }

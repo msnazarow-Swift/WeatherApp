@@ -10,38 +10,37 @@ import Foundation
 import Moya
 
 protocol DayScreenInteractorInput: class {
-  var presenter: DayScreenInteractorOutput? { get set }
-  func getWeatherForDay(cityId: Int, day: Date, complition: @escaping ([WeatherDay]) -> Void)
+    var presenter: DayScreenInteractorOutput? { get set }
+    func getWeatherForDay(cityId: Int, day: Date, complition: @escaping ([WeatherDay]) -> Void)
 }
 
-protocol DayScreenInteractorOutput: class {
-}
+protocol DayScreenInteractorOutput: class {}
 
 class DayScreenInteractor: DayScreenInteractorInput {
-  weak var presenter: DayScreenInteractorOutput?
+    weak var presenter: DayScreenInteractorOutput?
 
-  func getWeatherForDay(cityId: Int, day: Date, complition: @escaping ([WeatherDay]) -> Void) {
-    let provider = MoyaProvider<WeatherService>()
-    provider.request(.getDay(woeid: cityId, date: day)) { result in
-      switch result {
-      case .success(let response):
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategyFormatters = [DateFormatter.iso8601Full, DateFormatter.yyyyMMdd]
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-          let weatherDay = try response.map([WeatherDay].self, using: decoder)
-          complition(weatherDay)
-        } catch {
-          do {
-              _ = try response.map(NotFound.self, using: decoder)
-            print("Error: cityId = \(cityId) with day = \(day) Not found")
-          } catch {
-            print(error)
-          }
+    func getWeatherForDay(cityId: Int, day: Date, complition: @escaping ([WeatherDay]) -> Void) {
+        let provider = MoyaProvider<WeatherService>()
+        provider.request(.getDay(woeid: cityId, date: day)) { result in
+            switch result {
+            case let .success(response):
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategyFormatters = [DateFormatter.iso8601Full, DateFormatter.yyyyMMdd]
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    let weatherDay = try response.map([WeatherDay].self, using: decoder)
+                    complition(weatherDay)
+                } catch {
+                    do {
+                        _ = try response.map(NotFound.self, using: decoder)
+                        print("Error: cityId = \(cityId) with day = \(day) Not found")
+                    } catch {
+                        print(error)
+                    }
+                }
+            case let .failure(error):
+                print(error)
+            }
         }
-      case .failure(let error):
-        print(error)
-      }
     }
-  }
 }

@@ -9,23 +9,23 @@
 import UIKit
 
 protocol SearchScreenRouterInput {
-  func routeToWeekScreen(cityId: Int)
+    func routeToWeekScreen(cityId: Int)
 }
 
 class SearchScreenRouter: SearchScreenRouterInput {
-  weak var view: SearchScreenViewInput?
-  init(appRouter: AppRouter?) {
-  }
-  func routeToWeekScreen(cityId: Int) {
-    guard let view = view?.viewController.navigationController else {
-      return
+    weak var view: SearchScreenViewInput?
+    init(appRouter _: AppRouter?) {}
+
+    func routeToWeekScreen(cityId: Int) {
+        guard let view = view?.viewController.navigationController else {
+            return
+        }
+        let weekScreen = WeekScreenAssembly().createWeekScreen(appRouter: nil)
+        weekScreen.loadForCity(cityId: cityId)
+        if let viewController = weekScreen as? UIViewController {
+            view.pushViewController(viewController, animated: true)
+            // TODO: - Хз будут ли лики
+            view.setViewControllers([view.viewControllers[0], view.viewControllers[2]], animated: false)
+        }
     }
-    let weekScreen = WeekScreenAssembly().createWeekScreen(appRouter: nil)
-    weekScreen.loadForCity(cityId: cityId)
-    if let viewController = weekScreen as? UIViewController {
-      view.pushViewController(viewController, animated: true)
-      // TODO - Хз будут ли лики
-      view.setViewControllers([view.viewControllers[0], view.viewControllers[2]], animated: false)
-    }
-  }
 }

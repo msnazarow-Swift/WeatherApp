@@ -8,17 +8,17 @@
 import Foundation
 
 struct CityModel {
-  let title: String
+    let title: String
 }
 
 class CityCellModel: CellIdentifiable {
-  let title: String
+    let title: String
 
-  var cellIdentifier: String {
-    return "CityCell"
-  }
+    var cellIdentifier: String {
+        return "CityCell"
+    }
 
-  init(_ property: CityModel) {
-    title = property.title
-  }
+    init(_ property: CityModel) {
+        title = property.title
+    }
 }

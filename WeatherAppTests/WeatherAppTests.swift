@@ -5,8 +5,8 @@
 //  Created by out-nazarov2-ms on 03.09.2021.
 //
 
-import XCTest
 @testable import WeatherApp
+import XCTest
 
 class WeatherAppTests: XCTestCase {
     override func setUpWithError() throws {
@@ -24,7 +24,7 @@ class WeatherAppTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }

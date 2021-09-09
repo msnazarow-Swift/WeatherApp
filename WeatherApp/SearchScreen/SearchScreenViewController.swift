@@ -6,101 +6,108 @@
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 protocol SearchScreenViewInput: class {
-  var viewController: UIViewController { get }
-  var presenter: SearchScreenViewOutput? { get set }
-  func updateForSections(_ sections: [CitySectionModel])
+    var viewController: UIViewController { get }
+    var presenter: SearchScreenViewOutput? { get set }
+    func updateForSections(_ sections: [CitySectionModel])
 }
 
 class SearchScreenViewController: UIViewController {
-  var presenter: SearchScreenViewOutput?
-  var viewController: UIViewController { return self }
-  let searchTextField: SearchTextField = {
-    let textField = SearchTextField()
-    textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEndOnExit)
-    return textField
-  }()
-  let citiesTableView: UITableView = {
-    let tableView = UITableView()
-    tableView.register(CityCell.self, forCellReuseIdentifier: CityCell.identifier)
-    return tableView
-  }()
-  var sections: [CitySectionModel] = []
-  override func loadView() {
-    super.loadView()
-  }
+    var presenter: SearchScreenViewOutput?
+    var viewController: UIViewController { return self }
+    let searchTextField: SearchTextField = {
+        let textField = SearchTextField()
+        textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEndOnExit)
+        return textField
+    }()
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupUI()
-    citiesTableView.delegate = self
-    citiesTableView.dataSource = self
-  }
+    let citiesTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(CityCell.self, forCellReuseIdentifier: CityCell.identifier)
+        return tableView
+    }()
 
-  func setupUI() {
-    title = "Поиск города"
-    view.addSubview(searchTextField)
-    view.addSubview(citiesTableView)
-    view.backgroundColor = .white
-    //    searchTextField.backgroundColor = .white
-    //
-    //    let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")!)
-    //    searchTextField.leftView = imageView
-    //    searchTextField.leftViewMode = .always
+    var sections: [CitySectionModel] = []
+    override func loadView() {
+        super.loadView()
+    }
 
-    searchTextField.snp.makeConstraints { make in
-      make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
-      make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-      make.right.equalTo(view.safeAreaLayoutGuide).inset(20)
-      make.height.equalTo(40)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        citiesTableView.delegate = self
+        citiesTableView.dataSource = self
     }
-    citiesTableView.snp.makeConstraints { make in
-      make.top.equalTo(searchTextField.snp.bottom)
-      make.left.equalTo(view.safeAreaLayoutGuide)
-      make.right.equalTo(view.safeAreaLayoutGuide)
-      make.bottom.equalTo(view.safeAreaLayoutGuide)
+
+    func setupUI() {
+        title = "Поиск города"
+        view.addSubview(searchTextField)
+        view.addSubview(citiesTableView)
+        view.backgroundColor = .white
+        //    searchTextField.backgroundColor = .white
+        //
+        //    let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")!)
+        //    searchTextField.leftView = imageView
+        //    searchTextField.leftViewMode = .always
+
+        searchTextField.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(40)
+        }
+        citiesTableView.snp.makeConstraints { make in
+            make.top.equalTo(searchTextField.snp.bottom)
+            make.left.equalTo(view.safeAreaLayoutGuide)
+            make.right.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
-  }
-  @objc func editingDidEnd() {
-    if let presenter = presenter, let text = searchTextField.text {
-      presenter.searchForCity(city: text)
+
+    @objc func editingDidEnd() {
+        if let presenter = presenter, let text = searchTextField.text {
+            presenter.searchForCity(city: text)
+        }
     }
-  }
 }
 
 extension SearchScreenViewController: SearchScreenViewInput {
-  func updateForSections(_ sections: [CitySectionModel]) {
-    self.sections = sections
-    citiesTableView.reloadData()
-  }
+    func updateForSections(_ sections: [CitySectionModel]) {
+        self.sections = sections
+        citiesTableView.reloadData()
+    }
 }
 
 extension SearchScreenViewController: UITableViewDelegate, UITableViewDataSource {
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
-  }
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return sections.count
-  }
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return sections[section].rows.count
-  }
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let presenter = presenter else {
-      return
+    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
     }
-    return presenter.tableViewDidSelect(row: indexPath.row)
-  }
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let model = sections[indexPath.section].rows[indexPath.row]
-    if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
-      cell.model = model
-      return cell
-    } else {
-      return UITableViewCell()
+
+    func numberOfSections(in _: UITableView) -> Int {
+        return sections.count
     }
-  }
+
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].rows.count
+    }
+
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let presenter = presenter else {
+            return
+        }
+        return presenter.tableViewDidSelect(row: indexPath.row)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = sections[indexPath.section].rows[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
+            cell.model = model
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
 }

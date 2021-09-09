@@ -8,14 +8,14 @@
 import Foundation
 
 protocol CellIdentifiable {
-  var cellIdentifier: String { get }
-  var cellHeight: Float { get }
+    var cellIdentifier: String { get }
+    var cellHeight: Float { get }
 }
 
 protocol ModelRepresentable {
-  var model: CellIdentifiable? { get set }
+    var model: CellIdentifiable? { get set }
 }
 
 protocol SectionRowsRepresentable {
-  var rows: [CellIdentifiable] { get set }
+    var rows: [CellIdentifiable] { get set }
 }
