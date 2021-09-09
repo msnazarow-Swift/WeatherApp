@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SearchScreenAssembly {
-    func createSearchScreen(appRouter: AppRouter?) -> SearchScreenViewController {
+enum SearchScreenAssembly {
+    static func createSearchScreen() -> SearchScreenViewController {
         let viewController = SearchScreenViewController()
         let router = SearchScreenRouter(view: viewController)
         let presenter = SearchScreenPresenter(router: router)

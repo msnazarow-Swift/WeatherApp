@@ -8,8 +8,8 @@
 
 import UIKit
 
-class DayScreenAssembly {
-    func createDayScreen(appRouter: AppRouter?) -> DayScreenViewController {
+enum DayScreenAssembly {
+    static func createDayScreen() -> DayScreenViewController {
         let viewController = DayScreenViewController()
         let router = DayScreenRouter(view: viewController)
         let presenter = DayScreenPresenter(router: router)

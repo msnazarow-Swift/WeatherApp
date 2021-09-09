@@ -11,7 +11,7 @@ struct CityModel {
     let title: String
 }
 
-class CityCellModel: CellIdentifiable {
+struct CityCellModel: CellIdentifiable {
     let title: String
 
     var cellIdentifier: String { return "CityCell" }

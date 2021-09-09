@@ -10,8 +10,6 @@ import SnapKit
 import UIKit
 
 protocol SearchScreenViewInput: class {
-    var viewController: UIViewController { get }
-    var presenter: SearchScreenViewOutput? { get set }
     func updateForSections(_ sections: [CitySectionModel])
 }
 

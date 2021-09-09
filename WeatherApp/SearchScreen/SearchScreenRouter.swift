@@ -20,12 +20,10 @@ class SearchScreenRouter: SearchScreenRouterInput {
 
     func routeToWeekScreen(cityId: Int) {
         guard let view = view?.viewController.navigationController else { return }
-        let weekScreen = WeekScreenAssembly().createWeekScreen(appRouter: nil)
+        let weekScreen = WeekScreenAssembly.createWeekScreen()
         weekScreen.loadForCity(cityId: cityId)
-        if let viewController = weekScreen as? UIViewController {
-            view.pushViewController(viewController, animated: true)
+            view.pushViewController(weekScreen, animated: true)
             // TODO: - Хз будут ли лики
             view.setViewControllers([view.viewControllers[0], view.viewControllers[2]], animated: false)
-        }
     }
 }

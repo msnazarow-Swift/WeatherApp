@@ -22,7 +22,7 @@ class WeekScreenRouter: WeekScreenRouterInput {
 
     func routeToDaySrceen(title: String, day: WeatherDay) {
         guard let view = view?.viewController.navigationController else { return }
-        let dayScrenController = DayScreenAssembly().createDayScreen(appRouter: nil)
+        let dayScrenController = DayScreenAssembly.createDayScreen()
         dayScrenController.setCityLabel(city: title)
         if let temp = day.theTemp {
             dayScrenController.setDegreeLabel(degree: Int(temp))
@@ -32,28 +32,24 @@ class WeekScreenRouter: WeekScreenRouterInput {
             dayScrenController.setMinMaxDegreeLabel(min: Int(min), max: Int(max))
         }
         dayScrenController.setDescriptionTable(day: day)
-        if let viewController = dayScrenController as? UIViewController {
             let days = Calendar.current.dateComponents([.day], from: Date(), to: day.applicableDate).day!
             if days == 0 {
-                viewController.title = "Cегодня"
+                dayScrenController.title = "Cегодня"
             } else if days == 1 {
-                viewController.title = "Завтра"
+                dayScrenController.title = "Завтра"
             } else {
                 let weekFormatter = DateFormatter()
                 weekFormatter.dateFormat = "EEEE"
-                viewController.title = weekFormatter.string(from: day.applicableDate)
+                dayScrenController.title = weekFormatter.string(from: day.applicableDate)
             }
-            view.pushViewController(viewController, animated: true)
-        }
+            view.pushViewController(dayScrenController, animated: true)
     }
 
     func routeToSearchScreen() {
         guard let view = view?.viewController.navigationController else {
             return
         }
-        let searchScreen = SearchScreenAssembly().createSearchScreen(appRouter: nil)
-        if let viewController = searchScreen as? UIViewController {
-            view.pushViewController(viewController, animated: true)
-        }
-    }
+        let searchScreen = SearchScreenAssembly.createSearchScreen()
+                   view.pushViewController(searchScreen, animated: true)
+           }
 }

@@ -8,10 +8,8 @@
 
 import UIKit
 
-protocol AppRouter {}
-
-class WeekScreenAssembly {
-    func createWeekScreen(appRouter: AppRouter?) -> WeekScreenViewController {
+enum WeekScreenAssembly {
+    static func createWeekScreen() -> WeekScreenViewController {
         let viewController = WeekScreenViewController()
         let router = WeekScreenRouter(view: viewController)
         let presenter = WeekScreenPresenter(router: router)

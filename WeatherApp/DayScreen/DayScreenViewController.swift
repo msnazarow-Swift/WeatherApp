@@ -10,8 +10,6 @@ import SnapKit
 import UIKit
 
 protocol DayScreenViewInput: class {
-    var viewController: UIViewController { get }
-    var presenter: DayScreenViewOutput? { get set }
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)

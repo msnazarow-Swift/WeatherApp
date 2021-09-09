@@ -296,8 +296,8 @@
 				3EB06FC526E3AD9F00118882 /* DayCell.swift */,
 				3EB06FAE26E3AB4800118882 /* DescriptionPropertyCellModel.swift */,
 				3EB06FC026E3AD9600118882 /* DescriptionPropertyCell.swift */,
-				3E25705826E7C83C00640CC3 /* CityCell.swift */,
 				3E25705926E7C83C00640CC3 /* CityCellModel.swift */,
+				3E25705826E7C83C00640CC3 /* CityCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 			buildConfigurationList = 3ED2466E26E17C850036CE2E /* Build configuration list for PBXNativeTarget "WeatherApp" */;
 			buildPhases = (
 				6EF419771B5EBC96FCF2056B /* [CP] Check Pods Manifest.lock */,
-				3EEB51C226E2AFB40069A3A1 /* ShellScript */,
+				3EEB51C226E2AFB40069A3A1 /* Run Script */,
 				3EAE966726E2D5D70089F82E /* ShellScript */,
 				3ED2463D26E17C830036CE2E /* Sources */,
 				3ED2463E26E17C830036CE2E /* Frameworks */,
@@ -597,9 +597,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n      swiftlint --fix --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n      swiftformat && swiftlint --fix --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
 		};
-		3EEB51C226E2AFB40069A3A1 /* ShellScript */ = {
+		3EEB51C226E2AFB40069A3A1 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
@@ -608,6 +608,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
