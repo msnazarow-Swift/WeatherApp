@@ -34,6 +34,8 @@ class WeekScreenViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = vStack
+        tableView.bounces = false
+        tableView.isScrollEnabled = true
         return tableView
     }()
 
@@ -50,19 +52,17 @@ class WeekScreenViewController: UIViewController {
         }
         presenter.loadForCity(cityId: cityId)
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        tableViewHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if let header = weekForecastTableView.tableHeaderView {
+            header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
+        }
     }
-
+// TODO: - Не скроллится при старте
     func setUI() {
         title = "Неделя"
-//        weekForecastTableView.t = 243
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         view.backgroundColor = .white
-//        view.addSubview(vStack)
-        //    view.addSubview(stroke)
         view.addSubview(weekForecastTableView)
         vStack.stroke.snp.makeConstraints { make in
             make.width.equalTo(view)
@@ -70,29 +70,10 @@ class WeekScreenViewController: UIViewController {
         vStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.centerX.equalToSuperview()
-//            make.top.equalToSuperview()
-//            make.height.greaterThanOrEqualTo(143)
-//            make.bottom.equalTo(weekForecastTableView.cellForRow(at: IndexPath(row: 0, section: 0))?.snp.top as! ConstraintRelatableTarget)
         }
-//        vStack.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
-//            stroke.snp.makeConstraints { make in
-//              make.center.equalToSuperview()
-//              make.top.equalTo(vStack.snp.bottom).offset(17)
-//              make.height.equalTo(1)
-//              make.width.equalToSuperview()
-//            }
-
         weekForecastTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-//            make.left.equalToSuperview()
-//            make.right.equalToSuperview()
-//            make.top.equalToSuperview()
-//            make.top.equalTo(vStack.snp.bottom)
-//            make.bottom.greaterThanOrEqualToSuperview()
+            make.edges.equalTo(view)
         }
-//        weekForecastTableView.bounces = false
-//        self.weekForecastTableView.setNeedsLayout()
-//        self.weekForecastTableView.layoutIfNeeded()
     }
 }
 
@@ -129,11 +110,7 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
 extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return max(
-//            tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
-            CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)// ,
-//            UITableView.automaticDimension
-//        )
+  		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
     }
 
     func numberOfSections(in _: UITableView) -> Int {
@@ -145,10 +122,9 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let presenter = presenter else {
-            return
+        if let presenter = presenter {
+        	return presenter.tableViewDidSelect(row: indexPath.row)
         }
-        return presenter.tableViewDidSelect(row: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -160,7 +136,4 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        243
-//    }
 }

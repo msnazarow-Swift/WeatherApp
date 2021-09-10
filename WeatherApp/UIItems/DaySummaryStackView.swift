@@ -10,28 +10,28 @@ import UIKit
 class DaySummaryStackView: UIStackView {
     let cityLabel: UILabel = {
         let label = UILabel()
-        label.text = "PLACEHOLDER"
+//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Medium", size: 25 * fontTrans)
         return (label)
     }()
 
     let weatherLabel: UILabel = {
         let label = UILabel()
-        label.text = "PLACEHOLDER"
+//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Regular", size: 12 * fontTrans)
         return (label)
     }()
 
     let degreeLabel: UILabel = {
         let label = UILabel()
-        label.text = "PLACEHOLDER"
+//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Light", size: 60 * fontTrans)
         return (label)
     }()
 
     let minMaxLabel: UILabel = {
         let label = UILabel()
-        label.text = "PLACEHOLDER"
+//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Regular", size: 12 * fontTrans)
         return (label)
     }()
@@ -53,6 +53,9 @@ class DaySummaryStackView: UIStackView {
         stroke.snp.makeConstraints { make in
             make.height.equalTo(1)
         }
+//        snp.makeConstraints { make in
+//            make.height.equalTo(243)
+//        }
         axis = .vertical
         spacing = 5
         setCustomSpacing(17, after: minMaxLabel)

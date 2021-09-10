@@ -26,20 +26,15 @@ class DayScreenViewController: UIViewController {
 
     let vStack = DaySummaryStackView()
 
-    let stroke: UIView = {
-        let view = UIView()
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
-        return view
-    }()
-
     lazy var infoTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
+        tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableHeaderView = vStack
         return tableView
     }()
 
@@ -50,29 +45,30 @@ class DayScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        infoTableView.autoresizesSubviews = true
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if let header = infoTableView.tableHeaderView {
+            header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
+        }
     }
 
     func setUI() {
         view.backgroundColor = .white
-        view.addSubview(vStack)
-        view.addSubview(stroke)
         view.addSubview(infoTableView)
-
-        vStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
+        vStack.stroke.snp.makeConstraints { make in
+            make.width.equalTo(view)
         }
-//        stroke.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(vStack.snp.bottom)
-//        }
+        vStack.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.centerX.equalToSuperview()
+        }
         infoTableView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.top.equalTo(vStack.snp.bottom)
+            make.top.left.right.equalToSuperview()
             make.bottom.greaterThanOrEqualToSuperview()
         }
-        infoTableView.bounces = false
     }
 
     override func viewDidLayoutSubviews() {
@@ -124,9 +120,7 @@ extension DayScreenViewController: DayScreenViewInput {
 
 extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return max(tableViewHeight / CGFloat(sections[indexPath.section].rows.count),
-                   CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight),
-                   UITableView.automaticDimension)
+		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
     }
 
     func numberOfSections(in _: UITableView) -> Int {
