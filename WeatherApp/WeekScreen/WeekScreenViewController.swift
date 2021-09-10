@@ -20,22 +20,19 @@ protocol WeekScreenViewInput: class {
 
 class WeekScreenViewController: UIViewController {
     var presenter: WeekScreenViewOutput?
-    var viewController: UIViewController { return self }
     var cityId: Int = 2122265
     var sections: [DaySectionModel] = []
     var tableViewHeight: CGFloat!
 	let vStack = DaySummaryStackView()
 
     lazy var weekForecastTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: CGRect(), style: .grouped)
         tableView.backgroundColor = .white
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
         tableView.separatorColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView = vStack
         tableView.bounces = false
-        tableView.isScrollEnabled = true
         return tableView
     }()
 
@@ -64,15 +61,8 @@ class WeekScreenViewController: UIViewController {
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         view.backgroundColor = .white
         view.addSubview(weekForecastTableView)
-        vStack.stroke.snp.makeConstraints { make in
-            make.width.equalTo(view)
-        }
-        vStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
-            make.centerX.equalToSuperview()
-        }
         weekForecastTableView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalToSuperview()
         }
     }
 }
@@ -116,6 +106,12 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        vStack
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        174
+    }
 
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
@@ -135,5 +131,12 @@ extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return UITableViewCell()
         }
+    }
+}
+
+extension UITableView {
+    func setAndLayoutTableHeaderView(header: UIView) {
+        header.frame.size = header.systemLayoutSizeFitting(CGSize(width: self.frame.size.width, height: .greatestFiniteMagnitude))
+        self.tableHeaderView = header
     }
 }

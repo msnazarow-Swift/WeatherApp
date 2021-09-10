@@ -15,16 +15,11 @@ protocol SearchScreenViewInput: class {
 
 class SearchScreenViewController: UIViewController {
     var presenter: SearchScreenViewOutput?
-    var viewController: UIViewController { return self }
-    let searchTextField: SearchTextField = {
-        let textField = SearchTextField()
-        textField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEndOnExit)
-        return textField
-    }()
-
-    let citiesTableView: UITableView = {
+    let vStack = SearchScreenHeaderStackView()// frame: CGRect(x: 0, y: 0, width: 375, height: 108))
+    lazy var citiesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CityCell.self, forCellReuseIdentifier: CityCell.identifier)
+//        tableView.tableHeaderView = vStack
         return tableView
     }()
 
@@ -42,33 +37,52 @@ class SearchScreenViewController: UIViewController {
 
     func setupUI() {
         title = "Поиск города"
-        view.addSubview(searchTextField)
+//        view.addSubview(searchHeader)
+//        view.addSubview(searchTextField)
+        citiesTableView.tableHeaderView = vStack
+//        citiesTableView.sectionHeaderHeight = 108
         view.addSubview(citiesTableView)
         view.backgroundColor = .white
-        //    searchTextField.backgroundColor = .white
-        //
-        //    let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass")!)
-        //    searchTextField.leftView = imageView
-        //    searchTextField.leftViewMode = .always
-
-        searchTextField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
-            make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.right.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(40)
-        }
+        vStack.searchTextField.addTarget(self, action: #selector(editingDidEnd), for: .editingDidEndOnExit)
+//        vStack.closeButton.action = #selector(closeView)
+//        vStack.closeButton.target = self
+        vStack.button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         citiesTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchTextField.snp.bottom)
-            make.left.equalTo(view.safeAreaLayoutGuide)
-            make.right.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalToSuperview()
+//            make.top.equalTo(searchTextField.snp.bottom)
+//            make.left.equalTo(view.safeAreaLayoutGuide)
+//            make.right.equalTo(view.safeAreaLayoutGuide)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        vStack.snp.makeConstraints { make in
+//            make.right.top.left.equalTo(view)
+            make.top.equalToSuperview()
+//            make.top.equalTo(view).offset(14).labeled("vStackTop")
+            make.left.equalTo(view).offset(16).labeled("vStackLeft")
+            make.right.equalTo(view).inset(16).labeled("vStackRight")
+//            make.height.equalTo(108).labeled("searchTextFieldHeight")
+        }
+//        searchHeader.snp.makeConstraints { make in
+//            make.top.equalTo(view.safeAreaLayoutGuide).offset(10).labeled("searchHeaderTop")
+//            make.left.equalTo(view.safeAreaLayoutGuide).offset(20).labeled("searchHeaderLeft")
+//            make.right.equalTo(view.safeAreaLayoutGuide).inset(20).labeled("searchHeaderRight")
+//            make.height.equalTo(40).labeled("searchHeaderHeight")
+//        }
+//        vStack.searchTextField.snp.makeConstraints { make in
+//            make.top.equalTo(searchHeader.snp.bottom).offset(10).labeled("searchTextFieldTop")
+//            make.left.equalTo(view.safeAreaLayoutGuide).offset(16).labeled("searchTextFieldLeft")
+//            make.right.equalTo(view.safeAreaLayoutGuide).inset(16).labeled("searchTextFieldRight")
+//            make.height.equalTo(30).labeled("searchTextFieldHeight")
+//        }
     }
 
     @objc func editingDidEnd() {
-        if let presenter = presenter, let text = searchTextField.text, !text.isEmpty {
+        if let presenter = presenter, let text = vStack.searchTextField.text, !text.isEmpty {
             presenter.searchForCity(city: text)
         }
+    }
+    @objc func closeView() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -87,7 +101,12 @@ extension SearchScreenViewController: UITableViewDelegate, UITableViewDataSource
     func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
-
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        108
+//    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        vStack
+//    }
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }

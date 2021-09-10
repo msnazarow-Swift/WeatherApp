@@ -21,7 +21,7 @@ class WeekScreenRouter: WeekScreenRouterInput {
     }
 
     func routeToDaySrceen(title: String, day: WeatherDay) {
-        guard let view = view?.viewController.navigationController else { return }
+        guard let view = view?.navigationController else { return }
         let dayScrenController = DayScreenAssembly.createDayScreen()
         dayScrenController.setCityLabel(city: title)
         if let temp = day.theTemp {
@@ -46,10 +46,8 @@ class WeekScreenRouter: WeekScreenRouterInput {
     }
 
     func routeToSearchScreen() {
-        guard let view = view?.viewController.navigationController else {
-            return
-        }
         let searchScreen = SearchScreenAssembly.createSearchScreen()
-        view.pushViewController(searchScreen, animated: true)
+        searchScreen.modalPresentationStyle = .fullScreen
+        view?.present(searchScreen, animated: true, completion: nil)
     }
 }

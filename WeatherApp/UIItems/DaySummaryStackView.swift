@@ -44,14 +44,16 @@ class DaySummaryStackView: UIStackView {
     let blank = UIView()
     override init(frame: CGRect) {
         super.init(frame: frame)
+//        addArrangedSubview(blank)
         addArrangedSubview(cityLabel)
         addArrangedSubview(weatherLabel)
         addArrangedSubview(degreeLabel)
         addArrangedSubview(minMaxLabel)
         addArrangedSubview(stroke)
-        addArrangedSubview(blank)
+//        addArrangedSubview(blank)
         stroke.snp.makeConstraints { make in
             make.height.equalTo(1)
+            make.width.equalToSuperview()
         }
 //        snp.makeConstraints { make in
 //            make.height.equalTo(243)
@@ -59,7 +61,7 @@ class DaySummaryStackView: UIStackView {
         axis = .vertical
         spacing = 5
         setCustomSpacing(17, after: minMaxLabel)
-        setCustomSpacing(12, after: stroke)
+//        setCustomSpacing(12, after: stroke)
         alignment = .center
     }
 

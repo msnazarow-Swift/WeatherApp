@@ -25,7 +25,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     }
 
     func loadForCity(cityId: Int) {
-        guard let interactor = interactor, let view = view else {
+        guard let interactor = interactor else {
             print("WeekScreenAssemble error")
             return
         }

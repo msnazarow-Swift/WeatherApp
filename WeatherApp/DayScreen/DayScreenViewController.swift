@@ -20,7 +20,6 @@ protocol DayScreenViewInput: class {
 
 class DayScreenViewController: UIViewController {
     var presenter: DayScreenViewOutput?
-    var viewController: UIViewController { return self }
     var tableViewHeight: CGFloat = 0
     var sections: [DescriptionSectionModel] = []
 
@@ -62,12 +61,12 @@ class DayScreenViewController: UIViewController {
             make.width.equalTo(view)
         }
         vStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
         }
         infoTableView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.bottom.greaterThanOrEqualToSuperview()
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
         }
     }
 

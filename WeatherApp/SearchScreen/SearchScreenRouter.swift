@@ -19,11 +19,15 @@ class SearchScreenRouter: SearchScreenRouterInput {
     }
 
     func routeToWeekScreen(cityId: Int) {
-        guard let view = view?.viewController.navigationController else { return }
+//        guard let view = view?.navigationController else { return }
         let weekScreen = WeekScreenAssembly.createWeekScreen()
         weekScreen.loadForCity(cityId: cityId)
-            view.pushViewController(weekScreen, animated: true)
+        weekScreen.modalPresentationStyle = .fullScreen
+//        weekScreen.presen
+//            view.pushViewController(weekScreen, animated: true)
             // TODO: - Хз будут ли лики
-            view.setViewControllers([view.viewControllers[0], view.viewControllers[2]], animated: false)
+//            view.setViewControllers([view.viewControllers[0], view.viewControllers[2]], animated: false)
+//        view?.dismiss(animated: true, completion: nil)
+        view?.present(weekScreen, animated: true)
     }
 }

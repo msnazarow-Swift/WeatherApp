@@ -15,6 +15,7 @@
 		3E25706B26E7EBDC00640CC3 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25706A26E7EBDC00640CC3 /* DesignableUITextField.swift */; };
 		3E25707026E7EF6D00640CC3 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */; };
 		3E2772EE26EAD4A800FC04E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2772ED26EAD4A700FC04E4 /* ViewController.swift */; };
+		3E2772F326EB1DD300FC04E4 /* SearchScreenHeaderStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2772F226EB1DD300FC04E4 /* SearchScreenHeaderStackView.swift */; };
 		3E292AC726E3DF3D00E0A119 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292AC626E3DF3D00E0A119 /* GlobalVars.swift */; };
 		3E292ACD26E4069600E0A119 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292ACC26E4069600E0A119 /* StorageService.swift */; };
 		3E34B70326E7792B005C95B7 /* DayScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */; };
@@ -103,6 +104,7 @@
 		3E25706A26E7EBDC00640CC3 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		3E2772ED26EAD4A700FC04E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E2772F226EB1DD300FC04E4 /* SearchScreenHeaderStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenHeaderStackView.swift; sourceTree = "<group>"; };
 		3E292AC626E3DF3D00E0A119 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
 		3E292ACC26E4069600E0A119 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayScreenAssembly.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				3ED2B1CE26E3C9AD005C1E89 /* DaySummaryStackView.swift */,
+				3E2772F226EB1DD300FC04E4 /* SearchScreenHeaderStackView.swift */,
 				3E25706A26E7EBDC00640CC3 /* DesignableUITextField.swift */,
 				3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */,
 			);
@@ -729,6 +732,7 @@
 				3E8F43A926E2F1A8001153CC /* DayScreenViewController.swift in Sources */,
 				3E25707026E7EF6D00640CC3 /* SearchTextField.swift in Sources */,
 				3EB06FA726E3AADD00118882 /* WeatherCellModel.swift in Sources */,
+				3E2772F326EB1DD300FC04E4 /* SearchScreenHeaderStackView.swift in Sources */,
 				3EB06FC126E3AD9600118882 /* DescriptionPropertyCell.swift in Sources */,
 				3ED2B1CF26E3C9AD005C1E89 /* DaySummaryStackView.swift in Sources */,
 				3ED2464F26E17C830036CE2E /* WeatherApp.xcdatamodeld in Sources */,
