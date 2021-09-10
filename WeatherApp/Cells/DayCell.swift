@@ -59,12 +59,10 @@ class DayCell: WeatherCell {
         minTempLabel.text = String(model.minTemp)
         contentView.addSubview(vstack)
         vstack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().inset(14)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 14))
     }
 }

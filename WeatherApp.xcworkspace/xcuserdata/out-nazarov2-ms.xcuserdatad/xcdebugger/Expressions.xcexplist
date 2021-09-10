@@ -3,24 +3,35 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DayCell.updateViews():DayCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "weatherImg.image">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "WeekScreenViewController.tableView(_:cellForRowAt:):WeekScreenViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in City.init(_:):WeatherCity.swift">
       </ContextState>
       <ContextState
-         contextName = "WeekScreenViewController.tableView(_:cellForRowAt:):WeekScreenViewController.swift">
+         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
       </ContextState>
       <ContextState
          contextName = "WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
          <PersistentStrings>
             <PersistentString
                value = "abbreviations">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in WeekScreenViewController.setUI():WeekScreenViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vStack.intrinsicContentSize">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WeekScreenViewController.tableView(_:heightForRowAt:):WeekScreenViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sections[0].rows[0].cellHeight">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -86,7 +97,12 @@
          contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
+         contextName = "DayCell.updateViews():DayCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weatherImg.image">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -27,8 +27,7 @@ class DayScreenViewController: UIViewController {
     let vStack = DaySummaryStackView()
 
     let stroke: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 0))
-        view.bounds = view.bounds.insetBy(dx: -0.5, dy: -0.5)
+        let view = UIView()
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
         return view
@@ -141,6 +140,9 @@ extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = sections[indexPath.section].rows[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
+        if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        }
         cell.model = model
         return cell
     }
