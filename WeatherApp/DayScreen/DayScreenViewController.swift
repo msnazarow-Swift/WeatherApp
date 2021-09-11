@@ -18,24 +18,12 @@ protocol DayScreenViewInput: class {
     func updateForSections(_ sections: [DescriptionSectionModel])
 }
 
-class DayScreenViewController: UIViewController {
+class DayScreenViewController: UITableViewController {
     var presenter: DayScreenViewOutput?
     var tableViewHeight: CGFloat = 0
     var sections: [DescriptionSectionModel] = []
 
     let vStack = DaySummaryStackView()
-
-    lazy var infoTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .white
-        tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
-        tableView.allowsSelection = false
-        tableView.bounces = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableHeaderView = vStack
-        return tableView
-    }()
 
     override func loadView() {
         super.loadView()
@@ -44,30 +32,23 @@ class DayScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        infoTableView.autoresizesSubviews = true
+        tableView.autoresizesSubviews = true
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if let header = infoTableView.tableHeaderView {
+        if let header = tableView.tableHeaderView {
             header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
         }
     }
 
     func setUI() {
-        view.backgroundColor = .white
-        view.addSubview(infoTableView)
-        vStack.stroke.snp.makeConstraints { make in
-            make.width.equalTo(view)
-        }
-        vStack.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
-        infoTableView.snp.makeConstraints { make in
-            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
-        }
+        tableView.sectionHeaderHeight = 174
+        tableView.backgroundColor = .white
+        tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
+        tableView.allowsSelection = false
+        tableView.bounces = false
+        tableView.tableHeaderView = vStack
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,7 +76,7 @@ extension DayScreenViewController: DayScreenViewInput {
 
     func updateForSections(_ sections: [DescriptionSectionModel]) {
         self.sections = sections
-        infoTableView.reloadData()
+        tableView.reloadData()
     }
 
     func setDescriptionTable(day: WeatherDay) {
@@ -117,20 +98,20 @@ extension DayScreenViewController: DayScreenViewInput {
     }
 }
 
-extension DayScreenViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+extension DayScreenViewController {
+    override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
     }
 
-    func numberOfSections(in _: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
 
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = sections[indexPath.section].rows[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
         if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {

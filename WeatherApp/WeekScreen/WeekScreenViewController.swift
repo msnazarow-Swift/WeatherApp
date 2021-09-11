@@ -18,23 +18,14 @@ protocol WeekScreenViewInput: class {
     func loadForCity(cityId: Int)
 }
 
-class WeekScreenViewController: UIViewController {
+class WeekScreenViewController: UITableViewController {
     var presenter: WeekScreenViewOutput?
     var cityId: Int = 2122265
     var sections: [DaySectionModel] = []
     var tableViewHeight: CGFloat!
 	let vStack = DaySummaryStackView()
 
-    lazy var weekForecastTableView: UITableView = {
-        let tableView = UITableView(frame: CGRect(), style: .grouped)
-        tableView.backgroundColor = .white
-        tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
-        tableView.separatorColor = .clear
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.bounces = false
-        return tableView
-    }()
+//
 
     override func loadView() {
         super.loadView()
@@ -51,19 +42,19 @@ class WeekScreenViewController: UIViewController {
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if let header = weekForecastTableView.tableHeaderView {
+        if let header = tableView.tableHeaderView {
             header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
         }
     }
 // TODO: - Не скроллится при старте
     func setUI() {
+        tableView.backgroundColor = .white
+        tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
+        tableView.separatorColor = .clear
+        tableView.bounces = false
         title = "Неделя"
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         view.backgroundColor = .white
-        view.addSubview(weekForecastTableView)
-        weekForecastTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
 }
 
@@ -86,7 +77,7 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
     func updateForSections(_ sections: [DaySectionModel]) {
         self.sections = sections
-        weekForecastTableView.reloadData()
+        tableView.reloadData()
     }
 
     @objc func searchButtonTapped() {
@@ -98,32 +89,32 @@ extension WeekScreenViewController: WeekScreenViewInput {
     }
 }
 
-extension WeekScreenViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+extension WeekScreenViewController {
+    override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
   		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
     }
 
-    func numberOfSections(in _: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         vStack
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         174
     }
 
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
 
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let presenter = presenter {
         	return presenter.tableViewDidSelect(row: indexPath.row)
         }
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = sections[indexPath.section].rows[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
             cell.model = model

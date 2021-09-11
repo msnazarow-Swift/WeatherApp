@@ -7,31 +7,27 @@
 
 import UIKit
 
-class DaySummaryStackView: UIStackView {
+class DaySummaryStackView: UIView {
     let cityLabel: UILabel = {
         let label = UILabel()
-//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Medium", size: 25 * fontTrans)
         return (label)
     }()
 
     let weatherLabel: UILabel = {
         let label = UILabel()
-//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Regular", size: 12 * fontTrans)
         return (label)
     }()
 
     let degreeLabel: UILabel = {
         let label = UILabel()
-//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Light", size: 60 * fontTrans)
         return (label)
     }()
 
     let minMaxLabel: UILabel = {
         let label = UILabel()
-//        label.text = "PLACEHOLDER"
         label.font = UIFont(name: "Roboto-Regular", size: 12 * fontTrans)
         return (label)
     }()
@@ -44,25 +40,33 @@ class DaySummaryStackView: UIStackView {
     let blank = UIView()
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        addArrangedSubview(blank)
-        addArrangedSubview(cityLabel)
-        addArrangedSubview(weatherLabel)
-        addArrangedSubview(degreeLabel)
-        addArrangedSubview(minMaxLabel)
-        addArrangedSubview(stroke)
-//        addArrangedSubview(blank)
+        addSubview(cityLabel)
+        addSubview(weatherLabel)
+        addSubview(degreeLabel)
+        addSubview(minMaxLabel)
+        addSubview(stroke)
+        cityLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.centerX.equalToSuperview()
+        }
+        weatherLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.greaterThanOrEqualTo(cityLabel.snp.bottom).offset(3)
+        }
+        degreeLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.greaterThanOrEqualTo(weatherLabel.snp.bottom).offset(6)
+        }
+        minMaxLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.greaterThanOrEqualTo(degreeLabel.snp.bottom).offset(6)
+        }
         stroke.snp.makeConstraints { make in
             make.height.equalTo(1)
-            make.width.equalToSuperview()
+            make.centerX.width.equalToSuperview()
+            make.top.equalTo(minMaxLabel.snp.bottom).offset(17)
+            make.bottom.equalToSuperview()
         }
-//        snp.makeConstraints { make in
-//            make.height.equalTo(243)
-//        }
-        axis = .vertical
-        spacing = 5
-        setCustomSpacing(17, after: minMaxLabel)
-//        setCustomSpacing(12, after: stroke)
-        alignment = .center
     }
 
     @available(*, unavailable)

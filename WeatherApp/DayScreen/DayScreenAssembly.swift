@@ -10,7 +10,7 @@ import UIKit
 
 enum DayScreenAssembly {
     static func createDayScreen() -> DayScreenViewController {
-        let viewController = DayScreenViewController()
+        let viewController = DayScreenViewController()// (style: .grouped)
         let router = DayScreenRouter(view: viewController)
         let presenter = DayScreenPresenter(router: router)
         let interactor = DayScreenInteractor()

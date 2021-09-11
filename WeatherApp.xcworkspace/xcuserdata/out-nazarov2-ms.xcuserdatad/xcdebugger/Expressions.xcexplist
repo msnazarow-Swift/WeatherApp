@@ -44,6 +44,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DayScreenViewController.setUI():DayScreenViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DescriptionPropertyCell.identifier">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in WeekScreenInteractor.getMaxForecast(cityId:complition:):WeekScreenInteractor.swift">
          <PersistentStrings>
             <PersistentString
