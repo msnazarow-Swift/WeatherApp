@@ -39,12 +39,18 @@ class DayScreenViewController: UITableViewController {
     }
 
     func setUI() {
-        tableView.sectionHeaderHeight = 174 * verticalTranslation
+//        tableView.sectionHeaderHeight = 174 * verticalTranslation
         tableView.backgroundColor = .white
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
         tableView.bounces = false
         tableView.tableHeaderView = vStack
+        tableView.rowHeight = 85
+        vStack.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+        }
         tableView.tableFooterView = UIView()
         tableView.dataSource = presenter?.dataSource
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)]

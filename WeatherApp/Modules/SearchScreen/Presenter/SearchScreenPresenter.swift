@@ -46,6 +46,7 @@ extension SearchScreenPresenter: SearchScreenViewOutput {
             }
             sections.append(CitySectionModel(models))
             self?.dataSource.updateForSections(sections)
+            view.update()
         }
     }
 

@@ -70,6 +70,9 @@ class DaySummaryStackView: UIView {
             make.top.equalTo(minMaxLabel.snp.bottom).offset(17)
             make.bottom.equalToSuperview()
         }
+        snp.makeConstraints { make in
+            make.height.equalTo(174 * verticalTranslation)
+        }
     }
 
     @available(*, unavailable)

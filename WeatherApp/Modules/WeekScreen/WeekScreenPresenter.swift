@@ -58,8 +58,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         }
     }
 
-	private
-    func makeModels() -> [DayModel] {
+	private func makeModels() -> [DayModel] {
         var models: [DayModel] = []
         let weekFormatter = DateFormatter()
         weekFormatter.dateFormat = "EEEE"
@@ -76,12 +75,10 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         return models
     }
 
-    private
-    func updateView(sections: [DaySectionModel]) {
+    private func updateView(sections: [DaySectionModel]) {
         guard let view = view else { return }
 
         dataSource.updateForSections(sections)
-        view.update()
         if let title = self.title {
             view.setCityLabel(city: title)
         }
@@ -93,6 +90,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         if let minTemp = day.minTemp, let maxTemp = day.maxTemp {
             view.setMinMaxDegreeLabel(min: Int(minTemp), max: Int(maxTemp))
         }
+        view.update()
     }
 
     func tableViewDidSelect(row: Int) {

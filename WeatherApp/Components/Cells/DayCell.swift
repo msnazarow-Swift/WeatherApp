@@ -62,6 +62,9 @@ class DayCell: WeatherCell {
             make.left.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
         }
+//        snp.makeConstraints { make in
+//            make.height.equalTo(61)
+//        }
     }
 
     required init?(coder: NSCoder) {

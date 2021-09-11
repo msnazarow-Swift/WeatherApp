@@ -13,15 +13,15 @@ protocol DayScreenRouterInput {
 }
 
 class DayScreenRouter: DayScreenRouterInput {
-    func routeToSearchScreen() {
-        let searchScreen = SearchScreenAssembly.createSearchScreen()
-        searchScreen.modalPresentationStyle = .fullScreen
-        view?.present(searchScreen, animated: true, completion: nil)
-    }
-
     weak var view: DayScreenViewController?
 
     init(view: DayScreenViewController?) {
         self.view = view
+    }
+
+    func routeToSearchScreen() {
+        let searchScreen = SearchScreenAssembly.createSearchScreen()
+        searchScreen.modalPresentationStyle = .fullScreen
+        view?.present(searchScreen, animated: true, completion: nil)
     }
 }

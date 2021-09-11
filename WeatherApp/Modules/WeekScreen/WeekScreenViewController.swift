@@ -37,8 +37,19 @@ class WeekScreenViewController: UITableViewController {
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
         tableView.separatorColor = .clear
         tableView.bounces = false
+        tableView.tableHeaderView = vStack
+        vStack.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+//        tableView.estimatedRowHeight = 61
+        tableView.rowHeight = 61
         tableView.tableFooterView = UIView()
+//        tableView.sectionHeaderHeight = 174
         title = "Неделя"
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         if let presenter = presenter {

@@ -17,7 +17,7 @@ struct DayModel {
 struct DayCellModel: CellIdentifiable {
     var cellIdentifier: String { return "DayCell" }
 
-    var cellHeight: Float { return Float(61 * verticalTranslation) } //
+    var cellHeight: Float { Float(61 * verticalTranslation) } //
 
     let dayOfWeek: String
     let weatherImg: String

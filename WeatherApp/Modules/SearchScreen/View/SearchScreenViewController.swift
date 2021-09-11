@@ -76,7 +76,7 @@ class SearchScreenViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         citiesTableView.delegate = self
-//        citiesTableView.dataSource = self
+        citiesTableView.dataSource = presenter?.dataSource
     }
 
     func setupUI() {
