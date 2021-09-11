@@ -15,14 +15,11 @@ protocol DayScreenViewInput: class {
     func setDegreeLabel(degree: Int)
     func setMinMaxDegreeLabel(min: Int, max: Int)
     func setDescriptionTable(day: WeatherDayResponse)
-    func updateForSections(_ sections: [DescriptionSectionModel])
+    func update()
 }
 
 class DayScreenViewController: UITableViewController {
     var presenter: DayScreenViewOutput?
-    var tableViewHeight: CGFloat = 0
-    var sections: [DescriptionSectionModel] = []
-
     let vStack = DaySummaryStackView()
 
     override func loadView() {
@@ -52,15 +49,6 @@ class DayScreenViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 16 * verticalTranslation)]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-
-//        tableView.tableHeaderView?.snp.makeConstraints({ make in
-//            make.centerX.equalToSuperview()
-//        })
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableViewHeight = (view.bounds.height - vStack.bounds.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - 12)
     }
 }
 
@@ -81,8 +69,7 @@ extension DayScreenViewController: DayScreenViewInput {
         vStack.minMaxLabel.text = "Макс. \(min)°, мин. \(max)°"
     }
 
-    func updateForSections(_ sections: [DescriptionSectionModel]) {
-        self.sections = sections
+    func update() {
         tableView.reloadData()
     }
 
@@ -105,30 +92,5 @@ extension DayScreenViewController: DayScreenViewInput {
             models.append(DescriptionPropertyModel(title: "Видимость", description: "\(String(format: "%.2f", visibility)) км"))
         }
         sections.append(DescriptionSectionModel(models))
-        updateForSections(sections)
-    }
-}
-
-extension DayScreenViewController {
-    override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight) * verticalTranslation
-    }
-
-    override func numberOfSections(in _: UITableView) -> Int {
-        return sections.count
-    }
-
-    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].rows.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = sections[indexPath.section].rows[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as! WeatherCell
-        if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        }
-        cell.model = model
-        return cell
     }
 }

@@ -11,6 +11,7 @@ import Foundation
 protocol SearchScreenViewOutput: class {
     func searchForCity(city: String)
     func tableViewDidSelect(row: Int)
+    var dataSource: SearchScreenDataSource { get }
 }
 
 class SearchScreenPresenter {
@@ -21,6 +22,9 @@ class SearchScreenPresenter {
     var interactor: SearchScreenInteractorInput?
 
     var cities: [WeatherCityModel] = []
+
+    let dataSource = SearchScreenDataSource()
+
     init(router: SearchScreenRouter) {
         self.router = router
     }
@@ -34,14 +38,14 @@ extension SearchScreenPresenter: SearchScreenViewOutput {
             print("SearchScreenAssemle Error")
             return
         }
-        interactor.searchWithSubstring(city) { cities in
-            self.cities = cities
+        interactor.searchWithSubstring(city) { [weak self] cities in
+            self?.cities = cities
             cities.forEach { city in
                 let model = CityModel(title: city.title)
                 models.append(model)
             }
             sections.append(CitySectionModel(models))
-            view.updateForSections(sections)
+            self?.dataSource.updateForSections(sections)
         }
     }
 

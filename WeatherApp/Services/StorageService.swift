@@ -6,9 +6,8 @@
 //
 
 import UIKit
-class StorageService {
+class StorageService: NSObject {
     static let shared = StorageService()
-
     var images: [String: UIImage] = [:]
 
     func saveImages(_ images: [String: UIImage]) {

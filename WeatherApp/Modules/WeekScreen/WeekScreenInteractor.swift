@@ -32,13 +32,8 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
         let group = DispatchGroup()
         for _ in 0 ... 3 {
             group.enter()
-            weatherService.getDayForCity(cityId: cityId, day: day) { result in
-                switch result {
-                case .success(let weatherDay):
-                    weatherDays.append(weatherDay)
-                case .failure:
-                    break
-                }
+            weatherService.getDayForCity(cityId: cityId, day: day) {  result in
+                try? weatherDays.append(result.get())
                 group.leave()
             }
             day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
@@ -53,8 +48,8 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
         let group = DispatchGroup()
         for abbr in abbreviations {
             group.enter()
-            weatherService.getImage(imageAbbreviation: abbr) { image in
-                images[abbr] = image
+            weatherService.getImage(imageAbbreviation: abbr) { result in
+                try? images[abbr] = result.get()
                 group.leave()
             }
         }

@@ -18,6 +18,9 @@
 		3E292ACD26E4069600E0A119 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292ACC26E4069600E0A119 /* StorageService.swift */; };
 		3E34B70326E7792B005C95B7 /* DayScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */; };
 		3E38995E26ED1A9B00F54DCA /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38995D26ED1A9B00F54DCA /* UIFont+Ext.swift */; };
+		3E38998F26ED2DF400F54DCA /* WeekScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38998E26ED2DF400F54DCA /* WeekScreenDataSource.swift */; };
+		3E38999426ED2E0000F54DCA /* DayScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38999326ED2E0000F54DCA /* DayScreenDataSource.swift */; };
+		3E38999926ED2E0D00F54DCA /* SearchScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38999826ED2E0D00F54DCA /* SearchScreenDataSource.swift */; };
 		3E8566C526ECF74200B1E951 /* DataFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8566C426ECF74200B1E951 /* DataFormatter+Ext.swift */; };
 		3E8566D426ECF7A800B1E951 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8566D326ECF7A800B1E951 /* WeatherService.swift */; };
 		3E8B826826E31BA100D54F57 /* WeatherSourceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8B826726E31BA100D54F57 /* WeatherSourceResponse.swift */; };
@@ -108,6 +111,9 @@
 		3E292ACC26E4069600E0A119 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayScreenAssembly.swift; sourceTree = "<group>"; };
 		3E38995D26ED1A9B00F54DCA /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		3E38998E26ED2DF400F54DCA /* WeekScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenDataSource.swift; sourceTree = "<group>"; };
+		3E38999326ED2E0000F54DCA /* DayScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreenDataSource.swift; sourceTree = "<group>"; };
+		3E38999826ED2E0D00F54DCA /* SearchScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenDataSource.swift; sourceTree = "<group>"; };
 		3E8566C426ECF74200B1E951 /* DataFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFormatter+Ext.swift"; sourceTree = "<group>"; };
 		3E8566D326ECF7A800B1E951 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		3E8B826726E31BA100D54F57 /* WeatherSourceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSourceResponse.swift; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				3E8F43B326E2F1D5001153CC /* WeekScreenPresenter.swift */,
+				3E38998E26ED2DF400F54DCA /* WeekScreenDataSource.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -271,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				3E8F43A226E2F1A8001153CC /* DayScreenPresenter.swift */,
+				3E38999326ED2E0000F54DCA /* DayScreenDataSource.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -307,6 +315,47 @@
 				3E8F43D126E2F222001153CC /* SearchScreen */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		3E38999D26ED2FBF00F54DCA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F43C426E2F212001153CC /* SearchScreenPresenter.swift */,
+				3E38999826ED2E0D00F54DCA /* SearchScreenDataSource.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3E38999E26ED2FC700F54DCA /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F43C526E2F212001153CC /* SearchScreenRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		3E38999F26ED2FCD00F54DCA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F43C626E2F212001153CC /* SearchScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E3899A026ED2FD100F54DCA /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F43C726E2F212001153CC /* SearchScreenAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		3E3899A126ED2FD700F54DCA /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F43C826E2F212001153CC /* SearchScreenInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		3E8566C326ECF71700B1E951 /* Extentions */ = {
@@ -380,11 +429,11 @@
 		3E8F43D126E2F222001153CC /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43C426E2F212001153CC /* SearchScreenPresenter.swift */,
-				3E8F43C526E2F212001153CC /* SearchScreenRouter.swift */,
-				3E8F43C626E2F212001153CC /* SearchScreenViewController.swift */,
-				3E8F43C726E2F212001153CC /* SearchScreenAssembly.swift */,
-				3E8F43C826E2F212001153CC /* SearchScreenInteractor.swift */,
+				3E3899A026ED2FD100F54DCA /* Assembly */,
+				3E38999F26ED2FCD00F54DCA /* View */,
+				3E38999D26ED2FBF00F54DCA /* Presenter */,
+				3E3899A126ED2FD700F54DCA /* Interactor */,
+				3E38999E26ED2FC700F54DCA /* Router */,
 			);
 			path = SearchScreen;
 			sourceTree = "<group>";
@@ -815,6 +864,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E38998F26ED2DF400F54DCA /* WeekScreenDataSource.swift in Sources */,
 				3E34B70326E7792B005C95B7 /* DayScreenAssembly.swift in Sources */,
 				3E8F43F626E31597001153CC /* JSONDecoder+Ext.swift in Sources */,
 				3E25705B26E7C83C00640CC3 /* CityCellModel.swift in Sources */,
@@ -833,6 +883,7 @@
 				3E8F43BB26E2F1D5001153CC /* WeekScreenAssembly.swift in Sources */,
 				3E25706B26E7EBDC00640CC3 /* DesignableUITextField.swift in Sources */,
 				3E8F43B926E2F1D5001153CC /* WeekScreenRouter.swift in Sources */,
+				3E38999426ED2E0000F54DCA /* DayScreenDataSource.swift in Sources */,
 				3E8F43EB26E2FB62001153CC /* WeatherDayResponse.swift in Sources */,
 				3E38995E26ED1A9B00F54DCA /* UIFont+Ext.swift in Sources */,
 				3E8F43A826E2F1A8001153CC /* DayScreenRouter.swift in Sources */,
@@ -848,6 +899,7 @@
 				3E8F43CA26E2F212001153CC /* SearchScreenRouter.swift in Sources */,
 				3E8B826D26E31C0500D54F57 /* WeatherWeekResponse.swift in Sources */,
 				3EB06FCC26E3B11500118882 /* DescriptionSectionModel.swift in Sources */,
+				3E38999926ED2E0D00F54DCA /* SearchScreenDataSource.swift in Sources */,
 				3E8F43CB26E2F212001153CC /* SearchScreenViewController.swift in Sources */,
 				3E8B826826E31BA100D54F57 /* WeatherSourceResponse.swift in Sources */,
 				3E8F43CD26E2F212001153CC /* SearchScreenInteractor.swift in Sources */,

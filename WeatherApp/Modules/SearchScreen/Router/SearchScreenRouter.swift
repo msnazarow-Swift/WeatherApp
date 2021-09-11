@@ -19,8 +19,7 @@ class SearchScreenRouter: SearchScreenRouterInput {
     }
 
     func routeToWeekScreen(cityId: Int) {
-        let weekScreen = WeekScreenAssembly.createWeekScreen()
-        weekScreen.loadForCity(cityId: cityId)
+        let weekScreen = WeekScreenAssembly.createWeekScreen(for: cityId)
         weekScreen.modalPresentationStyle = .fullScreen
         if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
     		view.pushViewController(weekScreen, animated: true)

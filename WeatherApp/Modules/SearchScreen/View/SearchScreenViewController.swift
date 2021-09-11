@@ -10,7 +10,7 @@ import SnapKit
 import UIKit
 
 protocol SearchScreenViewInput: class {
-    func updateForSections(_ sections: [CitySectionModel])
+   func update()
 }
 
 class SearchScreenViewController: UIViewController {
@@ -72,16 +72,11 @@ class SearchScreenViewController: UIViewController {
         return tableView
     }()
 
-    var sections: [CitySectionModel] = []
-    override func loadView() {
-        super.loadView()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         citiesTableView.delegate = self
-        citiesTableView.dataSource = self
+//        citiesTableView.dataSource = self
     }
 
     func setupUI() {
@@ -103,39 +98,16 @@ class SearchScreenViewController: UIViewController {
 }
 
 extension SearchScreenViewController: SearchScreenViewInput {
-    func updateForSections(_ sections: [CitySectionModel]) {
-        self.sections = sections
+    func update() {
         citiesTableView.reloadData()
     }
 }
 
-extension SearchScreenViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
-    }
-
-    func numberOfSections(in _: UITableView) -> Int {
-        return sections.count
-    }
-
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].rows.count
-    }
-
+extension SearchScreenViewController: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let presenter = presenter else {
             return
         }
         return presenter.tableViewDidSelect(row: indexPath.row)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = sections[indexPath.section].rows[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
-            cell.model = model
-            return cell
-        } else {
-            return UITableViewCell()
-        }
     }
 }

@@ -63,17 +63,17 @@ class WeatherService {
             }
         }
     }
-    func getImage(imageAbbreviation: String, complition: @escaping (Image) -> Void) {
+    func getImage(imageAbbreviation: String, complition: @escaping (Result<Image, Error>) -> Void) {
         provider.request(.getImage(abbreviation: imageAbbreviation)) { result in
             switch result {
             case let .success(response):
                 do {
-                    complition(try response.mapImage())
+                    complition(.success(try response.mapImage()))
                 } catch {
-                    print(error)
+                    complition(.failure(error))
                 }
             case let .failure(error):
-                print(error)
+                complition(.failure(error))
             }
         }
     }

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow()
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window?.windowScene = windowScene
-        let navController = UINavigationController(rootViewController: WeekScreenAssembly.createWeekScreen())
+        let navController = UINavigationController(rootViewController: WeekScreenAssembly.createWeekScreen(for: 2122265))
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }

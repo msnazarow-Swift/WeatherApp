@@ -9,9 +9,10 @@
 import Foundation
 
 protocol WeekScreenViewOutput: class {
-    func loadForCity(cityId: Int)
+    func viewDidLoad()
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
+    var dataSource: WeekScreenDataSource { get }
 }
 
 class WeekScreenPresenter: WeekScreenViewOutput {
@@ -19,9 +20,17 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     private let router: WeekScreenRouterInput
     var interactor: WeekScreenInteractorInput?
     var title: String?
+    var cityId: Int
     var weatherDays: [WeatherDayResponse]?
-    init(router: WeekScreenRouterInput) {
+    var dataSource = WeekScreenDataSource()
+
+    init(router: WeekScreenRouterInput, cityId: Int) {
         self.router = router
+        self.cityId = cityId
+    }
+
+    func viewDidLoad() {
+        loadForCity(cityId: cityId)
     }
 
     func loadForCity(cityId: Int) {
@@ -71,7 +80,8 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     func updateView(sections: [DaySectionModel]) {
         guard let view = view else { return }
 
-        view.updateForSections(sections)
+        dataSource.updateForSections(sections)
+        view.update()
         if let title = self.title {
             view.setCityLabel(city: title)
         }
