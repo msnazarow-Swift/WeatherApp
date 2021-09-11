@@ -27,6 +27,7 @@ class SearchScreenViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        button.tintColor = .black
         return button
     }()
     let stroke: UIView = {
@@ -39,10 +40,7 @@ class SearchScreenViewController: UIViewController {
         let tableView = UITableView()
         tableView.register(CityCell.self, forCellReuseIdentifier: CityCell.identifier)
         tableView.tableHeaderView = UIView()
-        tableView.tableHeaderView?.addSubview(titleLabel)
-        tableView.tableHeaderView?.addSubview(searchTextField)
-        tableView.tableHeaderView?.addSubview(closeButton)
-        tableView.tableHeaderView?.addSubview(stroke)
+        [titleLabel, searchTextField, closeButton, stroke].forEach { tableView.tableHeaderView?.addSubview($0) }
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView?.snp.makeConstraints({ make in
             make.centerX.equalToSuperview()

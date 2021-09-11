@@ -12,22 +12,46 @@ protocol DayScreenViewOutput: class {
     func searchButtonTapped()
     func setDescriptionTable(day: WeatherDayResponse)
     var dataSource: DayScreenDataSource { get }
+    func viewDidLoad()
 }
 
 class DayScreenPresenter: DayScreenViewOutput {
     weak var view: DayScreenViewInput?
-
-    private let router: DayScreenRouter
-
     var interactor: DayScreenInteractorInput?
-
     var dataSource = DayScreenDataSource()
 
-    init(router: DayScreenRouter, day: WeatherDayResponse) {
+    private let router: DayScreenRouter
+    private let title: String
+    private let day: WeatherDayResponse
+
+    init(router: DayScreenRouter, title: String, day: WeatherDayResponse) {
         self.router = router
+        self.title = title
+        self.day = day
+    }
+    func viewDidLoad() {
+        guard let view = view else {
+            print("DayScreenAssemble Error")
+            return
+        }
+        view.setCityLabel(city: title)
+        if let temp = day.theTemp {
+            view.setDegreeLabel(degree: Int(temp))
+        }
+        view.setWeatherLabel(weather: day.weatherStateName)
+        if let min = day.minTemp, let max = day.maxTemp {
+            view.setMinMaxDegreeLabel(min: Int(min), max: Int(max))
+        }
+
+        if day.applicableDate.isToday {
+            view.setTitle("Cегодня")
+        } else if day.applicableDate.isTomorrow {
+            view.setTitle("Завтра")
+        } else {
+            view.setTitle(day.applicableDate.weekDay.localizedCapitalized)
+        }
         setDescriptionTable(day: day)
     }
-
     func searchButtonTapped() {
         router.routeToSearchScreen()
     }

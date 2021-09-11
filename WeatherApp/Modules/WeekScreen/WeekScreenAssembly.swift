@@ -12,7 +12,7 @@ enum WeekScreenAssembly {
     static func createWeekScreen(for cityId: Int) -> WeekScreenViewController {
         let viewController = WeekScreenViewController(style: .grouped)
         let router = WeekScreenRouter(view: viewController)
-        let presenter = WeekScreenPresenter(router: router, cityId: moscowCityId)
+        let presenter = WeekScreenPresenter(router: router, cityId: cityId)
         let interactor = WeekScreenInteractor()
 
         presenter.interactor = interactor

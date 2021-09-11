@@ -10,6 +10,7 @@ import SnapKit
 import UIKit
 
 protocol DayScreenViewInput: class {
+    func setTitle(_ title: String)
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
@@ -25,7 +26,9 @@ class DayScreenViewController: UITableViewController {
         super.viewDidLoad()
         setUI()
         tableView.autoresizesSubviews = true
+        presenter?.viewDidLoad()
     }
+
 // TODO: - Я знаю что это плохо, но по другому не робит
 
     override func viewWillLayoutSubviews() {
@@ -54,6 +57,9 @@ class DayScreenViewController: UITableViewController {
 }
 
 extension DayScreenViewController: DayScreenViewInput {
+    func setTitle(_ title: String) {
+        self.title = title
+    }
     func setCityLabel(city: String) {
         vStack.cityLabel.text = city
     }

@@ -22,26 +22,8 @@ class WeekScreenRouter: WeekScreenRouterInput {
 
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse) {
         guard let view = view?.navigationController else { return }
-        let dayScrenController = DayScreenAssembly.createDayScreen(for: day)
-        dayScrenController.setCityLabel(city: cityName)
-        if let temp = day.theTemp {
-            dayScrenController.setDegreeLabel(degree: Int(temp))
-        }
-        dayScrenController.setWeatherLabel(weather: day.weatherStateName)
-        if let min = day.minTemp, let max = day.maxTemp {
-            dayScrenController.setMinMaxDegreeLabel(min: Int(min), max: Int(max))
-        }
-//        dayScrenController.setDescriptionTable(day: day)
-        let days = Calendar.current.dateComponents([.day], from: Date(), to: day.applicableDate).day!
-        if days == 0 {
-            dayScrenController.title = "Cегодня"
-        } else if days == 1 {
-            dayScrenController.title = "Завтра"
-        } else {
-            let weekFormatter = DateFormatter()
-            weekFormatter.dateFormat = "EEEE"
-            dayScrenController.title = weekFormatter.string(from: day.applicableDate)
-        }
+        let dayScrenController = DayScreenAssembly.createDayScreen(with: cityName, for: day)
+
         view.pushViewController(dayScrenController, animated: true)
     }
 

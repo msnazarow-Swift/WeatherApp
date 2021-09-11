@@ -61,12 +61,10 @@ class WeekScreenPresenter: WeekScreenViewOutput {
 
 	private func makeModels() -> [DayModel] {
         var models: [DayModel] = []
-        let weekFormatter = DateFormatter()
-        weekFormatter.dateFormat = "EEEE"
 
         self.weatherDays?.forEach { day in
             let model = DayModel(
-                dayOfWeek: weekFormatter.string(from: day.applicableDate),
+                dayOfWeek: day.applicableDate.weekDay.localizedCapitalized,
                 weatherImg: day.weatherStateAbbr,
                 maxTemp: Int(day.maxTemp ?? 0),
                 minTemp: Int(day.minTemp ?? 0)

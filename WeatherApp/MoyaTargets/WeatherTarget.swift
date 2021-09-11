@@ -27,10 +27,7 @@ extension WeatherTarget: TargetType {
         case let .getWeek(woeid):
             return "/api/location/\(woeid)/"
         case let .getDay(woeid, date):
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "YYYY/MM/dd"
-            let dateString = dateFormatter.string(from: date)
-            return "/api/location/\(woeid)/\(dateString)/"
+            return "/api/location/\(woeid)/\(date.dateSlashString)/"
         case .getCities:
             return "/api/location/search/"
         }

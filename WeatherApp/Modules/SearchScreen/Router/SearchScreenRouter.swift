@@ -24,6 +24,6 @@ class SearchScreenRouter: SearchScreenRouterInput {
         if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
     		view.pushViewController(weekScreen, animated: true)
         }
-        view?.dismiss(animated: false, completion: nil)
+        view?.dismiss(animated: true, completion: nil)
     }
 }
