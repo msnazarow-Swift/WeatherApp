@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct WeatherCity: Codable {
+struct WeatherCityResponse: Codable {
     let lattLong: String
     let locationType: String
     let title: String
     let woeid: Int
 }
 
-struct City {
+struct WeatherCityModel {
     let lattLong: [Double]
     let locationType: String
     let title: String
     let woeid: Int
 
-    init(_ weatherCity: WeatherCity) {
+    init(_ weatherCity: WeatherCityResponse) {
         locationType = weatherCity.locationType
         title = weatherCity.title
         woeid = weatherCity.woeid

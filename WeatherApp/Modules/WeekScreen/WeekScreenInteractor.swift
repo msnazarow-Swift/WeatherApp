@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 protocol WeekScreenInteractorInput: class {
-    func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeek) -> Void)
-    func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDay]) -> Void)
+    func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
+    func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
     func getImages(complition: @escaping ([String: Image]) -> Void)
     func saveImages(_ images: [String: Image])
 }
@@ -21,14 +21,14 @@ protocol WeekScreenInteractorOutput: class {}
 class WeekScreenInteractor: WeekScreenInteractorInput {
     private let weatherService = WeatherService()
 
-    func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeek) -> Void) {
+    func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
         weatherService.getWeekForCity(cityId: cityId, complition: complition)
     }
 
-    func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDay]) -> Void) {
+    func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void) {
         var day = Date()
         day = Calendar.current.date(byAdding: .day, value: 6, to: day)!
-        var weatherDays: [WeatherDay] = []
+        var weatherDays: [WeatherDayResponse] = []
         let group = DispatchGroup()
         for _ in 0 ... 3 {
             group.enter()

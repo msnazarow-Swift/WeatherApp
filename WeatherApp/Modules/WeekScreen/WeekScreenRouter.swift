@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WeekScreenRouterInput {
-    func routeToDaySrceen(title: String, day: WeatherDay)
+    func routeToDaySrceen(title: String, day: WeatherDayResponse)
     func routeToSearchScreen()
 }
 
@@ -20,7 +20,7 @@ class WeekScreenRouter: WeekScreenRouterInput {
         self.view = view
     }
 
-    func routeToDaySrceen(title: String, day: WeatherDay) {
+    func routeToDaySrceen(title: String, day: WeatherDayResponse) {
         guard let view = view?.navigationController else { return }
         let dayScrenController = DayScreenAssembly.createDayScreen()
         dayScrenController.setCityLabel(city: title)

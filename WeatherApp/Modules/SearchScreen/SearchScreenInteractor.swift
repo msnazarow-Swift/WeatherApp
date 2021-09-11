@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 protocol SearchScreenInteractorInput: class {
-    func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void)
+    func searchWithSubstring(_ substring: String, complition: @escaping ([WeatherCityModel]) -> Void)
 }
 
 protocol SearchScreenInteractorOutput: class {}
@@ -17,7 +17,7 @@ protocol SearchScreenInteractorOutput: class {}
 class SearchScreenInteractor: SearchScreenInteractorInput {
     weak var presenter: SearchScreenInteractorOutput?
 
-    func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void) {
+    func searchWithSubstring(_ substring: String, complition: @escaping ([WeatherCityModel]) -> Void) {
         let provider = MoyaProvider<WeatherTarget>()
         provider.request(.getCities(query: substring)) { result in
             switch result {
@@ -25,7 +25,7 @@ class SearchScreenInteractor: SearchScreenInteractorInput {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    let cities = try response.map([WeatherCity].self, using: decoder).map { City($0) }
+                    let cities = try response.map([WeatherCityResponse].self, using: decoder).map { WeatherCityModel($0) }
                     complition(cities)
                 } catch {
                     print(error)

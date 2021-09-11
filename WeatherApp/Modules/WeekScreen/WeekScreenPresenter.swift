@@ -19,7 +19,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     private let router: WeekScreenRouterInput
     var interactor: WeekScreenInteractorInput?
     var title: String?
-    var weatherDays: [WeatherDay]?
+    var weatherDays: [WeatherDayResponse]?
     init(router: WeekScreenRouterInput) {
         self.router = router
     }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct NotFound: Codable {
+struct NotFoundResponse: Codable {
     let detail: String
 }

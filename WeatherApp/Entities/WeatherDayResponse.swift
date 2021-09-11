@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct WeatherDay: Codable {
+struct WeatherDayResponse: Codable {
     let airPressure: Double?
     let applicableDate: Date
     let created: Date

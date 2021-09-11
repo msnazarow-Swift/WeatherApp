@@ -20,7 +20,7 @@ class SearchScreenPresenter {
 
     var interactor: SearchScreenInteractorInput?
 
-    var cities: [City] = []
+    var cities: [WeatherCityModel] = []
     init(router: SearchScreenRouter) {
         self.router = router
     }

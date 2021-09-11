@@ -14,7 +14,7 @@ protocol DayScreenViewInput: class {
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
     func setMinMaxDegreeLabel(min: Int, max: Int)
-    func setDescriptionTable(day: WeatherDay)
+    func setDescriptionTable(day: WeatherDayResponse)
     func updateForSections(_ sections: [DescriptionSectionModel])
 }
 
@@ -90,7 +90,7 @@ extension DayScreenViewController: DayScreenViewInput {
         presenter?.searchButtonTapped()
     }
 
-    func setDescriptionTable(day: WeatherDay) {
+    func setDescriptionTable(day: WeatherDayResponse) {
         var sections: [DescriptionSectionModel] = []
         var models: [DescriptionPropertyModel] = []
         models.append(DescriptionPropertyModel(title: "Направление Ветра", description: day.windDirectionCompass))

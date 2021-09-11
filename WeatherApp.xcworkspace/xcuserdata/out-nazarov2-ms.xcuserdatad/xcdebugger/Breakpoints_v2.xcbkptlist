@@ -210,53 +210,6 @@
             endingLineNumber = "11"
             landmarkName = "DescriptionPropertyCell"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "38B805B4-8B9C-4CB8-A463-DBAD16A7377F - 5f156564c2984dd1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_0E675B8B9D3863776DFADBBC8152D8A6_func0"
-                  moduleName = "WeatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-nazarov2-ms/Documents/WeatherApp/WeatherApp/Cells/DescriptionPropertyCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "38B805B4-8B9C-4CB8-A463-DBAD16A7377F - 3cbc897c9edd65b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherApp.DescriptionPropertyCell.identifier.unsafeMutableAddressor : Swift.String"
-                  moduleName = "WeatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-nazarov2-ms/Documents/WeatherApp/WeatherApp/Cells/DescriptionPropertyCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "38B805B4-8B9C-4CB8-A463-DBAD16A7377F - 65c71b3118d3c178"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WeatherApp.DescriptionPropertyCell.identifier.getter : Swift.String"
-                  moduleName = "WeatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-nazarov2-ms/Documents/WeatherApp/WeatherApp/Cells/DescriptionPropertyCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -321,38 +274,6 @@
             endingLineNumber = "43"
             landmarkName = "loadForCity(cityId:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CC0E50B5-39D5-4A9C-9A8F-4DADA6951511 - ece466f0c2590ef4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;WeatherApp.WeatherDay&gt;) -&gt; () in closure #2 (WeatherApp.WeatherWeek) -&gt; () in WeatherApp.WeekScreenPresenter.loadForCity(cityId: Swift.Int) -&gt; ()"
-                  moduleName = "WeatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-nazarov2-ms/Documents/WeatherApp/WeatherApp/WeekScreen/WeekScreenPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  uuid = "CC0E50B5-39D5-4A9C-9A8F-4DADA6951511 - a039f3438e0e485a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WeatherApp.WeatherDay, WeatherApp.WeatherDay) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;WeatherApp.WeatherDay&gt;) -&gt; () in closure #2 (WeatherApp.WeatherWeek) -&gt; () in WeatherApp.WeekScreenPresenter.loadForCity(cityId: Swift.Int) -&gt; ()"
-                  moduleName = "WeatherApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-nazarov2-ms/Documents/WeatherApp/WeatherApp/WeekScreen/WeekScreenPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "109">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -397,8 +318,8 @@
             filePath = "WeatherApp/Services/WeatherService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "getDayForCity(cityId:day:complition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -413,8 +334,8 @@
             filePath = "WeatherApp/Services/WeatherService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "getDayForCity(cityId:day:complition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -429,8 +350,8 @@
             filePath = "WeatherApp/Services/WeatherService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "getDayForCity(cityId:day:complition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -445,8 +366,8 @@
             filePath = "WeatherApp/Services/WeatherService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "getDayForCity(cityId:day:complition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -461,8 +382,8 @@
             filePath = "WeatherApp/Services/WeatherService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "getDayForCity(cityId:day:complition:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -512,6 +433,22 @@
             startingLineNumber = "42"
             endingLineNumber = "42"
             landmarkName = "getMaxForecast(cityId:complition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4456B05-C9DB-4CBA-B0DD-5A231A5B57AF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherApp/WeekScreen/WeekScreenRouter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "routeToDaySrceen(title:day:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

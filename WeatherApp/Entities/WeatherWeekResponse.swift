@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct WeatherWeek: Codable {
-    let consolidatedWeather: [WeatherDay]
+struct WeatherWeekResponse: Codable {
+    let consolidatedWeather: [WeatherDayResponse]
     let lattLong: String
     let locationType: String
-    let parent: WeatherCity
-    let sources: [WeatherSource]
+    let parent: WeatherCityResponse
+    let sources: [WeatherSourceResponse]
     let sunRise: Date
     let sunSet: Date
     let time: Date

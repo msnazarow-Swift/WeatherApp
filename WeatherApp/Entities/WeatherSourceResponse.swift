@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherSource: Codable {
+struct WeatherSourceResponse: Codable {
     let crawlRate: Int
     let slug: String
     let title: String

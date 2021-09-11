@@ -12,7 +12,7 @@ class WeatherService {
     enum ResponceError: Error {
         case noResponce
     }
-    func getWeekForCity(cityId: Int, complition: @escaping (WeatherWeek) -> Void) {
+    func getWeekForCity(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
         provider.request(.getWeek(woeid: cityId)) { result in
             switch result {
             case let .success(response):
@@ -20,11 +20,11 @@ class WeatherService {
                 decoder.dateDecodingStrategyFormatters = [DateFormatter.iso8601Full, DateFormatter.yyyyMMdd]
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    let weatherWeek = try response.map(WeatherWeek.self, using: decoder)
+                    let weatherWeek = try response.map(WeatherWeekResponse.self, using: decoder)
                     complition(weatherWeek)
                 } catch {
                     do {
-                        _ = try response.map(NotFound.self, using: decoder)
+                        _ = try response.map(NotFoundResponse.self, using: decoder)
                         print("Error: cityId = \(cityId) not found")
                     } catch {
                         print(error)
@@ -36,23 +36,22 @@ class WeatherService {
         }
     }
 
-    func getDayForCity(cityId: Int, day: Date, complition: @escaping (Result<WeatherDay, Error>) -> Void) {
+    func getDayForCity(cityId: Int, day: Date, complition: @escaping (Result<WeatherDayResponse, Error>) -> Void) {
         provider.request(.getDay(woeid: cityId, date: day)) { result in
-            print("result")
             switch result {
             case let .success(response):
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategyFormatters = [DateFormatter.iso8601Full, DateFormatter.yyyyMMdd]
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    if let day = try response.map([WeatherDay].self, using: decoder).first {
+                    if let day = try response.map([WeatherDayResponse].self, using: decoder).first {
                         complition(.success(day))
                     } else {
                         complition(.failure(ResponceError.noResponce))
                     }
                 } catch {
                     do {
-                        _ = try response.map(NotFound.self, using: decoder)
+                        _ = try response.map(NotFoundResponse.self, using: decoder)
                         print("Error: cityId = \(cityId) not found")
                         complition(.failure(error))
                     } catch {
