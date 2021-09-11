@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WeekScreenRouterInput {
-    func routeToDaySrceen(title: String, day: WeatherDayResponse)
+    func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
     func routeToSearchScreen()
 }
 
@@ -20,10 +20,10 @@ class WeekScreenRouter: WeekScreenRouterInput {
         self.view = view
     }
 
-    func routeToDaySrceen(title: String, day: WeatherDayResponse) {
+    func routeToDaySrceen(cityName: String, day: WeatherDayResponse) {
         guard let view = view?.navigationController else { return }
-        let dayScrenController = DayScreenAssembly.createDayScreen()
-        dayScrenController.setCityLabel(city: title)
+        let dayScrenController = DayScreenAssembly.createDayScreen(for: day)
+        dayScrenController.setCityLabel(city: cityName)
         if let temp = day.theTemp {
             dayScrenController.setDegreeLabel(degree: Int(temp))
         }
@@ -31,7 +31,7 @@ class WeekScreenRouter: WeekScreenRouterInput {
         if let min = day.minTemp, let max = day.maxTemp {
             dayScrenController.setMinMaxDegreeLabel(min: Int(min), max: Int(max))
         }
-        dayScrenController.setDescriptionTable(day: day)
+//        dayScrenController.setDescriptionTable(day: day)
         let days = Calendar.current.dateComponents([.day], from: Date(), to: day.applicableDate).day!
         if days == 0 {
             dayScrenController.title = "Cегодня"

@@ -14,7 +14,6 @@ protocol DayScreenViewInput: class {
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
     func setMinMaxDegreeLabel(min: Int, max: Int)
-    func setDescriptionTable(day: WeatherDayResponse)
     func update()
 }
 
@@ -47,7 +46,8 @@ class DayScreenViewController: UITableViewController {
         tableView.bounces = false
         tableView.tableHeaderView = vStack
         tableView.tableFooterView = UIView()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 16 * verticalTranslation)]
+        tableView.dataSource = presenter?.dataSource
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
     }
 }
@@ -75,22 +75,5 @@ extension DayScreenViewController: DayScreenViewInput {
 
     @objc func searchButtonTapped() {
         presenter?.searchButtonTapped()
-    }
-
-    func setDescriptionTable(day: WeatherDayResponse) {
-        var sections: [DescriptionSectionModel] = []
-        var models: [DescriptionPropertyModel] = []
-        models.append(DescriptionPropertyModel(title: "Направление Ветра", description: day.windDirectionCompass))
-        models.append(DescriptionPropertyModel(title: "Ветер", description: "\(String(format: "%.1f", day.windSpeed)) м/с"))
-        if let humidity = day.humidity {
-            models.append(DescriptionPropertyModel(title: "Влажность", description: "\(humidity) %"))
-        }
-        if let airPressure = day.airPressure {
-            models.append(DescriptionPropertyModel(title: "Давление", description: "\(Int(airPressure)) мм рт.cт"))
-        }
-        if let visibility = day.visibility {
-            models.append(DescriptionPropertyModel(title: "Видимость", description: "\(String(format: "%.2f", visibility)) км"))
-        }
-        sections.append(DescriptionSectionModel(models))
     }
 }

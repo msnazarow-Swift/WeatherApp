@@ -28,11 +28,10 @@ class SearchScreenDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = sections[indexPath.section].rows[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell {
-            cell.model = model
-            return cell
-        } else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell else {
             return UITableViewCell()
         }
+        cell.model = model
+        return cell
     }
 }

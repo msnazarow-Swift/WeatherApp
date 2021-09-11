@@ -12,8 +12,7 @@ class SearchTextField: DesignableUITextField {
         super.init(frame: frame)
 
         // MARK: - Пришлось ставить SF чтоб найти лупу
-
-        leftImage = UIImage(systemName: "magnifyingglass")!
+        leftImage = UIImage(systemName: "magnifyingglass")
         leftPadding = 7
         rightPadding = 7
         layer.backgroundColor = UIColor(red: 0.922, green: 0.922, blue: 0.922, alpha: 1).cgColor

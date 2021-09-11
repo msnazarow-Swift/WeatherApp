@@ -97,7 +97,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
 
     func tableViewDidSelect(row: Int) {
         if let title = title, let weatherDays = weatherDays {
-            router.routeToDaySrceen(title: title, day: weatherDays[row])
+            router.routeToDaySrceen(cityName: title, day: weatherDays[row])
         }
     }
 

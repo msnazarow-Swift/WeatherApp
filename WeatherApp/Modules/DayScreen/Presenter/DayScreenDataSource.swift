@@ -15,7 +15,7 @@ class DayScreenDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight) * verticalTranslation
+        return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight) // * verticalTranslation
     }
 
     func numberOfSections(in _: UITableView) -> Int {

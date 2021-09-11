@@ -42,11 +42,7 @@ class DaySummaryStackView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(cityLabel)
-        addSubview(weatherLabel)
-        addSubview(degreeLabel)
-        addSubview(minMaxLabel)
-        addSubview(stroke)
+        [cityLabel, weatherLabel, degreeLabel, minMaxLabel, stroke].forEach { addSubview($0) }
 
         cityLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)

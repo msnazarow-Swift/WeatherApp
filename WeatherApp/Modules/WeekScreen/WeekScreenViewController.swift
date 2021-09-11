@@ -39,7 +39,7 @@ class WeekScreenViewController: UITableViewController {
         tableView.bounces = false
         tableView.tableFooterView = UIView()
         title = "Неделя"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 16 * verticalTranslation)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         if let presenter = presenter {
             tableView.dataSource = presenter.dataSource
