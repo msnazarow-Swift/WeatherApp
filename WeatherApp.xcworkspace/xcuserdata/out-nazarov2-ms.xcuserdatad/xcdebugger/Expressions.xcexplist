@@ -9,15 +9,7 @@
          contextName = "closure #1 in City.init(_:):WeatherCity.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
-      </ContextState>
-      <ContextState
-         contextName = "WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "abbreviations">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
       </ContextState>
       <ContextState
          contextName = "closure #2 in WeekScreenViewController.setUI():WeekScreenViewController.swift">
@@ -28,10 +20,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "WeekScreenViewController.tableView(_:heightForRowAt:):WeekScreenViewController.swift">
+         contextName = "WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
          <PersistentStrings>
             <PersistentString
-               value = "sections[0].rows[0].cellHeight">
+               value = "abbreviations">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DayCell.updateViews():DayCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weatherImg.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SearchScreenViewController.citiesTableView.getter:SearchScreenViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView.tableHeaderView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -83,6 +91,14 @@
          contextName = "WeekScreenInteractor.saveImages(_:):WeekScreenInteractor.swift">
       </ContextState>
       <ContextState
+         contextName = "WeekScreenViewController.tableView(_:heightForRowAt:):WeekScreenViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sections[0].rows[0].cellHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #1 in DayCell.vstack.getter:DayCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -94,15 +110,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in SearchScreenPresenter.searchForCity(city:):SearchScreenPresenter.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DayCell.updateViews():DayCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "weatherImg.image">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in WeekScreenInteractor.getImages(complition:):WeekScreenInteractor.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

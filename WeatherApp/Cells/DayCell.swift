@@ -33,23 +33,35 @@ class DayCell: WeatherCell {
         return label
     }()
 
-    lazy var vstack: UIStackView = {
-        let img = UIView()
-        img.addSubview(weatherImg)
-        let stack = UIStackView(arrangedSubviews: [dayOfWeekLabel, img, maxTempLabel, minTempLabel])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.setCustomSpacing(-70, after: maxTempLabel)
-        weatherImg.contentMode = .scaleAspectFit
-        weatherImg.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalTo(24 * fontTrans)
-            make.width.equalTo(24 * fontTrans)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(dayOfWeekLabel)
+        contentView.addSubview(weatherImg)
+        contentView.addSubview(maxTempLabel)
+        contentView.addSubview(minTempLabel)
+        minTempLabel.snp.makeConstraints { make in
+            make.centerY.right.greaterThanOrEqualToSuperview().inset(14)
         }
-        return stack
-    }()
+        maxTempLabel.snp.makeConstraints { make in
+            make.right.greaterThanOrEqualToSuperview().inset(48)
+            make.centerY.equalToSuperview()
+        }
+        weatherImg.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.greaterThanOrEqualToSuperview().inset(157)
+            make.height.equalTo(weatherImg.snp.width)
+            make.top.equalToSuperview().offset(18.5)
+            make.bottom.equalToSuperview().inset(18.5)
+        }
+        dayOfWeekLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+        }
+    }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func updateViews() {
         guard let model = model as? DayCellModel else { return }
         dayOfWeekLabel.text = model.dayOfWeek
@@ -57,12 +69,5 @@ class DayCell: WeatherCell {
         weatherImg.image = StorageService.shared.getImageForKey(model.weatherImg)
         maxTempLabel.text = String(model.maxTemp)
         minTempLabel.text = String(model.minTemp)
-        contentView.addSubview(vstack)
-        vstack.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().inset(14)
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
     }
 }
