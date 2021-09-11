@@ -21,15 +21,12 @@ class DayScreenViewController: UITableViewController {
     var presenter: DayScreenViewOutput?
     let vStack = DaySummaryStackView()
 
-    override func loadView() {
-        super.loadView()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         tableView.autoresizesSubviews = true
     }
+// TODO: - Я знаю что это плохо, но по другому не робит
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -37,10 +34,8 @@ class DayScreenViewController: UITableViewController {
             header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
         }
     }
-
     func setUI() {
 //        tableView.sectionHeaderHeight = 174 * verticalTranslation
-        tableView.backgroundColor = .white
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
         tableView.bounces = false

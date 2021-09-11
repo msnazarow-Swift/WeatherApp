@@ -33,7 +33,7 @@ class DayCell: WeatherCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        backgroundColor = .clear
         [dayOfWeekLabel, weatherImg, maxTempLabel, minTempLabel].forEach { addSubview($0) }
 
         minTempLabel.snp.makeConstraints { make in

@@ -15,15 +15,17 @@ protocol WeekScreenViewInput: class {
     func setDegreeLabel(degree: Int)
     func setMinMaxDegreeLabel(min: Int, max: Int)
     func update()
+    func viewDidSetup()
 }
 
 class WeekScreenViewController: UITableViewController {
     var presenter: WeekScreenViewOutput?
-    var tableViewHeight: CGFloat!
 	let vStack = DaySummaryStackView()
+    let activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewWillSetup()
         setUI()
         guard let presenter = presenter else {
             print("No presenter")
@@ -31,9 +33,19 @@ class WeekScreenViewController: UITableViewController {
         }
         presenter.viewDidLoad()
     }
-
+    func viewWillSetup() {
+        tableView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+          make.center.equalToSuperview()
+        }
+        vStack.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        activityIndicator.startAnimating()
+    }
     func setUI() {
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .init(white: 1.0, alpha: 0.7)
+
+//        tableView.isHidden = true
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
         tableView.separatorColor = .clear
         tableView.bounces = false
@@ -43,6 +55,7 @@ class WeekScreenViewController: UITableViewController {
             make.centerX.equalToSuperview()
             make.width.equalToSuperview()
         }
+
 //        tableView.estimatedRowHeight = 61
         tableView.rowHeight = 61
         tableView.tableFooterView = UIView()
@@ -59,6 +72,7 @@ class WeekScreenViewController: UITableViewController {
 }
 
 extension WeekScreenViewController: WeekScreenViewInput {
+    // TODO: - Я знаю что это нарушает инкапсуляцию, но по сути все эти labels принадлежат текущему view, а vstack просто удобный способ компановки
     func setCityLabel(city: String) {
         vStack.cityLabel.text = city
     }
@@ -81,6 +95,15 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
     @objc func searchButtonTapped() {
         presenter?.searchButtonTapped()
+    }
+
+    func viewDidSetup() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
+            self?.navigationController?.setNavigationBarHidden(false, animated: true)
+            self?.activityIndicator.stopAnimating()
+            self?.vStack.isHidden = false
+            self?.tableView.backgroundColor = .white
+        })
     }
 }
 extension WeekScreenViewController {

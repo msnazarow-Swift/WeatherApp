@@ -54,6 +54,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
                     sections.append(DaySectionModel(models))
                 }
                 self?.updateView(sections: sections)
+                self?.view?.viewDidSetup()
             }
         }
     }
