@@ -26,7 +26,7 @@ class CityCell: WeatherCell {
             return
         }
         textLabel.text = model.title.capitalized
-        textLabel.font = UIFont(name: "Roboto-Regular", size: 16 * fontTrans)
+        textLabel.font = UIFont(name: "Roboto-Regular", size: 16 * verticalTranslation)
     }
 
     override func layoutSubviews() {

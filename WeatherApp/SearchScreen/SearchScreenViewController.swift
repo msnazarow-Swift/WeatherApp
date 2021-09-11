@@ -45,6 +45,7 @@ class SearchScreenViewController: UIViewController {
         tableView.tableHeaderView?.addSubview(stroke)
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView?.snp.makeConstraints({ make in
+            make.centerX.equalToSuperview()
             make.width.equalToSuperview()
             make.height.greaterThanOrEqualTo(108)
         })

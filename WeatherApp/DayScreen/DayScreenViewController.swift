@@ -43,12 +43,19 @@ class DayScreenViewController: UITableViewController {
     }
 
     func setUI() {
-        tableView.sectionHeaderHeight = 174
+        tableView.sectionHeaderHeight = 174 * verticalTranslation
         tableView.backgroundColor = .white
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
         tableView.bounces = false
         tableView.tableHeaderView = vStack
+        tableView.tableFooterView = UIView()
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 16 * verticalTranslation)]
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+
+//        tableView.tableHeaderView?.snp.makeConstraints({ make in
+//            make.centerX.equalToSuperview()
+//        })
     }
 
     override func viewDidLayoutSubviews() {
@@ -79,6 +86,10 @@ extension DayScreenViewController: DayScreenViewInput {
         tableView.reloadData()
     }
 
+    @objc func searchButtonTapped() {
+        presenter?.searchButtonTapped()
+    }
+
     func setDescriptionTable(day: WeatherDay) {
         var sections: [DescriptionSectionModel] = []
         var models: [DescriptionPropertyModel] = []
@@ -100,7 +111,7 @@ extension DayScreenViewController: DayScreenViewInput {
 
 extension DayScreenViewController {
     override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
+		return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight) * verticalTranslation
     }
 
     override func numberOfSections(in _: UITableView) -> Int {

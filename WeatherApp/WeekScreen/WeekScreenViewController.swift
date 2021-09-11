@@ -52,9 +52,11 @@ class WeekScreenViewController: UITableViewController {
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
         tableView.separatorColor = .clear
         tableView.bounces = false
+        tableView.tableFooterView = UIView()
         title = "Неделя"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 16 * verticalTranslation)]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
     }
 }
 
@@ -100,9 +102,9 @@ extension WeekScreenViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         vStack
     }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        174
-    }
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        174 * fontTrans
+//    }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count

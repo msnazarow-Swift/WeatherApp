@@ -6,6 +6,8 @@
 //
 
 import UIKit
-
-let fontTrans = CGFloat(1) // max(UIScreen.main.bounds.height / 667.0, 1)
+// var verticalTranslation: CGFloat!
+// horisontalTranslation: CGFloat!
+var verticalTranslation = UIDevice.current.orientation.isPortrait ? UIScreen.main.bounds.height / 667.0 : UIScreen.main.bounds.width / 375.0
+var horisontalTranslation = UIDevice.current.orientation.isPortrait ? UIScreen.main.bounds.width / 375.0 : UIScreen.main.bounds.height / 667.0
 let abbreviations = ["sn", "sl", "h", "t", "hr", "lr", "s", "hc", "lc", "c"]

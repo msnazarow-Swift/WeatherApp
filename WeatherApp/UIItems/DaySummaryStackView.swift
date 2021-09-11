@@ -10,25 +10,25 @@ import UIKit
 class DaySummaryStackView: UIView {
     let cityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Roboto-Medium", size: 25 * fontTrans)
+        label.font = UIFont(name: "Roboto-Medium", size: 25 * verticalTranslation)
         return (label)
     }()
 
     let weatherLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Roboto-Regular", size: 12 * fontTrans)
+        label.font = UIFont(name: "Roboto-Regular", size: 12 * verticalTranslation)
         return (label)
     }()
 
     let degreeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Roboto-Light", size: 60 * fontTrans)
+        label.font = UIFont(name: "Roboto-Light", size: 60 * verticalTranslation)
         return (label)
     }()
 
     let minMaxLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Roboto-Regular", size: 12 * fontTrans)
+        label.font = UIFont(name: "Roboto-Regular", size: 12 * verticalTranslation)
         return (label)
     }()
     let stroke: UIView = {
@@ -45,6 +45,7 @@ class DaySummaryStackView: UIView {
         addSubview(degreeLabel)
         addSubview(minMaxLabel)
         addSubview(stroke)
+//        translatesAutoresizingMaskIntoConstraints = false
         cityLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.centerX.equalToSuperview()

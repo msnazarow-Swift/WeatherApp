@@ -8,7 +8,9 @@
 
 import Foundation
 
-protocol DayScreenViewOutput: class {}
+protocol DayScreenViewOutput: class {
+    func searchButtonTapped()
+}
 
 class DayScreenPresenter: DayScreenViewOutput {
     weak var view: DayScreenViewInput?
@@ -19,5 +21,9 @@ class DayScreenPresenter: DayScreenViewOutput {
 
     init(router: DayScreenRouter) {
         self.router = router
+    }
+
+    func searchButtonTapped() {
+        router.routeToSearchScreen()
     }
 }
