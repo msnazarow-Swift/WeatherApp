@@ -44,7 +44,7 @@ class DayCell: WeatherCell {
         contentView.addSubview(minTempLabel)
         minTempLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.lessThanOrEqualTo(-14)
+            make.right.equalTo(-14)
             make.left.greaterThanOrEqualTo(maxTempLabel.snp.right).offset(18)
         }
         maxTempLabel.snp.makeConstraints { make in

@@ -18,7 +18,7 @@ class SearchScreenInteractor: SearchScreenInteractorInput {
     weak var presenter: SearchScreenInteractorOutput?
 
     func searchWithSubstring(_ substring: String, complition: @escaping ([City]) -> Void) {
-        let provider = MoyaProvider<WeatherService>()
+        let provider = MoyaProvider<WeatherTarget>()
         provider.request(.getCities(query: substring)) { result in
             switch result {
             case let .success(response):

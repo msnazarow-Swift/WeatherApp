@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-enum WeatherService {
+enum WeatherTarget {
     case getImage(abbreviation: String)
     case getCities(query: String)
     case getWeek(woeid: Int)
@@ -17,7 +17,7 @@ enum WeatherService {
 
 // MARK: - TargetType Protocol Implementation
 
-extension WeatherService: TargetType {
+extension WeatherTarget: TargetType {
     var baseURL: URL { return URL(string: "https://www.metaweather.com")! }
 
     var path: String {

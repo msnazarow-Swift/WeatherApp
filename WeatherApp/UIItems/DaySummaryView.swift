@@ -28,6 +28,7 @@ class DaySummaryStackView: UIView {
 
     let minMaxLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .right
         label.font = UIFont(name: "Roboto-Regular", size: 12 * verticalTranslation)
         return (label)
     }()

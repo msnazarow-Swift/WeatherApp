@@ -19,7 +19,7 @@ class DayScreenInteractor: DayScreenInteractorInput {
     weak var presenter: DayScreenInteractorOutput?
 
     func getWeatherForDay(cityId: Int, day: Date, complition: @escaping ([WeatherDay]) -> Void) {
-        let provider = MoyaProvider<WeatherService>()
+        let provider = MoyaProvider<WeatherTarget>()
         provider.request(.getDay(woeid: cityId, date: day)) { result in
             switch result {
             case let .success(response):
