@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SearchScreenRouterInput {
-    func routeToWeekScreen(cityId: Int)
+    func routeToWeekScreen(cityId: Int, cityName: String)
 }
 
 class SearchScreenRouter: SearchScreenRouterInput {
@@ -18,8 +18,8 @@ class SearchScreenRouter: SearchScreenRouterInput {
         self.view = view
     }
 
-    func routeToWeekScreen(cityId: Int) {
-        let weekScreen = WeekScreenAssembly.createWeekScreen(for: cityId)
+    func routeToWeekScreen(cityId: Int, cityName: String) {
+        let weekScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
         weekScreen.modalPresentationStyle = .fullScreen
         if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
     		view.pushViewController(weekScreen, animated: true)

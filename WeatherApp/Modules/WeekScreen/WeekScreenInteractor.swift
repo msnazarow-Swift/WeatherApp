@@ -10,8 +10,9 @@ import Foundation
 import Moya
 
 protocol WeekScreenInteractorInput: class {
-    func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
-    func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
+    func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
+    func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
+    func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
     func getImages(complition: @escaping ([String: Image]) -> Void)
     func saveImages(_ images: [String: Image])
 }
@@ -21,13 +22,29 @@ protocol WeekScreenInteractorOutput: class {}
 class WeekScreenInteractor: WeekScreenInteractorInput {
     private let weatherService = WeatherService()
 
-    func getWeekForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
+    func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
         weatherService.getWeekForCity(cityId: cityId, complition: complition)
     }
 
-    func getMaxForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void) {
-        var day = Date()
-        day = Calendar.current.date(byAdding: .day, value: 6, to: day)!
+    func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void) {
+        var day = Date.startOfWeek!
+        var weatherDays: [WeatherDayResponse] = []
+        let group = DispatchGroup()
+        for _ in 0 ... 6 {
+            group.enter()
+            weatherService.getDayForCity(cityId: cityId, day: day) {  result in
+                try? weatherDays.append(result.get())
+                group.leave()
+            }
+            day = day.byAddingDay(1)
+        }
+        group.notify(queue: .main) {
+            complition(weatherDays)
+        }
+    }
+
+    func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void) {
+        var day = Date().byAddingDay(6)
         var weatherDays: [WeatherDayResponse] = []
         let group = DispatchGroup()
         for _ in 0 ... 3 {
