@@ -9,10 +9,10 @@
 import UIKit
 
 enum DayScreenAssembly {
-    static func createDayScreen(with cityTitle: String, for day: WeatherDayResponse) -> DayScreenViewController {
+    static func createDayScreen(with cityTitle: String, for day: WeatherDayResponse, isWeekMode: Bool) -> DayScreenViewController {
         let viewController = DayScreenViewController()// (style: .grouped)
         let router = DayScreenRouter(view: viewController)
-        let presenter = DayScreenPresenter(router: router, title: cityTitle, day: day)
+        let presenter = DayScreenPresenter(router: router, title: cityTitle, day: day, isWeekMode: isWeekMode)
         presenter.view = viewController
         viewController.presenter = presenter
         return viewController

@@ -11,7 +11,7 @@ import Foundation
 class SettingsScreenPresenter: SettingsScreenViewOutput {
     weak var view: SettingsScreenViewInput?
 
-    private let isWeekMode: Bool
+    private var isWeekMode: Bool
 
     private let router: SettingsScreenRouter
 
@@ -24,5 +24,6 @@ class SettingsScreenPresenter: SettingsScreenViewOutput {
         view?.setWeekMode(isWeekMode)
     }
     func switcherValueChanged(_ isOn: Bool) {
+        isWeekMode = isOn
     }
 }

@@ -9,10 +9,10 @@
 import UIKit
 
 enum SearchScreenAssembly {
-    static func createSearchScreen() -> SearchScreenViewController {
+    static func createSearchScreen(isWeekMode: Bool) -> SearchScreenViewController {
         let viewController = SearchScreenViewController()
         let router = SearchScreenRouter(view: viewController)
-        let presenter = SearchScreenPresenter(router: router)
+        let presenter = SearchScreenPresenter(router: router, isWeekMode: isWeekMode)
         let interactor = SearchScreenInteractor()
         presenter.view = viewController
         presenter.interactor = interactor

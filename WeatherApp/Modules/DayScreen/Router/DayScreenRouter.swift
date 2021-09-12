@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DayScreenRouterInput {
-    func routeToSearchScreen()
+    func routeToSearchScreen(isWeekMode: Bool)
 }
 
 class DayScreenRouter: DayScreenRouterInput {
@@ -19,8 +19,8 @@ class DayScreenRouter: DayScreenRouterInput {
         self.view = view
     }
 
-    func routeToSearchScreen() {
-        let searchScreen = SearchScreenAssembly.createSearchScreen()
+    func routeToSearchScreen(isWeekMode: Bool) {
+        let searchScreen = SearchScreenAssembly.createSearchScreen(isWeekMode: isWeekMode)
         searchScreen.modalPresentationStyle = .fullScreen
         view?.present(searchScreen, animated: true, completion: nil)
     }

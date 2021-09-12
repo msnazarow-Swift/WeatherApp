@@ -22,12 +22,14 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     var interactor: WeekScreenInteractorInput?
     var title: String?
     var cityId: Int
+    var isWeekMode: Bool
     var weatherDays: [WeatherDayResponse]?
     var dataSource = WeekScreenDataSource()
 
-    init(router: WeekScreenRouterInput, cityId: Int) {
+    init(router: WeekScreenRouterInput, cityId: Int, isWeekMode: Bool) {
         self.router = router
         self.cityId = cityId
+        self.isWeekMode = isWeekMode
     }
 
     func viewDidLoad() {
@@ -95,14 +97,14 @@ class WeekScreenPresenter: WeekScreenViewOutput {
 
     func tableViewDidSelect(row: Int) {
         if let title = title, let weatherDays = weatherDays {
-            router.routeToDaySrceen(cityName: title, day: weatherDays[row])
+            router.routeToDaySrceen(cityName: title, day: weatherDays[row], isWeekMode: isWeekMode)
         }
     }
 
     func searchButtonTapped() {
-        router.routeToSearchScreen()
+        router.routeToSearchScreen(isWeekMode: isWeekMode)
     }
     func settingsButtonTapped() {
-        router.routeToSettingsScreen()
+        router.routeToSettingsScreen(isWeekMode: isWeekMode)
     }
 }

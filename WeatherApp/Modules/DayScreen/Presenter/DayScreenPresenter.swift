@@ -18,15 +18,16 @@ protocol DayScreenViewOutput: class {
 class DayScreenPresenter: DayScreenViewOutput {
     weak var view: DayScreenViewInput?
     var dataSource = DayScreenDataSource()
-
+    var isWeekMode: Bool
     private let router: DayScreenRouter
     private let title: String
     private let day: WeatherDayResponse
 
-    init(router: DayScreenRouter, title: String, day: WeatherDayResponse) {
+    init(router: DayScreenRouter, title: String, day: WeatherDayResponse, isWeekMode: Bool) {
         self.router = router
         self.title = title
         self.day = day
+        self.isWeekMode = isWeekMode
     }
     func viewDidLoad() {
         guard let view = view else {
@@ -52,7 +53,7 @@ class DayScreenPresenter: DayScreenViewOutput {
         setDescriptionTable(day: day)
     }
     func searchButtonTapped() {
-        router.routeToSearchScreen()
+        router.routeToSearchScreen(isWeekMode: isWeekMode)
     }
 
     func setDescriptionTable(day: WeatherDayResponse) {

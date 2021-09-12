@@ -47,10 +47,14 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
         var images: [String: Image] = [:]
         let group = DispatchGroup()
         for abbr in abbreviations {
-            group.enter()
-            weatherService.getImage(imageAbbreviation: abbr) { result in
-                try? images[abbr] = result.get()
-                group.leave()
+            if let image = StorageService.shared.getImageForKey(abbr) {
+                images[abbr] = image
+            } else {
+                group.enter()
+                weatherService.getImage(imageAbbreviation: abbr) { result in
+                    try? images[abbr] = result.get()
+                    group.leave()
+                }
             }
         }
         group.notify(queue: .main) {

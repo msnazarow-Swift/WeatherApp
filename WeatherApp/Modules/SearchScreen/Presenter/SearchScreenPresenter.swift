@@ -25,8 +25,10 @@ class SearchScreenPresenter {
 
     let dataSource = SearchScreenDataSource()
 
-    init(router: SearchScreenRouter) {
+    var isWeekMode: Bool
+    init(router: SearchScreenRouter, isWeekMode: Bool) {
         self.router = router
+        self.isWeekMode = isWeekMode
     }
 }
 
@@ -51,6 +53,6 @@ extension SearchScreenPresenter: SearchScreenViewOutput {
     }
 
     func tableViewDidSelect(row: Int) {
-        router.routeToWeekScreen(cityId: cities[row].woeid)
+        router.routeToWeekScreen(cityId: cities[row].woeid, isWeekMode: isWeekMode)
     }
 }

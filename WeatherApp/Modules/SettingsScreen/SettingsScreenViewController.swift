@@ -81,6 +81,10 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewInput {
 
     @objc func closeView() {
         dismiss(animated: true, completion: nil)
+//        if let view = view.window?.rootViewController as? UINavigationController {
+//            let weekScreen = WeekScreenAssembly.createWeekScreen(for: <#T##Int#>, isWeekMode: <#T##Bool#>)
+//            view.setViewControllers(<#T##viewControllers: [UIViewController]##[UIViewController]#>, animated: <#T##Bool#>)
+//        }
     }
     func setWeekMode(_ isWeekMode: Bool) {
         switcher.isOn = isWeekMode
