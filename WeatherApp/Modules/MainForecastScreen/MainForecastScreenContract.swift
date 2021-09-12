@@ -8,7 +8,7 @@
 import Moya
 import UIKit
 
-protocol MainForecastScreenViewProtocol: class {
+protocol MainForecastScreenViewProtocol: AnyObject {
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
@@ -18,7 +18,7 @@ protocol MainForecastScreenViewProtocol: class {
     func viewWillSetup()
 }
 
-protocol MainForecastScreenPresenterProtocol: class {
+protocol MainForecastScreenPresenterProtocol: AnyObject {
     func viewDidLoad()
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
@@ -30,7 +30,7 @@ protocol MainForecastScreenDataSourceProtocol: UITableViewDataSource {
     func updateForSections(_ sections: [DaySectionModel])
 }
 
-protocol MainForecastScreenInteractorProtocol: class {
+protocol MainForecastScreenInteractorProtocol: AnyObject {
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
     func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
     func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)

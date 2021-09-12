@@ -22,7 +22,7 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
         let group = DispatchGroup()
         for _ in 0 ... 6 {
             group.enter()
-            weatherService.getDayForCity(cityId: cityId, day: day) {  result in
+            weatherService.getDayForCity(cityId: cityId, day: day) { result in
                 try? weatherDays.append(result.get())
                 group.leave()
             }
@@ -39,7 +39,7 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
         let group = DispatchGroup()
         for _ in 0 ... 3 {
             group.enter()
-            weatherService.getDayForCity(cityId: cityId, day: day) {  result in
+            weatherService.getDayForCity(cityId: cityId, day: day) { result in
                 try? weatherDays.append(result.get())
                 group.leave()
             }

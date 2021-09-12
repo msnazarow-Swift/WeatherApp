@@ -18,7 +18,8 @@ class SearchScreenViewController: UIViewController {
         label.font = UIFont(name: "Roboto-Medium", size: 16)
         return label
     }()
-	let searchTextField = SearchTextField()
+
+    let searchTextField = SearchTextField()
 
     // TODO: - Button does not animate
 
@@ -29,23 +30,25 @@ class SearchScreenViewController: UIViewController {
         button.tintColor = .black
         return button
     }()
+
     let stroke: UIView = {
         let view = UIView()
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
         return view
     }()
+
     lazy var citiesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CityCell.self, forCellReuseIdentifier: CityCell.identifier)
         tableView.tableHeaderView = UIView()
         [titleLabel, searchTextField, closeButton, stroke].forEach { tableView.tableHeaderView?.addSubview($0) }
         tableView.tableFooterView = UIView()
-        tableView.tableHeaderView?.snp.makeConstraints({ make in
+        tableView.tableHeaderView?.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalToSuperview()
             make.height.greaterThanOrEqualTo(108)
-        })
+        }
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
             make.centerX.equalToSuperview()
@@ -89,6 +92,7 @@ class SearchScreenViewController: UIViewController {
             presenter.searchForCity(city: text)
         }
     }
+
     @objc func closeView() {
         dismiss(animated: true, completion: nil)
     }

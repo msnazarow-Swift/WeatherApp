@@ -12,6 +12,7 @@ class SearchTextField: DesignableUITextField {
         super.init(frame: frame)
 
         // MARK: - Пришлось ставить SF чтоб найти лупу
+
         leftImage = UIImage(systemName: "magnifyingglass")
         leftPadding = 7
         rightPadding = 7

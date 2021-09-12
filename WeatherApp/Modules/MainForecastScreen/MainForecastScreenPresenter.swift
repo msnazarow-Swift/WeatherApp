@@ -20,7 +20,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String, dataSource: MainForecastScreenDataSourceProtocol?) {
         self.router = router
         self.cityId = cityId
-        self.title = cityName
+        title = cityName
         self.dataSource = dataSource
     }
 
@@ -70,7 +70,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     private func makeModels() -> [DayModel] {
         var models: [DayModel] = []
 
-        self.weatherDays?.forEach { day in
+        weatherDays?.forEach { day in
             let model = DayModel(
                 dayOfWeek: day.applicableDate.weekDay.localizedCapitalized,
                 weatherImg: day.weatherStateAbbr,
@@ -106,6 +106,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     func searchButtonTapped() {
         router.routeToSearchScreen(delegate: self)
     }
+
     func settingsButtonTapped() {
         router.routeToSettingsScreen(delegate: self)
     }

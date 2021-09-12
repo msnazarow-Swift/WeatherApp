@@ -19,6 +19,6 @@ protocol StorageServiceProtocol {
     var isWeekMode: Bool { get set }
 }
 
-protocol PresenterPushViewProtocol: class {
+protocol PresenterPushViewProtocol: AnyObject {
     func pushNewCity(cityId: Int, cityName: String)
 }

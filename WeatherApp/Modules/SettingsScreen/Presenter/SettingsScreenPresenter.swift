@@ -19,17 +19,19 @@ class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
 
     init(router: SettingsScreenRouter, delegate: MainForecastScreenPresenterProtocol?) {
         self.router = router
-        self.isWeekMode = StorageService.shared.isWeekMode
+        isWeekMode = StorageService.shared.isWeekMode
         self.delegate = delegate
     }
 
     func viewDidLoad() {
         view?.setWeekMode(isWeekMode)
     }
+
     func switcherValueChanged(_ isOn: Bool) {
         isWeekMode = isOn
         StorageService.shared.isWeekMode = isWeekMode
     }
+
     func closeView() {
         router.routeToForecastScreen(delegate: delegate)
     }

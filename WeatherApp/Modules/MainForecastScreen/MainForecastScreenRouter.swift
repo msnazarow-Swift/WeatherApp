@@ -33,6 +33,7 @@ class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
         settingScreen.modalPresentationStyle = .fullScreen
         view?.present(settingScreen, animated: true, completion: nil)
     }
+
     func routeToNewCity(cityId: Int, cityName: String) {
         let forecastScreen = MainForecastScreenAssembly.createMainForecastScreen(for: cityId, cityName: cityName)
         view?.navigationController?.pushViewController(forecastScreen, animated: true)

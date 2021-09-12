@@ -6,11 +6,11 @@
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 class SettingsScreenViewController: UIViewController, SettingsScreenViewProtocol {
-	var presenter: SettingsScreenPresenterProtocol?
+    var presenter: SettingsScreenPresenterProtocol?
 
     let switcher: UISwitch = {
         let switcher = UISwitch()
@@ -71,6 +71,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewProtocol
     @objc func closeButtonTapped() {
         presenter?.closeView()
     }
+
     func setWeekMode(_ isWeekMode: Bool) {
         switcher.isOn = isWeekMode
     }

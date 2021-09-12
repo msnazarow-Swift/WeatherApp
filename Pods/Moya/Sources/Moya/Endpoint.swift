@@ -57,7 +57,7 @@ open class Endpoint {
         return Endpoint(url: url, sampleResponseClosure: sampleResponseClosure, method: method, task: task, httpHeaderFields: httpHeaderFields)
     }
 
-    fileprivate func add(httpHeaderFields headers: [String: String]?) -> [String: String]? {
+    private func add(httpHeaderFields headers: [String: String]?) -> [String: String]? {
         guard let unwrappedHeaders = headers, unwrappedHeaders.isEmpty == false else {
             return httpHeaderFields
         }

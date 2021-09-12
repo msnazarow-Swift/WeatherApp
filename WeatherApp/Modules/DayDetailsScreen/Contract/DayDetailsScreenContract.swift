@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DayDetailsScreenViewInput: class {
+protocol DayDetailsScreenViewInput: AnyObject {
     func setTitle(_ title: String)
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
@@ -16,7 +16,7 @@ protocol DayDetailsScreenViewInput: class {
     func update()
 }
 
-protocol DayDetailsScreenViewOutput: class {
+protocol DayDetailsScreenViewOutput: AnyObject {
     func searchButtonTapped()
     func setDescriptionTable(day: WeatherDayResponse)
     var dataSource: DayDetailsScreenDataSource { get }

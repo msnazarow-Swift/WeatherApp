@@ -12,6 +12,7 @@ class WeatherService: WeatherServiceProtocol {
     enum ResponceError: Error {
         case noResponce
     }
+
     func getWeekForCity(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
         provider.request(.getWeek(woeid: cityId)) { result in
             switch result {
@@ -63,6 +64,7 @@ class WeatherService: WeatherServiceProtocol {
             }
         }
     }
+
     func getImage(imageAbbreviation: String, complition: @escaping (Result<Image, Error>) -> Void) {
         provider.request(.getImage(abbreviation: imageAbbreviation)) { result in
             switch result {

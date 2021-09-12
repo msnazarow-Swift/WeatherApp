@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol SettingsScreenViewProtocol: class {
+protocol SettingsScreenViewProtocol: AnyObject {
     func setWeekMode(_ isWeekMode: Bool)
 }
 
-protocol SettingsScreenPresenterProtocol: class {
+protocol SettingsScreenPresenterProtocol: AnyObject {
     func switcherValueChanged(_ isOn: Bool)
     func viewDidLoad()
     func closeView()

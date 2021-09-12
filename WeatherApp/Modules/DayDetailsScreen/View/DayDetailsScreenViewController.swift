@@ -20,7 +20,7 @@ class DayDetailsScreenViewController: UITableViewController {
         presenter?.viewDidLoad()
     }
 
-// TODO: - Я знаю что это плохо, но по другому не робит
+    // TODO: - Я знаю что это плохо, но по другому не робит
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -28,6 +28,7 @@ class DayDetailsScreenViewController: UITableViewController {
             header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
         }
     }
+
     func setUI() {
 //        tableView.sectionHeaderHeight = 174 * verticalTranslation
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
@@ -51,6 +52,7 @@ extension DayDetailsScreenViewController: DayDetailsScreenViewInput {
     func setTitle(_ title: String) {
         self.title = title
     }
+
     func setCityLabel(city: String) {
         vStack.cityLabel.text = city
     }

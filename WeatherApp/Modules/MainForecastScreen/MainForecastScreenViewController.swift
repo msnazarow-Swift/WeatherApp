@@ -24,6 +24,7 @@ class MainForecastScreenViewController: UITableViewController {
         }
         presenter.viewDidLoad()
     }
+
     func viewWillSetup() {
         navigationController?.view.backgroundColor = .init(white: 1.0, alpha: 0.7)
         tableView.isHidden = true
@@ -35,6 +36,7 @@ class MainForecastScreenViewController: UITableViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         activityIndicator.startAnimating()
     }
+
     func setUI() {
         tableView.backgroundColor = .white
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
@@ -61,7 +63,8 @@ class MainForecastScreenViewController: UITableViewController {
         settingButton.action = #selector(settingsButtonTapped)
         navigationItem.rightBarButtonItems = [
             .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped)),
-            settingButton]
+            settingButton,
+        ]
         if let presenter = presenter {
             tableView.dataSource = presenter.dataSource
         }
@@ -108,6 +111,7 @@ extension MainForecastScreenViewController: MainForecastScreenViewProtocol {
         })
     }
 }
+
 extension MainForecastScreenViewController {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let presenter = presenter {

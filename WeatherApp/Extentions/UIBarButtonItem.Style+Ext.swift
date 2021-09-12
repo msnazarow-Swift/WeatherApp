@@ -7,5 +7,4 @@
 
 import UIKit
 
-extension UIBarButtonItem.SystemItem {
-}
+extension UIBarButtonItem.SystemItem {}

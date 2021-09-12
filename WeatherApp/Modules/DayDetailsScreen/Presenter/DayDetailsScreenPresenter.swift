@@ -20,6 +20,7 @@ class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewPr
         self.title = title
         self.day = day
     }
+
     func viewDidLoad() {
         guard let view = view else {
             print("DayDetailsScreenAssemble Error")
@@ -45,6 +46,7 @@ class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewPr
         }
         setDescriptionTable(day: day)
     }
+
     func searchButtonTapped() {
         router.routeToSearchScreen(delegate: self)
     }
@@ -67,6 +69,7 @@ class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewPr
         dataSource.updateForSections(sections)
         view?.update()
     }
+
     func pushNewCity(cityId: Int, cityName: String) {
         router.routeToNewCity(cityId: cityId, cityName: cityName)
     }

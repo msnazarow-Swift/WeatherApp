@@ -196,7 +196,8 @@ extension Date {
            !isTodayOrEarlier,
            !isTomorrow,
            self > Date(),
-           self < endOfWeek {
+           self < endOfWeek
+        {
             return true
         } else {
             return false

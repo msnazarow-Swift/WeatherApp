@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol SearchScreenViewProtocol: class {
-   func update()
+protocol SearchScreenViewProtocol: AnyObject {
+    func update()
 }
 
-protocol SearchScreenPresenterProtocol: class {
+protocol SearchScreenPresenterProtocol: AnyObject {
     func searchForCity(city: String)
     func tableViewDidSelect(row: Int)
     var dataSource: SearchScreenDataSource { get }
 }
 
-protocol SearchScreenInteractorProtocol: class {
+protocol SearchScreenInteractorProtocol: AnyObject {
     func searchWithSubstring(_ substring: String, complition: @escaping ([WeatherCityModel]) -> Void)
 }
 
