@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainForecastScreenDataSource: NSObject, UITableViewDataSource {
+class MainForecastScreenDataSource: NSObject, MainForecastScreenDataSourceProtocol {
     var sections: [DaySectionModel] = []
 
     func updateForSections(_ sections: [DaySectionModel]) {

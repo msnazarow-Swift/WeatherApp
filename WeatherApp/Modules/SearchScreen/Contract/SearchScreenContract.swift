@@ -11,10 +11,6 @@ protocol SearchScreenViewProtocol: class {
    func update()
 }
 
-protocol PresenterPushViewProtocol: class {
-    func pushNewCity(cityId: Int, cityName: String)
-}
-
 protocol SearchScreenPresenterProtocol: class {
     func searchForCity(city: String)
     func tableViewDidSelect(row: Int)

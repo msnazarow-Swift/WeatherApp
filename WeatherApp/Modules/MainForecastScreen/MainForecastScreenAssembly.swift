@@ -12,7 +12,8 @@ enum MainForecastScreenAssembly {
     static func createMainForecastScreen(for cityId: Int, cityName: String) -> UIViewController {
         let viewController = MainForecastScreenViewController(style: .grouped)
         let router = MainForecastScreenRouter(view: viewController)
-        let presenter = MainForecastScreenPresenter(router: router, cityId: cityId, cityName: cityName)
+        let dataSource = MainForecastScreenDataSource()
+        let presenter = MainForecastScreenPresenter(router: router, cityId: cityId, cityName: cityName, dataSource: dataSource)
         let interactor = MainForecastScreenInteractor()
 
         presenter.interactor = interactor

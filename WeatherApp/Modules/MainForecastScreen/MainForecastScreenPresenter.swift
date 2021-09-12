@@ -6,7 +6,7 @@
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, PresenterPushViewProtocol {
     weak var view: MainForecastScreenViewProtocol?
@@ -15,12 +15,13 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     var title: String
     var cityId: Int
     var weatherDays: [WeatherDayResponse]?
-    var dataSource = MainForecastScreenDataSource()
+    var dataSource: MainForecastScreenDataSourceProtocol?
 
-    init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String) {
+    init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String, dataSource: MainForecastScreenDataSourceProtocol?) {
         self.router = router
         self.cityId = cityId
         self.title = cityName
+        self.dataSource = dataSource
     }
 
     func viewDidLoad() {
@@ -82,7 +83,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     }
 
     private func updateView(sections: [DaySectionModel]) {
-        guard let view = view else { return }
+        guard let view = view, let dataSource = dataSource else { return }
 
         dataSource.updateForSections(sections)
         guard let day = weatherDays?.first else { return }

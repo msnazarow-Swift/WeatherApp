@@ -6,6 +6,7 @@
 //
 
 import Moya
+import UIKit
 
 protocol MainForecastScreenViewProtocol: class {
     func setCityLabel(city: String)
@@ -22,7 +23,11 @@ protocol MainForecastScreenPresenterProtocol: class {
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
     func settingsButtonTapped()
-    var dataSource: MainForecastScreenDataSource { get }
+    var dataSource: MainForecastScreenDataSourceProtocol? { get }
+}
+
+protocol MainForecastScreenDataSourceProtocol: UITableViewDataSource {
+    func updateForSections(_ sections: [DaySectionModel])
 }
 
 protocol MainForecastScreenInteractorProtocol: class {
