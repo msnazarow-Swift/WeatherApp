@@ -43,17 +43,8 @@ class MainForecastScreenViewController: UITableViewController {
         tableView.separatorColor = .clear
         tableView.bounces = false
         tableView.tableHeaderView = vStack
-
-        vStack.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-
-        //        tableView.estimatedRowHeight = 61
-        tableView.rowHeight = 61
+        tableView.rowHeight = 61 * verticalTranslation
         tableView.tableFooterView = UIView()
-        //        tableView.sectionHeaderHeight = 174
         title = "Неделя"
         navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
@@ -63,6 +54,12 @@ class MainForecastScreenViewController: UITableViewController {
             .init(image: UIImage(systemName: "gear"), style: .plain, target: self, action:  #selector(settingsButtonTapped))
         ]
         tableView.dataSource = presenter?.dataSource
+
+        vStack.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+        }
     }
 
     func viewDidSetup() {

@@ -30,12 +30,11 @@ class DayDetailsScreenViewController: UITableViewController {
     }
 
     func setUI() {
-//        tableView.sectionHeaderHeight = 174 * verticalTranslation
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
         tableView.bounces = false
         tableView.tableHeaderView = vStack
-        tableView.rowHeight = 85
+        tableView.rowHeight = 85 * verticalTranslation
         vStack.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()

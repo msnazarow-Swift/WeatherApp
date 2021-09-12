@@ -57,7 +57,7 @@ class SettingsScreenViewController: UIViewController {
             make.top.equalTo(switcher.snp.bottom).offset(10)
         }
         closeButton.snp.makeConstraints { make in
-            make.top.left.equalTo(26)
+            make.top.left.equalTo(view.safeAreaLayoutGuide).offset(16)
         }
         presenter?.viewDidLoad()
     }

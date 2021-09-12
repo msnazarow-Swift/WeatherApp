@@ -18,7 +18,7 @@ protocol DayDetailsScreenViewProtocol: AnyObject {
 
 protocol DayDetailsScreenPresenterProtocol: AnyObject {
     var dataSource: DayDetailsScreenDataSourceProtocol { get }
-    
+
     func searchButtonTapped()
     func setDescriptionTable(day: WeatherDayResponse)
     func viewDidLoad()
