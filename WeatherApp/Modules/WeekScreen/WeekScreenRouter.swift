@@ -10,8 +10,9 @@ import UIKit
 
 protocol WeekScreenRouterInput {
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
-    func routeToSearchScreen()
-    func routeToSettingsScreen()
+    func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
+    func routeToSettingsScreen(delegate: WeekScreenViewOutput?)
+    func routeToNewCity(cityId: Int, cityName: String)
 }
 
 class WeekScreenRouter: WeekScreenRouterInput {
@@ -28,15 +29,19 @@ class WeekScreenRouter: WeekScreenRouterInput {
         view.pushViewController(dayScrenController, animated: true)
     }
 
-    func routeToSearchScreen() {
-        let searchScreen = SearchScreenAssembly.createSearchScreen()
+    func routeToSearchScreen(delegate: PresenterPushViewProtocol?) {
+        let searchScreen = SearchScreenAssembly.createSearchScreen(delegate: delegate)
         searchScreen.modalPresentationStyle = .fullScreen
         view?.present(searchScreen, animated: true, completion: nil)
     }
 
-    func routeToSettingsScreen() {
-        let settingScreen = SettingsScreenAssembly.createSettingsScreen()
+    func routeToSettingsScreen(delegate: WeekScreenViewOutput?) {
+        let settingScreen = SettingsScreenAssembly.createSettingsScreen(delegate: delegate)
         settingScreen.modalPresentationStyle = .fullScreen
         view?.present(settingScreen, animated: true, completion: nil)
+    }
+    func routeToNewCity(cityId: Int, cityName: String) {
+        let forecastScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
+        view?.navigationController?.pushViewController(forecastScreen, animated: true)
     }
 }

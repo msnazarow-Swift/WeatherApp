@@ -102,6 +102,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "StorageService.shared.unsafeMutableAddressor:StorageService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "StorageService.shared.isWeekMode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "WeekScreenInteractor.saveImages(_:):WeekScreenInteractor.swift">
       </ContextState>
       <ContextState

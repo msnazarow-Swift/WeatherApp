@@ -6,10 +6,10 @@
 //  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol DayScreenRouterInput {
-    func routeToSearchScreen()
+    func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
 }
 
 class DayScreenRouter: DayScreenRouterInput {
@@ -19,8 +19,8 @@ class DayScreenRouter: DayScreenRouterInput {
         self.view = view
     }
 
-    func routeToSearchScreen() {
-        let searchScreen = SearchScreenAssembly.createSearchScreen()
+    func routeToSearchScreen(delegate: PresenterPushViewProtocol?) {
+        let searchScreen = SearchScreenAssembly.createSearchScreen(delegate: delegate)
         searchScreen.modalPresentationStyle = .fullScreen
         view?.present(searchScreen, animated: true, completion: nil)
     }

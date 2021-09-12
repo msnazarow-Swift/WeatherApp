@@ -16,21 +16,23 @@ protocol WeekScreenViewOutput: class {
     var dataSource: WeekScreenDataSource { get }
 }
 
-class WeekScreenPresenter: WeekScreenViewOutput {
+protocol PresenterPushViewProtocol: class {
+    func pushNewCity(cityId: Int, cityName: String)
+}
+
+class WeekScreenPresenter: WeekScreenViewOutput, PresenterPushViewProtocol {
     weak var view: WeekScreenViewInput?
     private let router: WeekScreenRouterInput
     var interactor: WeekScreenInteractorInput?
     var title: String
     var cityId: Int
-    let isWeekMode: Bool
-    var weatherDays: [WeatherDayResponse] = []
+    var weatherDays: [WeatherDayResponse]?
     var dataSource = WeekScreenDataSource()
 
     init(router: WeekScreenRouterInput, cityId: Int, cityName: String) {
         self.router = router
         self.cityId = cityId
         self.title = cityName
-        self.isWeekMode = StorageService.shared.isWeekMode
     }
 
     func viewDidLoad() {
@@ -40,7 +42,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
 
     func loadForCity(cityId: Int) {
         var sections: [DaySectionModel] = []
-
+        weatherDays = []
         guard let interactor = interactor else {
             print("WeekScreenAssemble error")
             return
@@ -49,9 +51,9 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         interactor.getImages { images in
             interactor.saveImages(images)
         }
-        if isWeekMode {
+        if StorageService.shared.isWeekMode {
             interactor.getWeekForecast(cityId: cityId) { [weak self] days in
-                self?.weatherDays.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
+                self?.weatherDays?.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
                 if let models = self?.makeModels() {
                     sections.append(DaySectionModel(models))
                 }
@@ -64,7 +66,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
                 self?.weatherDays = weatherWeek.consolidatedWeather
 
                 interactor.getRestFourDaysForecast(cityId: cityId) { days in
-                    self?.weatherDays.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
+                    self?.weatherDays?.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
                     if let models = self?.makeModels() {
                         sections.append(DaySectionModel(models))
                     }
@@ -78,7 +80,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     private func makeModels() -> [DayModel] {
         var models: [DayModel] = []
 
-        self.weatherDays.forEach { day in
+        self.weatherDays?.forEach { day in
             let model = DayModel(
                 dayOfWeek: day.applicableDate.weekDay.localizedCapitalized,
                 weatherImg: day.weatherStateAbbr,
@@ -94,7 +96,7 @@ class WeekScreenPresenter: WeekScreenViewOutput {
         guard let view = view else { return }
 
         dataSource.updateForSections(sections)
-        guard let day = weatherDays.first else { return }
+        guard let day = weatherDays?.first else { return }
         if let temp = day.theTemp {
             view.setDegreeLabel(degree: Int(temp))
         }
@@ -106,15 +108,19 @@ class WeekScreenPresenter: WeekScreenViewOutput {
     }
 
     func tableViewDidSelect(row: Int) {
-        if row < weatherDays.count {
+        if let weatherDays = weatherDays, row < weatherDays.count {
             router.routeToDaySrceen(cityName: title, day: weatherDays[row])
         }
     }
 
     func searchButtonTapped() {
-        router.routeToSearchScreen()
+        router.routeToSearchScreen(delegate: self)
     }
     func settingsButtonTapped() {
-        router.routeToSettingsScreen()
+        router.routeToSettingsScreen(delegate: self)
+    }
+
+    func pushNewCity(cityId: Int, cityName: String) {
+        router.routeToNewCity(cityId: cityId, cityName: cityName)
     }
 }

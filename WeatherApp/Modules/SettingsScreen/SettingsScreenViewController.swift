@@ -18,6 +18,7 @@ protocol SettingsScreenViewInput: class {
 protocol SettingsScreenViewOutput: class {
     func switcherValueChanged(_ isOn: Bool)
     func viewDidLoad()
+    func closeView()
 }
 
 class SettingsScreenViewController: UIViewController, SettingsScreenViewInput {
@@ -46,7 +47,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewInput {
     lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         button.tintColor = .black
         return button
     }()
@@ -79,12 +80,8 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewInput {
         presenter?.switcherValueChanged(mySwitcher.isOn)
     }
 
-    @objc func closeView() {
-        dismiss(animated: true, completion: nil)
-//        if let view = view.window?.rootViewController as? UINavigationController {
-//            let weekScreen = WeekScreenAssembly.createWeekScreen(for: <#T##Int#>, isWeekMode: <#T##Bool#>)
-//            view.setViewControllers(<#T##viewControllers: [UIViewController]##[UIViewController]#>, animated: <#T##Bool#>)
-//        }
+    @objc func closeButtonTapped() {
+        presenter?.closeView()
     }
     func setWeekMode(_ isWeekMode: Bool) {
         switcher.isOn = isWeekMode

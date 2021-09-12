@@ -15,7 +15,7 @@ protocol DayScreenViewOutput: class {
     func viewDidLoad()
 }
 
-class DayScreenPresenter: DayScreenViewOutput {
+class DayScreenPresenter: DayScreenViewOutput, PresenterPushViewProtocol {
     weak var view: DayScreenViewInput?
     var dataSource = DayScreenDataSource()
     private let router: DayScreenRouter
@@ -51,7 +51,7 @@ class DayScreenPresenter: DayScreenViewOutput {
         setDescriptionTable(day: day)
     }
     func searchButtonTapped() {
-        router.routeToSearchScreen()
+        router.routeToSearchScreen(delegate: self)
     }
 
     func setDescriptionTable(day: WeatherDayResponse) {
@@ -71,5 +71,7 @@ class DayScreenPresenter: DayScreenViewOutput {
         sections.append(DescriptionSectionModel(models))
         dataSource.updateForSections(sections)
         view?.update()
+    }
+    func pushNewCity(cityId: Int, cityName: String) {
     }
 }

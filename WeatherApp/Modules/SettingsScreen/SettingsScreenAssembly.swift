@@ -9,10 +9,10 @@
 import UIKit
 
 enum SettingsScreenAssembly {
-    static func createSettingsScreen() -> SettingsScreenViewController {
-        let router = SettingsScreenRouter()
-        let presenter = SettingsScreenPresenter(router: router)
+    static func createSettingsScreen(delegate: WeekScreenViewOutput?) -> SettingsScreenViewController {
         let viewController = SettingsScreenViewController()
+        let router = SettingsScreenRouter(view: viewController)
+        let presenter = SettingsScreenPresenter(router: router, delegate: delegate)
 
         presenter.view = viewController
         viewController.presenter = presenter

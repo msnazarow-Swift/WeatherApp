@@ -14,16 +14,22 @@ protocol SearchScreenRouterInput {
 
 class SearchScreenRouter: SearchScreenRouterInput {
     weak var view: SearchScreenViewController?
-    init(view: SearchScreenViewController?) {
+    weak var delegate: PresenterPushViewProtocol?
+
+    init(view: SearchScreenViewController?, delegate: PresenterPushViewProtocol?) {
         self.view = view
+        self.delegate = delegate
     }
 
     func routeToWeekScreen(cityId: Int, cityName: String) {
-        let weekScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
-        weekScreen.modalPresentationStyle = .fullScreen
-        if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
-    		view.pushViewController(weekScreen, animated: true)
-        }
+        delegate?.pushNewCity(cityId: cityId, cityName: cityName)
+//        let weekScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
+//        weekScreen.modalPresentationStyle = .fullScreen
+//        delegate.push(weekScreen)
+//        delegate?.pushViewController(weekScreen, animated: true)
+//        if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
+//    		view.pushViewController(weekScreen, animated: true)
+//        }
         view?.dismiss(animated: true, completion: nil)
     }
 }
