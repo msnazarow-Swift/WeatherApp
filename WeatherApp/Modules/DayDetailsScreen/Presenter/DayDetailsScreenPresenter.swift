@@ -8,13 +8,6 @@
 
 import Foundation
 
-protocol DayDetailsScreenViewOutput: class {
-    func searchButtonTapped()
-    func setDescriptionTable(day: WeatherDayResponse)
-    var dataSource: DayDetailsScreenDataSource { get }
-    func viewDidLoad()
-}
-
 class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewProtocol {
     weak var view: DayDetailsScreenViewInput?
     var dataSource = DayDetailsScreenDataSource()

@@ -8,11 +8,7 @@
 
 import UIKit
 
-protocol SearchScreenRouterInput {
-    func routeToMainForecastScreen(cityId: Int, cityName: String)
-}
-
-class SearchScreenRouter: SearchScreenRouterInput {
+class SearchScreenRouter: SearchScreenRouterProtocol {
     weak var view: SearchScreenViewController?
     weak var delegate: PresenterPushViewProtocol?
 

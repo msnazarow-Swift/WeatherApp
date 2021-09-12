@@ -9,15 +9,6 @@
 import SnapKit
 import UIKit
 
-protocol DayDetailsScreenViewInput: class {
-    func setTitle(_ title: String)
-    func setCityLabel(city: String)
-    func setWeatherLabel(weather: String)
-    func setDegreeLabel(degree: Int)
-    func setMinMaxDegreeLabel(min: Int, max: Int)
-    func update()
-}
-
 class DayDetailsScreenViewController: UITableViewController {
     var presenter: DayDetailsScreenViewOutput?
     let vStack = DaySummaryStackView()

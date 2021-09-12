@@ -8,13 +8,6 @@
 
 import UIKit
 
-protocol MainForecastScreenRouterProtocol {
-    func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
-    func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
-    func routeToSettingsScreen(delegate: MainForecastScreenPresenterProtocol?)
-    func routeToNewCity(cityId: Int, cityName: String)
-}
-
 class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
     weak var view: MainForecastScreenViewController?
 

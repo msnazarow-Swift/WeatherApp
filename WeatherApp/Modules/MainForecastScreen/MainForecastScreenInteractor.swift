@@ -9,16 +9,6 @@
 import Foundation
 import Moya
 
-protocol MainForecastScreenInteractorProtocol: class {
-    func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
-    func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
-    func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
-    func getImages(complition: @escaping ([String: Image]) -> Void)
-    func saveImages(_ images: [String: Image])
-}
-
-protocol MainForecastScreenInteractorOutput: class {}
-
 class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
     private let weatherService = WeatherService()
 

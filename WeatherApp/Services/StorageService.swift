@@ -6,6 +6,13 @@
 //
 
 import UIKit
+
+protocol StorageServiceProcol {
+    func saveImages(_ images: [String: UIImage])
+    func getImageForKey(_ key: String) -> UIImage?
+    var isWeekMode: Bool { get set }
+}
+
 class StorageService: NSObject {
     static let shared = StorageService()
     var images: [String: UIImage] = [:]

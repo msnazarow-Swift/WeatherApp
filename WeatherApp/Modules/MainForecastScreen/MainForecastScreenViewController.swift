@@ -9,16 +9,6 @@
 import SnapKit
 import UIKit
 
-protocol MainForecastScreenViewProtocol: class {
-    func setCityLabel(city: String)
-    func setWeatherLabel(weather: String)
-    func setDegreeLabel(degree: Int)
-    func setMinMaxDegreeLabel(min: Int, max: Int)
-    func update()
-    func viewDidSetup()
-    func viewWillSetup()
-}
-
 class MainForecastScreenViewController: UITableViewController {
     var presenter: MainForecastScreenPresenterProtocol?
     let vStack = DaySummaryStackView()

@@ -8,18 +8,6 @@
 
 import Foundation
 
-protocol MainForecastScreenPresenterProtocol: class {
-    func viewDidLoad()
-    func tableViewDidSelect(row: Int)
-    func searchButtonTapped()
-    func settingsButtonTapped()
-    var dataSource: MainForecastScreenDataSource { get }
-}
-
-protocol PresenterPushViewProtocol: class {
-    func pushNewCity(cityId: Int, cityName: String)
-}
-
 class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, PresenterPushViewProtocol {
     weak var view: MainForecastScreenViewProtocol?
     private let router: MainForecastScreenRouterProtocol

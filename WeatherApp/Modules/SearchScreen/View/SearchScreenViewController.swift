@@ -9,12 +9,8 @@
 import SnapKit
 import UIKit
 
-protocol SearchScreenViewInput: class {
-   func update()
-}
-
 class SearchScreenViewController: UIViewController {
-    var presenter: SearchScreenViewOutput?
+    var presenter: SearchScreenPresenterProtocol?
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Поиск Города"
@@ -98,7 +94,7 @@ class SearchScreenViewController: UIViewController {
     }
 }
 
-extension SearchScreenViewController: SearchScreenViewInput {
+extension SearchScreenViewController: SearchScreenViewProtocol {
     func update() {
         citiesTableView.reloadData()
     }

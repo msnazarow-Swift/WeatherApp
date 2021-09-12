@@ -8,15 +8,8 @@
 
 import Foundation
 import Moya
-protocol SearchScreenInteractorInput: class {
-    func searchWithSubstring(_ substring: String, complition: @escaping ([WeatherCityModel]) -> Void)
-}
 
-protocol SearchScreenInteractorOutput: class {}
-
-class SearchScreenInteractor: SearchScreenInteractorInput {
-    weak var presenter: SearchScreenInteractorOutput?
-
+class SearchScreenInteractor: SearchScreenInteractorProtocol {
     func searchWithSubstring(_ substring: String, complition: @escaping ([WeatherCityModel]) -> Void) {
         let provider = MoyaProvider<WeatherTarget>()
         provider.request(.getCities(query: substring)) { result in

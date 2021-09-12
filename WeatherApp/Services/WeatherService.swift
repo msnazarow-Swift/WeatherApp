@@ -7,6 +7,12 @@
 
 import Moya
 
+protocol WeatherServiceProtocol {
+    func getWeekForCity(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
+    func getDayForCity(cityId: Int, day: Date, complition: @escaping (Result<WeatherDayResponse, Error>) -> Void)
+    func getImage(imageAbbreviation: String, complition: @escaping (Result<Image, Error>) -> Void)
+}
+
 class WeatherService {
     let provider = MoyaProvider<WeatherTarget>()
     enum ResponceError: Error {

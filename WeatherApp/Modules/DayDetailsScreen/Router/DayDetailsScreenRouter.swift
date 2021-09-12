@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol DayDetailsScreenRouterProtocol {
-    func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
-    func routeToNewCity(cityId: Int, cityName: String)
-}
-
 class DayDetailsScreenRouter: DayDetailsScreenRouterProtocol {
     weak var view: DayDetailsScreenViewController?
 
