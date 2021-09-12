@@ -9,10 +9,11 @@
 import UIKit
 
 enum DayDetailsScreenAssembly {
-    static func createDayDetailsScreen(with cityTitle: String, for day: WeatherDayResponse) -> DayDetailsScreenViewController {
-        let viewController = DayDetailsScreenViewController() // (style: .grouped)
+    static func createDayDetailsScreen(with cityTitle: String, for day: WeatherDayResponse) -> UIViewController {
+        let viewController = DayDetailsScreenViewController()
         let router = DayDetailsScreenRouter(view: viewController)
-        let presenter = DayDetailsScreenPresenter(router: router, title: cityTitle, day: day)
+        let dataSource = DayDetailsScreenDataSource()
+        let presenter = DayDetailsScreenPresenter(router: router, title: cityTitle, day: day, dataSource: dataSource)
         presenter.view = viewController
         viewController.presenter = presenter
         return viewController

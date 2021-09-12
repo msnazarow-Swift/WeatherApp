@@ -8,17 +8,19 @@
 
 import Foundation
 
-class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewProtocol {
-    weak var view: DayDetailsScreenViewInput?
-    var dataSource = DayDetailsScreenDataSource()
+class DayDetailsScreenPresenter: DayDetailsScreenPresenterProtocol, PresenterPushViewProtocol {
+    weak var view: DayDetailsScreenViewProtocol?
+
+    let dataSource: DayDetailsScreenDataSourceProtocol
     private let router: DayDetailsScreenRouter
     private let title: String
     private let day: WeatherDayResponse
 
-    init(router: DayDetailsScreenRouter, title: String, day: WeatherDayResponse) {
+    init(router: DayDetailsScreenRouter, title: String, day: WeatherDayResponse, dataSource: DayDetailsScreenDataSourceProtocol) {
         self.router = router
         self.title = title
         self.day = day
+        self.dataSource = dataSource
     }
 
     func viewDidLoad() {
@@ -67,7 +69,7 @@ class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewPr
         }
         sections.append(DescriptionSectionModel(models))
         dataSource.updateForSections(sections)
-        view?.update()
+        view?.reloadTableViewData()
     }
 
     func pushNewCity(cityId: Int, cityName: String) {

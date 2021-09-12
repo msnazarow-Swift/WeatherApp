@@ -5,22 +5,27 @@
 //  Created by out-nazarov2-ms on 12.09.2021.
 //
 
-import Foundation
+import UIKit
 
-protocol DayDetailsScreenViewInput: AnyObject {
+protocol DayDetailsScreenViewProtocol: AnyObject {
     func setTitle(_ title: String)
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
     func setMinMaxDegreeLabel(min: Int, max: Int)
-    func update()
+    func reloadTableViewData()
 }
 
-protocol DayDetailsScreenViewOutput: AnyObject {
+protocol DayDetailsScreenPresenterProtocol: AnyObject {
+    var dataSource: DayDetailsScreenDataSourceProtocol { get }
+    
     func searchButtonTapped()
     func setDescriptionTable(day: WeatherDayResponse)
-    var dataSource: DayDetailsScreenDataSource { get }
     func viewDidLoad()
+}
+
+protocol DayDetailsScreenDataSourceProtocol: UITableViewDataSource {
+    func updateForSections(_ sections: [DescriptionSectionModel])
 }
 
 protocol DayDetailsScreenRouterProtocol {

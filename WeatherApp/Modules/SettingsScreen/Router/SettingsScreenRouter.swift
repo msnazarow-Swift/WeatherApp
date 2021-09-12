@@ -8,14 +8,13 @@
 
 import UIKit
 
-class SettingsScreenRouter {
+class SettingsScreenRouter: SettingsScreenRouterProtocol {
     weak var view: UIViewController?
     init(view: UIViewController?) {
         self.view = view
     }
 
-    func routeToForecastScreen(delegate: MainForecastScreenPresenterProtocol?) {
+    func dismiss() {
         view?.dismiss(animated: true, completion: nil)
-        delegate?.viewDidLoad()
     }
 }

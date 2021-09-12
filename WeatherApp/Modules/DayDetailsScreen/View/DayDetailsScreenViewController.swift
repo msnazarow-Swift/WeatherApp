@@ -10,7 +10,7 @@ import SnapKit
 import UIKit
 
 class DayDetailsScreenViewController: UITableViewController {
-    var presenter: DayDetailsScreenViewOutput?
+    var presenter: DayDetailsScreenPresenterProtocol?
     let vStack = DaySummaryStackView()
 
     override func viewDidLoad() {
@@ -43,12 +43,12 @@ class DayDetailsScreenViewController: UITableViewController {
         }
         tableView.tableFooterView = UIView()
         tableView.dataSource = presenter?.dataSource
-        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
     }
 }
 
-extension DayDetailsScreenViewController: DayDetailsScreenViewInput {
+extension DayDetailsScreenViewController: DayDetailsScreenViewProtocol {
     func setTitle(_ title: String) {
         self.title = title
     }
@@ -69,7 +69,7 @@ extension DayDetailsScreenViewController: DayDetailsScreenViewInput {
         vStack.minMaxLabel.text = "Макс. \(min)°, мин. \(max)°"
     }
 
-    func update() {
+    func reloadTableViewData() {
         tableView.reloadData()
     }
 

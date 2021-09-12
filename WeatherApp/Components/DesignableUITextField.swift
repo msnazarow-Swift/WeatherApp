@@ -1,11 +1,8 @@
 import UIKit
 
 class DesignableUITextField: UITextField {
-    // Provides left padding for images
-    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        let textRect = super.leftViewRect(forBounds: bounds)
-        return textRect.offsetBy(dx: leftPadding, dy: 0).insetBy(dx: -rightPadding, dy: 0)
-    }
+    var leftPadding: CGFloat = 0
+    var rightPadding: CGFloat = 0
 
     var leftImage: UIImage? {
         didSet {
@@ -13,8 +10,6 @@ class DesignableUITextField: UITextField {
         }
     }
 
-    var leftPadding: CGFloat = 0
-    var rightPadding: CGFloat = 0
     var color = UIColor.lightGray {
         didSet {
             updateView()
@@ -37,5 +32,10 @@ class DesignableUITextField: UITextField {
 
         // Placeholder text color
         attributedPlaceholder = NSAttributedString(string: placeholder != nil ? placeholder! : "", attributes: [NSAttributedString.Key.foregroundColor: color])
+    }
+
+    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+        let textRect = super.leftViewRect(forBounds: bounds)
+        return textRect.offsetBy(dx: leftPadding, dy: 0).insetBy(dx: -rightPadding, dy: 0)
     }
 }

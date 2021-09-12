@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchScreenRouter: SearchScreenRouterProtocol {
-    weak var view: SearchScreenViewController?
+    weak var view: UIViewController?
     weak var delegate: PresenterPushViewProtocol?
 
     init(view: SearchScreenViewController?, delegate: PresenterPushViewProtocol?) {
@@ -19,13 +19,6 @@ class SearchScreenRouter: SearchScreenRouterProtocol {
 
     func routeToMainForecastScreen(cityId: Int, cityName: String) {
         delegate?.pushNewCity(cityId: cityId, cityName: cityName)
-//        let MainForecastScreen = MainForecastScreenAssembly.createMainForecastScreen(for: cityId, cityName: cityName)
-//        MainForecastScreen.modalPresentationStyle = .fullScreen
-//        delegate.push(MainForecastScreen)
-//        delegate?.pushViewController(MainForecastScreen, animated: true)
-//        if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
-//    		view.pushViewController(MainForecastScreen, animated: true)
-//        }
         view?.dismiss(animated: true, completion: nil)
     }
 }

@@ -17,6 +17,6 @@ protocol SettingsScreenPresenterProtocol: AnyObject {
     func closeView()
 }
 
-protocol SettingsScreenRouterProtocol {
-    func routeToForecastScreen(delegate: MainForecastScreenPresenterProtocol?)
+protocol SettingsScreenRouterProtocol: AnyObject {
+    func dismiss()
 }

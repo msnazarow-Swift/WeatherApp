@@ -14,9 +14,9 @@ protocol WeatherServiceProtocol {
 }
 
 protocol StorageServiceProtocol {
+    var isWeekMode: Bool { get set }
     func saveImages(_ images: [String: UIImage])
     func getImageForKey(_ key: String) -> UIImage?
-    var isWeekMode: Bool { get set }
 }
 
 protocol PresenterPushViewProtocol: AnyObject {

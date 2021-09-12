@@ -11,13 +11,13 @@ import Foundation
 class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
     weak var view: SettingsScreenViewProtocol?
 
-    weak var delegate: MainForecastScreenPresenterProtocol?
+    weak var delegate: PresenterUpdateProtocol?
 
     private var isWeekMode: Bool
 
-    private let router: SettingsScreenRouter
+    private let router: SettingsScreenRouterProtocol
 
-    init(router: SettingsScreenRouter, delegate: MainForecastScreenPresenterProtocol?) {
+    init(router: SettingsScreenRouterProtocol, delegate: PresenterUpdateProtocol?) {
         self.router = router
         isWeekMode = StorageService.shared.isWeekMode
         self.delegate = delegate
@@ -33,6 +33,7 @@ class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
     }
 
     func closeView() {
-        router.routeToForecastScreen(delegate: delegate)
+        delegate?.updateView()
+        router.dismiss()
     }
 }

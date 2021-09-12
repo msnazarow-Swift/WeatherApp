@@ -9,11 +9,13 @@
 import UIKit
 
 enum SearchScreenAssembly {
-    static func createSearchScreen(delegate: PresenterPushViewProtocol?) -> SearchScreenViewController {
+    static func createSearchScreen(delegate: PresenterPushViewProtocol?) -> UIViewController {
         let viewController = SearchScreenViewController()
         let router = SearchScreenRouter(view: viewController, delegate: delegate)
-        let presenter = SearchScreenPresenter(router: router)
+        let dataSource = SearchScreenDataSource()
+        let presenter = SearchScreenPresenter(router: router, dataSource: dataSource)
         let interactor = SearchScreenInteractor()
+
         presenter.view = viewController
         presenter.interactor = interactor
         viewController.presenter = presenter

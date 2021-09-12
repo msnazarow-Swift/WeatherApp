@@ -11,6 +11,7 @@ import UIKit
 
 class SearchScreenViewController: UIViewController {
     var presenter: SearchScreenPresenterProtocol?
+
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Поиск Города"
@@ -106,9 +107,6 @@ extension SearchScreenViewController: SearchScreenViewProtocol {
 
 extension SearchScreenViewController: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let presenter = presenter else {
-            return
-        }
-        return presenter.tableViewDidSelect(row: indexPath.row)
+        presenter?.tableViewDidSelect(row: indexPath.row)
     }
 }

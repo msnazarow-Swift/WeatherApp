@@ -13,17 +13,22 @@ protocol MainForecastScreenViewProtocol: AnyObject {
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
     func setMinMaxDegreeLabel(min: Int, max: Int)
-    func update()
+    func reloadTableViewData()
     func viewDidSetup()
-    func viewWillSetup()
+    func updateMode()
 }
 
 protocol MainForecastScreenPresenterProtocol: AnyObject {
+    var dataSource: MainForecastScreenDataSourceProtocol { get }
+
     func viewDidLoad()
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
     func settingsButtonTapped()
-    var dataSource: MainForecastScreenDataSourceProtocol? { get }
+}
+
+protocol PresenterUpdateProtocol: AnyObject {
+    func updateView()
 }
 
 protocol MainForecastScreenDataSourceProtocol: UITableViewDataSource {
@@ -41,6 +46,6 @@ protocol MainForecastScreenInteractorProtocol: AnyObject {
 protocol MainForecastScreenRouterProtocol {
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
     func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
-    func routeToSettingsScreen(delegate: MainForecastScreenPresenterProtocol?)
+    func routeToSettingsScreen(delegate: PresenterUpdateProtocol?)
     func routeToNewCity(cityId: Int, cityName: String)
 }

@@ -8,16 +8,16 @@
 
 import UIKit
 
-class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, PresenterPushViewProtocol {
+class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
     weak var view: MainForecastScreenViewProtocol?
     private let router: MainForecastScreenRouterProtocol
     var interactor: MainForecastScreenInteractorProtocol?
     var title: String
     var cityId: Int
     var weatherDays: [WeatherDayResponse]?
-    var dataSource: MainForecastScreenDataSourceProtocol?
+    var dataSource: MainForecastScreenDataSourceProtocol
 
-    init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String, dataSource: MainForecastScreenDataSourceProtocol?) {
+    init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String, dataSource: MainForecastScreenDataSourceProtocol) {
         self.router = router
         self.cityId = cityId
         title = cityName
@@ -25,24 +25,33 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     }
 
     func viewDidLoad() {
-        view?.viewWillSetup()
+        guard interactor != nil else {
+            print("MainForecastScreenPresenter Assemble Error")
+            return
+        }
         loadForCity(cityId: cityId)
         view?.setCityLabel(city: title)
     }
 
-    func loadForCity(cityId: Int) {
+    private func loadWeek(for cityId: Int) {
         var sections: [DaySectionModel] = []
-        weatherDays = []
-        guard let interactor = interactor else {
-            print("MainForecastScreenAssemble error")
-            return
+        interactor?.getWeekForecast(cityId: cityId) { [weak self] days in
+            self?.weatherDays?.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
+            if let models = self?.makeModels() {
+                sections.append(DaySectionModel(models))
+            }
+            self?.updateView(sections: sections)
+            self?.view?.viewDidSetup()
         }
+    }
 
-        interactor.getImages { images in
-            interactor.saveImages(images)
-        }
-        if StorageService.shared.isWeekMode {
-            interactor.getWeekForecast(cityId: cityId) { [weak self] days in
+    private func loadForecast(for cityId: Int) {
+        var sections: [DaySectionModel] = []
+        interactor?.getNextSixDaysForecast(cityId: cityId) { [weak self] weatherWeek in
+            self?.title = weatherWeek.title
+            self?.weatherDays = weatherWeek.consolidatedWeather
+
+            self?.interactor?.getRestFourDaysForecast(cityId: cityId) { days in
                 self?.weatherDays?.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
                 if let models = self?.makeModels() {
                     sections.append(DaySectionModel(models))
@@ -50,20 +59,18 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
                 self?.updateView(sections: sections)
                 self?.view?.viewDidSetup()
             }
-        } else {
-            interactor.getNextSixDaysForecast(cityId: cityId) { [weak self] weatherWeek in
-                self?.title = weatherWeek.title
-                self?.weatherDays = weatherWeek.consolidatedWeather
+        }
+    }
 
-                interactor.getRestFourDaysForecast(cityId: cityId) { days in
-                    self?.weatherDays?.append(contentsOf: days.sorted { $0.applicableDate < $1.applicableDate })
-                    if let models = self?.makeModels() {
-                        sections.append(DaySectionModel(models))
-                    }
-                    self?.updateView(sections: sections)
-                    self?.view?.viewDidSetup()
-                }
-            }
+    func loadForCity(cityId: Int) {
+        weatherDays = []
+        interactor?.getImages { [weak self] images in
+            self?.interactor?.saveImages(images)
+        }
+        if StorageService.shared.isWeekMode {
+            loadWeek(for: cityId)
+        } else {
+            loadForecast(for: cityId)
         }
     }
 
@@ -83,7 +90,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     }
 
     private func updateView(sections: [DaySectionModel]) {
-        guard let view = view, let dataSource = dataSource else { return }
+        guard let view = view else { return }
 
         dataSource.updateForSections(sections)
         guard let day = weatherDays?.first else { return }
@@ -94,7 +101,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
         if let minTemp = day.minTemp, let maxTemp = day.maxTemp {
             view.setMinMaxDegreeLabel(min: Int(minTemp), max: Int(maxTemp))
         }
-        view.update()
+        view.reloadTableViewData()
     }
 
     func tableViewDidSelect(row: Int) {
@@ -110,8 +117,16 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, Presente
     func settingsButtonTapped() {
         router.routeToSettingsScreen(delegate: self)
     }
+}
 
+extension MainForecastScreenPresenter: PresenterPushViewProtocol {
     func pushNewCity(cityId: Int, cityName: String) {
         router.routeToNewCity(cityId: cityId, cityName: cityName)
+    }
+}
+
+extension MainForecastScreenPresenter: PresenterUpdateProtocol {
+    func updateView() {
+        view?.updateMode()
     }
 }

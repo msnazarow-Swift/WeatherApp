@@ -17,10 +17,11 @@ class SearchScreenPresenter {
 
     var cities: [WeatherCityModel] = []
 
-    let dataSource = SearchScreenDataSource()
+    let dataSource: SearchScreenDataSourceProtocol
 
-    init(router: SearchScreenRouter) {
+    init(router: SearchScreenRouter, dataSource: SearchScreenDataSourceProtocol) {
         self.router = router
+        self.dataSource = dataSource
     }
 }
 

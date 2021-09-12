@@ -10,7 +10,11 @@ import Foundation
 import Moya
 
 class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
-    private let weatherService = WeatherService()
+    private let weatherService: WeatherServiceProtocol
+
+    init(weatherService: WeatherServiceProtocol) {
+        self.weatherService = weatherService
+    }
 
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
         weatherService.getWeekForCity(cityId: cityId, complition: complition)
@@ -43,7 +47,7 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
                 try? weatherDays.append(result.get())
                 group.leave()
             }
-            day = Calendar.current.date(byAdding: .day, value: 1, to: day)!
+            day = day.byAddingDay(1)
         }
         group.notify(queue: .main) {
             complition(weatherDays)

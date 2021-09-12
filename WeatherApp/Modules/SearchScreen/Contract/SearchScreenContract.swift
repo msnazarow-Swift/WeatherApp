@@ -5,7 +5,7 @@
 //  Created by out-nazarov2-ms on 12.09.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol SearchScreenViewProtocol: AnyObject {
     func update()
@@ -14,7 +14,11 @@ protocol SearchScreenViewProtocol: AnyObject {
 protocol SearchScreenPresenterProtocol: AnyObject {
     func searchForCity(city: String)
     func tableViewDidSelect(row: Int)
-    var dataSource: SearchScreenDataSource { get }
+    var dataSource: SearchScreenDataSourceProtocol { get }
+}
+
+protocol SearchScreenDataSourceProtocol: UITableViewDataSource {
+    func updateForSections(_ sections: [CitySectionModel])
 }
 
 protocol SearchScreenInteractorProtocol: AnyObject {

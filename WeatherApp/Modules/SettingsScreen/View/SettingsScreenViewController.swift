@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class SettingsScreenViewController: UIViewController, SettingsScreenViewProtocol {
+class SettingsScreenViewController: UIViewController {
     var presenter: SettingsScreenPresenterProtocol?
 
     let switcher: UISwitch = {
@@ -40,8 +40,6 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewProtocol
         return button
     }()
 
-    var viewController: UIViewController { return self }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -71,7 +69,9 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewProtocol
     @objc func closeButtonTapped() {
         presenter?.closeView()
     }
+}
 
+extension SettingsScreenViewController: SettingsScreenViewProtocol {
     func setWeekMode(_ isWeekMode: Bool) {
         switcher.isOn = isWeekMode
     }

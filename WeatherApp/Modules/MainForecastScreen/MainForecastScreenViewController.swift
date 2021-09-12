@@ -15,13 +15,13 @@ class MainForecastScreenViewController: UITableViewController {
     let activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
+        guard let presenter = presenter else {
+            print("MainForecastScreenViewController Assemble Error")
+            return
+        }
         super.viewDidLoad()
         viewWillSetup()
         setUI()
-        guard let presenter = presenter else {
-            print("No presenter")
-            return
-        }
         presenter.viewDidLoad()
     }
 
@@ -43,6 +43,7 @@ class MainForecastScreenViewController: UITableViewController {
         tableView.separatorColor = .clear
         tableView.bounces = false
         tableView.tableHeaderView = vStack
+
         vStack.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
@@ -56,18 +57,22 @@ class MainForecastScreenViewController: UITableViewController {
         title = "Неделя"
         navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)]
-        let settingButton = UIBarButtonItem()
-        settingButton.image = UIImage(systemName: "gear")
-        settingButton.target = self
-        settingButton.action = #selector(settingsButtonTapped)
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]
         navigationItem.rightBarButtonItems = [
             .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped)),
-            settingButton,
+            .init(image: UIImage(systemName: "gear"), style: .plain, target: self, action:  #selector(settingsButtonTapped))
         ]
-        if let presenter = presenter {
-            tableView.dataSource = presenter.dataSource
-        }
+        tableView.dataSource = presenter?.dataSource
+    }
+
+    func viewDidSetup() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
+            self?.navigationController?.view.backgroundColor = .clear
+            self?.navigationController?.setNavigationBarHidden(false, animated: true)
+            self?.activityIndicator.stopAnimating()
+            self?.vStack.isHidden = false
+            self?.tableView.isHidden = false
+        })
     }
 }
 
@@ -89,7 +94,7 @@ extension MainForecastScreenViewController: MainForecastScreenViewProtocol {
         vStack.minMaxLabel.text = "Макс. \(max)°, мин. \(min)°"
     }
 
-    func update() {
+    func reloadTableViewData() {
         tableView.reloadData()
     }
 
@@ -100,15 +105,9 @@ extension MainForecastScreenViewController: MainForecastScreenViewProtocol {
     @objc func settingsButtonTapped() {
         presenter?.settingsButtonTapped()
     }
-
-    func viewDidSetup() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
-            self?.navigationController?.view.backgroundColor = .clear
-            self?.navigationController?.setNavigationBarHidden(false, animated: true)
-            self?.activityIndicator.stopAnimating()
-            self?.vStack.isHidden = false
-            self?.tableView.isHidden = false
-        })
+    func updateMode() {
+        viewWillSetup()
+        presenter?.viewDidLoad()
     }
 }
 

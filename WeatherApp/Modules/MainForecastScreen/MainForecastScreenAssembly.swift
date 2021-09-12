@@ -10,11 +10,15 @@ import UIKit
 
 enum MainForecastScreenAssembly {
     static func createMainForecastScreen(for cityId: Int, cityName: String) -> UIViewController {
-        let viewController = MainForecastScreenViewController(style: .grouped)
+        let viewController = MainForecastScreenViewController()
         let router = MainForecastScreenRouter(view: viewController)
         let dataSource = MainForecastScreenDataSource()
-        let presenter = MainForecastScreenPresenter(router: router, cityId: cityId, cityName: cityName, dataSource: dataSource)
-        let interactor = MainForecastScreenInteractor()
+        let weatherService = WeatherService()
+        let presenter = MainForecastScreenPresenter(router: router,
+                                                    cityId: cityId,
+                                                    cityName: cityName,
+                                                    dataSource: dataSource)
+        let interactor = MainForecastScreenInteractor(weatherService: weatherService)
 
         presenter.interactor = interactor
         presenter.view = viewController

@@ -9,9 +9,9 @@
 import UIKit
 
 class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
-    weak var view: MainForecastScreenViewController?
+    weak var view: UIViewController?
 
-    init(view: MainForecastScreenViewController?) {
+    init(view: UIViewController) {
         self.view = view
     }
 
@@ -28,7 +28,7 @@ class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
         view?.present(searchScreen, animated: true, completion: nil)
     }
 
-    func routeToSettingsScreen(delegate: MainForecastScreenPresenterProtocol?) {
+    func routeToSettingsScreen(delegate: PresenterUpdateProtocol?) {
         let settingScreen = SettingsScreenAssembly.createSettingsScreen(delegate: delegate)
         settingScreen.modalPresentationStyle = .fullScreen
         view?.present(settingScreen, animated: true, completion: nil)

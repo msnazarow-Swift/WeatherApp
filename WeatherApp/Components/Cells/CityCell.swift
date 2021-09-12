@@ -9,6 +9,7 @@ import UIKit
 
 class CityCell: WeatherCell {
     static let identifier = "CityCell"
+
     override init(style _: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }
