@@ -36,6 +36,7 @@ class WeekScreenPresenter: WeekScreenViewOutput, PresenterPushViewProtocol {
     }
 
     func viewDidLoad() {
+        view?.viewWillSetup()
         loadForCity(cityId: cityId)
         view?.setCityLabel(city: title)
     }

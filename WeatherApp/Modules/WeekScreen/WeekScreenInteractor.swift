@@ -27,7 +27,7 @@ class WeekScreenInteractor: WeekScreenInteractorInput {
     }
 
     func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void) {
-        var day = Date.startOfWeek!
+        var day = Date.MondeyOfThisWeek!
         var weatherDays: [WeatherDayResponse] = []
         let group = DispatchGroup()
         for _ in 0 ... 6 {

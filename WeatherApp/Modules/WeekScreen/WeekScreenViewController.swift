@@ -16,11 +16,12 @@ protocol WeekScreenViewInput: class {
     func setMinMaxDegreeLabel(min: Int, max: Int)
     func update()
     func viewDidSetup()
+    func viewWillSetup()
 }
 
 class WeekScreenViewController: UITableViewController {
     var presenter: WeekScreenViewOutput?
-	let vStack = DaySummaryStackView()
+    let vStack = DaySummaryStackView()
     let activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
@@ -34,18 +35,18 @@ class WeekScreenViewController: UITableViewController {
         presenter.viewDidLoad()
     }
     func viewWillSetup() {
-        tableView.addSubview(activityIndicator)
+        navigationController?.view.backgroundColor = .init(white: 1.0, alpha: 0.7)
+        tableView.isHidden = true
+        navigationController?.view.addSubview(activityIndicator)
         activityIndicator.snp.makeConstraints { make in
-          make.center.equalToSuperview()
+            make.center.equalToSuperview()
         }
         vStack.isHidden = true
         navigationController?.setNavigationBarHidden(true, animated: false)
         activityIndicator.startAnimating()
     }
     func setUI() {
-        tableView.backgroundColor = .init(white: 1.0, alpha: 0.7)
-
-//        tableView.isHidden = true
+        tableView.backgroundColor = .white
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
         tableView.separatorColor = .clear
         tableView.bounces = false
@@ -56,10 +57,10 @@ class WeekScreenViewController: UITableViewController {
             make.width.equalToSuperview()
         }
 
-//        tableView.estimatedRowHeight = 61
+        //        tableView.estimatedRowHeight = 61
         tableView.rowHeight = 61
         tableView.tableFooterView = UIView()
-//        tableView.sectionHeaderHeight = 174
+        //        tableView.sectionHeaderHeight = 174
         title = "Неделя"
         navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
@@ -109,10 +110,11 @@ extension WeekScreenViewController: WeekScreenViewInput {
 
     func viewDidSetup() {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
+            self?.navigationController?.view.backgroundColor = .clear
             self?.navigationController?.setNavigationBarHidden(false, animated: true)
             self?.activityIndicator.stopAnimating()
             self?.vStack.isHidden = false
-            self?.tableView.backgroundColor = .white
+            self?.tableView.isHidden = false
         })
     }
 }

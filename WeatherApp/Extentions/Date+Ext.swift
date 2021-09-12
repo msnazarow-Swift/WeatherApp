@@ -81,6 +81,11 @@ extension Date {
         return calendar.date(byAdding: .day, value: 1, to: sunday)
     }
 
+    static var MondeyOfThisWeek: Date? {
+        let calendar = Calendar(identifier: .iso8601)
+        return calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+    }
+
     static var startOfNextWeek: Date? {
         let calendar = Calendar.current
         guard let endOfWeek = Date.endOfWeek else { return nil }

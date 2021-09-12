@@ -42,9 +42,11 @@ class DayScreenPresenter: DayScreenViewOutput, PresenterPushViewProtocol {
         }
 
         if day.applicableDate.isToday {
-            view.setTitle("Cегодня")
+            view.setTitle("Сегодня")
         } else if day.applicableDate.isTomorrow {
             view.setTitle("Завтра")
+        } else if day.applicableDate.isYesterday {
+            view.setTitle("Вчера")
         } else {
             view.setTitle(day.applicableDate.weekDay.localizedCapitalized)
         }
@@ -73,5 +75,6 @@ class DayScreenPresenter: DayScreenViewOutput, PresenterPushViewProtocol {
         view?.update()
     }
     func pushNewCity(cityId: Int, cityName: String) {
+        router.routeToNewCity(cityId: cityId, cityName: cityName)
     }
 }

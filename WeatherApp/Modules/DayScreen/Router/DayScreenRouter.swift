@@ -10,6 +10,7 @@ import UIKit
 
 protocol DayScreenRouterInput {
     func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
+    func routeToNewCity(cityId: Int, cityName: String)
 }
 
 class DayScreenRouter: DayScreenRouterInput {
@@ -23,5 +24,10 @@ class DayScreenRouter: DayScreenRouterInput {
         let searchScreen = SearchScreenAssembly.createSearchScreen(delegate: delegate)
         searchScreen.modalPresentationStyle = .fullScreen
         view?.present(searchScreen, animated: true, completion: nil)
+    }
+
+    func routeToNewCity(cityId: Int, cityName: String) {
+        let forecastScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
+        view?.navigationController?.pushViewController(forecastScreen, animated: true)
     }
 }
