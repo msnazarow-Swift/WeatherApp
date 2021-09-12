@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MainForecastScreenViewOutput: class {
+protocol MainForecastScreenPresenterProtocol: class {
     func viewDidLoad()
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
@@ -20,16 +20,16 @@ protocol PresenterPushViewProtocol: class {
     func pushNewCity(cityId: Int, cityName: String)
 }
 
-class MainForecastScreenPresenter: MainForecastScreenViewOutput, PresenterPushViewProtocol {
-    weak var view: MainForecastScreenViewInput?
-    private let router: MainForecastScreenRouterInput
-    var interactor: MainForecastScreenInteractorInput?
+class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol, PresenterPushViewProtocol {
+    weak var view: MainForecastScreenViewProtocol?
+    private let router: MainForecastScreenRouterProtocol
+    var interactor: MainForecastScreenInteractorProtocol?
     var title: String
     var cityId: Int
     var weatherDays: [WeatherDayResponse]?
     var dataSource = MainForecastScreenDataSource()
 
-    init(router: MainForecastScreenRouterInput, cityId: Int, cityName: String) {
+    init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String) {
         self.router = router
         self.cityId = cityId
         self.title = cityName

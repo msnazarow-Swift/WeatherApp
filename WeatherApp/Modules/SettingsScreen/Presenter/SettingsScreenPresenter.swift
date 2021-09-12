@@ -8,16 +8,16 @@
 
 import Foundation
 
-class SettingsScreenPresenter: SettingsScreenViewOutput {
-    weak var view: SettingsScreenViewInput?
+class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
+    weak var view: SettingsScreenViewProtocol?
 
-    weak var delegate: MainForecastScreenViewOutput?
+    weak var delegate: MainForecastScreenPresenterProtocol?
 
     private var isWeekMode: Bool
 
     private let router: SettingsScreenRouter
 
-    init(router: SettingsScreenRouter, delegate: MainForecastScreenViewOutput?) {
+    init(router: SettingsScreenRouter, delegate: MainForecastScreenPresenterProtocol?) {
         self.router = router
         self.isWeekMode = StorageService.shared.isWeekMode
         self.delegate = delegate

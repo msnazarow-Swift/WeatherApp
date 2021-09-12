@@ -9,20 +9,8 @@
 import UIKit
 import SnapKit
 
-protocol SettingsScreenViewInput: class {
-    var viewController: UIViewController { get }
-    var presenter: SettingsScreenViewOutput? { get set }
-    func setWeekMode(_ isWeekMode: Bool)
-}
-
-protocol SettingsScreenViewOutput: class {
-    func switcherValueChanged(_ isOn: Bool)
-    func viewDidLoad()
-    func closeView()
-}
-
-class SettingsScreenViewController: UIViewController, SettingsScreenViewInput {
-	var presenter: SettingsScreenViewOutput?
+class SettingsScreenViewController: UIViewController, SettingsScreenViewProtocol {
+	var presenter: SettingsScreenPresenterProtocol?
 
     let switcher: UISwitch = {
         let switcher = UISwitch()

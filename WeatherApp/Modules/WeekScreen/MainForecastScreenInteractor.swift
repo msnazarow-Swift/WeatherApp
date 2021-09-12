@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-protocol MainForecastScreenInteractorInput: class {
+protocol MainForecastScreenInteractorProtocol: class {
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
     func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
     func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
@@ -19,7 +19,7 @@ protocol MainForecastScreenInteractorInput: class {
 
 protocol MainForecastScreenInteractorOutput: class {}
 
-class MainForecastScreenInteractor: MainForecastScreenInteractorInput {
+class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
     private let weatherService = WeatherService()
 
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {

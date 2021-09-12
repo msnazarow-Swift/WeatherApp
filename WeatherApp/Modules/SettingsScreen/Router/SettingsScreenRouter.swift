@@ -13,7 +13,7 @@ class SettingsScreenRouter {
     init(view: UIViewController?) {
         self.view = view
     }
-    func routeToForecastScreen(delegate: MainForecastScreenViewOutput?) {
+    func routeToForecastScreen(delegate: MainForecastScreenPresenterProtocol?) {
         view?.dismiss(animated: true, completion: nil)
         delegate?.viewDidLoad()
     }

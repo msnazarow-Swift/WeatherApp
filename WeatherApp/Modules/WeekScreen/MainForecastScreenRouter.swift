@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol MainForecastScreenRouterInput {
+protocol MainForecastScreenRouterProtocol {
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
     func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
-    func routeToSettingsScreen(delegate: MainForecastScreenViewOutput?)
+    func routeToSettingsScreen(delegate: MainForecastScreenPresenterProtocol?)
     func routeToNewCity(cityId: Int, cityName: String)
 }
 
-class MainForecastScreenRouter: MainForecastScreenRouterInput {
+class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
     weak var view: MainForecastScreenViewController?
 
     init(view: MainForecastScreenViewController?) {
@@ -35,7 +35,7 @@ class MainForecastScreenRouter: MainForecastScreenRouterInput {
         view?.present(searchScreen, animated: true, completion: nil)
     }
 
-    func routeToSettingsScreen(delegate: MainForecastScreenViewOutput?) {
+    func routeToSettingsScreen(delegate: MainForecastScreenPresenterProtocol?) {
         let settingScreen = SettingsScreenAssembly.createSettingsScreen(delegate: delegate)
         settingScreen.modalPresentationStyle = .fullScreen
         view?.present(settingScreen, animated: true, completion: nil)

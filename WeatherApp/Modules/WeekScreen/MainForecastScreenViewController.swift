@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-protocol MainForecastScreenViewInput: class {
+protocol MainForecastScreenViewProtocol: class {
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
@@ -20,7 +20,7 @@ protocol MainForecastScreenViewInput: class {
 }
 
 class MainForecastScreenViewController: UITableViewController {
-    var presenter: MainForecastScreenViewOutput?
+    var presenter: MainForecastScreenPresenterProtocol?
     let vStack = DaySummaryStackView()
     let activityIndicator = UIActivityIndicatorView()
 
@@ -78,7 +78,7 @@ class MainForecastScreenViewController: UITableViewController {
     }
 }
 
-extension MainForecastScreenViewController: MainForecastScreenViewInput {
+extension MainForecastScreenViewController: MainForecastScreenViewProtocol {
     // TODO: - Я знаю что это нарушает инкапсуляцию, но по сути все эти labels принадлежат текущему view, а vstack просто удобный способ компановки
     func setCityLabel(city: String) {
         vStack.cityLabel.text = city
