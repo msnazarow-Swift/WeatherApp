@@ -1,5 +1,5 @@
 //
-//  WeekScreenInteractor.swift
+//  MainForecastScreenInteractor.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-protocol WeekScreenInteractorInput: class {
+protocol MainForecastScreenInteractorInput: class {
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
     func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
     func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
@@ -17,9 +17,9 @@ protocol WeekScreenInteractorInput: class {
     func saveImages(_ images: [String: Image])
 }
 
-protocol WeekScreenInteractorOutput: class {}
+protocol MainForecastScreenInteractorOutput: class {}
 
-class WeekScreenInteractor: WeekScreenInteractorInput {
+class MainForecastScreenInteractor: MainForecastScreenInteractorInput {
     private let weatherService = WeatherService()
 
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {

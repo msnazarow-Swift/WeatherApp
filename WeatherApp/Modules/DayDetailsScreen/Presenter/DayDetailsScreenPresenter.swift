@@ -1,5 +1,5 @@
 //
-//  DayScreenPresenter.swift
+//  DayDetailsScreenPresenter.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -8,28 +8,28 @@
 
 import Foundation
 
-protocol DayScreenViewOutput: class {
+protocol DayDetailsScreenViewOutput: class {
     func searchButtonTapped()
     func setDescriptionTable(day: WeatherDayResponse)
-    var dataSource: DayScreenDataSource { get }
+    var dataSource: DayDetailsScreenDataSource { get }
     func viewDidLoad()
 }
 
-class DayScreenPresenter: DayScreenViewOutput, PresenterPushViewProtocol {
-    weak var view: DayScreenViewInput?
-    var dataSource = DayScreenDataSource()
-    private let router: DayScreenRouter
+class DayDetailsScreenPresenter: DayDetailsScreenViewOutput, PresenterPushViewProtocol {
+    weak var view: DayDetailsScreenViewInput?
+    var dataSource = DayDetailsScreenDataSource()
+    private let router: DayDetailsScreenRouter
     private let title: String
     private let day: WeatherDayResponse
 
-    init(router: DayScreenRouter, title: String, day: WeatherDayResponse) {
+    init(router: DayDetailsScreenRouter, title: String, day: WeatherDayResponse) {
         self.router = router
         self.title = title
         self.day = day
     }
     func viewDidLoad() {
         guard let view = view else {
-            print("DayScreenAssemble Error")
+            print("DayDetailsScreenAssemble Error")
             return
         }
         view.setCityLabel(city: title)

@@ -51,6 +51,6 @@ extension SearchScreenPresenter: SearchScreenViewOutput {
     }
 
     func tableViewDidSelect(row: Int) {
-        router.routeToWeekScreen(cityId: cities[row].woeid, cityName: cities[row].title)
+        router.routeToMainForecastScreen(cityId: cities[row].woeid, cityName: cities[row].title)
     }
 }

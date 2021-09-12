@@ -1,5 +1,5 @@
 //
-//  WeekScreenRouter.swift
+//  MainForecastScreenRouter.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -8,23 +8,23 @@
 
 import UIKit
 
-protocol WeekScreenRouterInput {
+protocol MainForecastScreenRouterInput {
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
     func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
-    func routeToSettingsScreen(delegate: WeekScreenViewOutput?)
+    func routeToSettingsScreen(delegate: MainForecastScreenViewOutput?)
     func routeToNewCity(cityId: Int, cityName: String)
 }
 
-class WeekScreenRouter: WeekScreenRouterInput {
-    weak var view: WeekScreenViewController?
+class MainForecastScreenRouter: MainForecastScreenRouterInput {
+    weak var view: MainForecastScreenViewController?
 
-    init(view: WeekScreenViewController?) {
+    init(view: MainForecastScreenViewController?) {
         self.view = view
     }
 
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse) {
         guard let view = view?.navigationController else { return }
-        let dayScrenController = DayScreenAssembly.createDayScreen(with: cityName, for: day)
+        let dayScrenController = DayDetailsScreenAssembly.createDayDetailsScreen(with: cityName, for: day)
 
         view.pushViewController(dayScrenController, animated: true)
     }
@@ -35,13 +35,13 @@ class WeekScreenRouter: WeekScreenRouterInput {
         view?.present(searchScreen, animated: true, completion: nil)
     }
 
-    func routeToSettingsScreen(delegate: WeekScreenViewOutput?) {
+    func routeToSettingsScreen(delegate: MainForecastScreenViewOutput?) {
         let settingScreen = SettingsScreenAssembly.createSettingsScreen(delegate: delegate)
         settingScreen.modalPresentationStyle = .fullScreen
         view?.present(settingScreen, animated: true, completion: nil)
     }
     func routeToNewCity(cityId: Int, cityName: String) {
-        let forecastScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
+        let forecastScreen = MainForecastScreenAssembly.createMainForecastScreen(for: cityId, cityName: cityName)
         view?.navigationController?.pushViewController(forecastScreen, animated: true)
     }
 }

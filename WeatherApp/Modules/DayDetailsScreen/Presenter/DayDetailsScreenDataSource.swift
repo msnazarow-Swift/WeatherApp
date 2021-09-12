@@ -1,5 +1,5 @@
 //
-//  DayScreenDataSource.swift
+//  DayDetailsScreenDataSource.swift
 //  WeatherApp
 //
 //  Created by out-nazarov2-ms on 11.09.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DayScreenDataSource: NSObject, UITableViewDataSource {
+class DayDetailsScreenDataSource: NSObject, UITableViewDataSource {
     var sections: [DescriptionSectionModel] = []
 
     func updateForSections(_ sections: [DescriptionSectionModel]) {

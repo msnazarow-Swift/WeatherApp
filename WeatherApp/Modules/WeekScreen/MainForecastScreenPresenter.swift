@@ -1,5 +1,5 @@
 //
-//  WeekScreenPresenter.swift
+//  MainForecastScreenPresenter.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -8,28 +8,28 @@
 
 import Foundation
 
-protocol WeekScreenViewOutput: class {
+protocol MainForecastScreenViewOutput: class {
     func viewDidLoad()
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
     func settingsButtonTapped()
-    var dataSource: WeekScreenDataSource { get }
+    var dataSource: MainForecastScreenDataSource { get }
 }
 
 protocol PresenterPushViewProtocol: class {
     func pushNewCity(cityId: Int, cityName: String)
 }
 
-class WeekScreenPresenter: WeekScreenViewOutput, PresenterPushViewProtocol {
-    weak var view: WeekScreenViewInput?
-    private let router: WeekScreenRouterInput
-    var interactor: WeekScreenInteractorInput?
+class MainForecastScreenPresenter: MainForecastScreenViewOutput, PresenterPushViewProtocol {
+    weak var view: MainForecastScreenViewInput?
+    private let router: MainForecastScreenRouterInput
+    var interactor: MainForecastScreenInteractorInput?
     var title: String
     var cityId: Int
     var weatherDays: [WeatherDayResponse]?
-    var dataSource = WeekScreenDataSource()
+    var dataSource = MainForecastScreenDataSource()
 
-    init(router: WeekScreenRouterInput, cityId: Int, cityName: String) {
+    init(router: MainForecastScreenRouterInput, cityId: Int, cityName: String) {
         self.router = router
         self.cityId = cityId
         self.title = cityName
@@ -45,7 +45,7 @@ class WeekScreenPresenter: WeekScreenViewOutput, PresenterPushViewProtocol {
         var sections: [DaySectionModel] = []
         weatherDays = []
         guard let interactor = interactor else {
-            print("WeekScreenAssemble error")
+            print("MainForecastScreenAssemble error")
             return
         }
 

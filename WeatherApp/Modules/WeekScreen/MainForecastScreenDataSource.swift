@@ -1,5 +1,5 @@
 //
-//  WeekScreenDataSource.swift
+//  MainForecastScreenDataSource.swift
 //  WeatherApp
 //
 //  Created by out-nazarov2-ms on 11.09.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeekScreenDataSource: NSObject, UITableViewDataSource {
+class MainForecastScreenDataSource: NSObject, UITableViewDataSource {
     var sections: [DaySectionModel] = []
 
     func updateForSections(_ sections: [DaySectionModel]) {

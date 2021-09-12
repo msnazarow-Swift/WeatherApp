@@ -1,5 +1,5 @@
 //
-//  DayScreenRouter.swift
+//  DayDetailsScreenRouter.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol DayScreenRouterInput {
+protocol DayDetailsScreenRouterInput {
     func routeToSearchScreen(delegate: PresenterPushViewProtocol?)
     func routeToNewCity(cityId: Int, cityName: String)
 }
 
-class DayScreenRouter: DayScreenRouterInput {
-    weak var view: DayScreenViewController?
+class DayDetailsScreenRouter: DayDetailsScreenRouterInput {
+    weak var view: DayDetailsScreenViewController?
 
-    init(view: DayScreenViewController?) {
+    init(view: DayDetailsScreenViewController?) {
         self.view = view
     }
 
@@ -27,7 +27,7 @@ class DayScreenRouter: DayScreenRouterInput {
     }
 
     func routeToNewCity(cityId: Int, cityName: String) {
-        let forecastScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
+        let forecastScreen = MainForecastScreenAssembly.createMainForecastScreen(for: cityId, cityName: cityName)
         view?.navigationController?.pushViewController(forecastScreen, animated: true)
     }
 }

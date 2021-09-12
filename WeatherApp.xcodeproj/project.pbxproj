@@ -16,10 +16,10 @@
 		3E25707026E7EF6D00640CC3 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */; };
 		3E292AC726E3DF3D00E0A119 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292AC626E3DF3D00E0A119 /* GlobalVars.swift */; };
 		3E292ACD26E4069600E0A119 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292ACC26E4069600E0A119 /* StorageService.swift */; };
-		3E34B70326E7792B005C95B7 /* DayScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */; };
+		3E34B70326E7792B005C95B7 /* DayDetailsScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34B70226E7792B005C95B7 /* DayDetailsScreenAssembly.swift */; };
 		3E38995E26ED1A9B00F54DCA /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38995D26ED1A9B00F54DCA /* UIFont+Ext.swift */; };
-		3E38998F26ED2DF400F54DCA /* WeekScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38998E26ED2DF400F54DCA /* WeekScreenDataSource.swift */; };
-		3E38999426ED2E0000F54DCA /* DayScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38999326ED2E0000F54DCA /* DayScreenDataSource.swift */; };
+		3E38998F26ED2DF400F54DCA /* MainForecastScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38998E26ED2DF400F54DCA /* MainForecastScreenDataSource.swift */; };
+		3E38999426ED2E0000F54DCA /* DayDetailsScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38999326ED2E0000F54DCA /* DayDetailsScreenDataSource.swift */; };
 		3E38999926ED2E0D00F54DCA /* SearchScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38999826ED2E0D00F54DCA /* SearchScreenDataSource.swift */; };
 		3E63192426ED80DB00D879EC /* SettingsScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63192026ED80DB00D879EC /* SettingsScreenPresenter.swift */; };
 		3E63192526ED80DB00D879EC /* SettingsScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63192126ED80DB00D879EC /* SettingsScreenRouter.swift */; };
@@ -50,15 +50,14 @@
 		3E8B82A726E37B7A00D54F57 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E8B829426E37B7A00D54F57 /* Roboto-Bold.ttf */; };
 		3E8B82A826E37B7A00D54F57 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E8B829526E37B7A00D54F57 /* Roboto-Thin.ttf */; };
 		3E8B82A926E37B7A00D54F57 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E8B829626E37B7A00D54F57 /* Roboto-Black.ttf */; };
-		3E8F43A726E2F1A8001153CC /* DayScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A226E2F1A8001153CC /* DayScreenPresenter.swift */; };
-		3E8F43A826E2F1A8001153CC /* DayScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A326E2F1A8001153CC /* DayScreenRouter.swift */; };
-		3E8F43A926E2F1A8001153CC /* DayScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A426E2F1A8001153CC /* DayScreenViewController.swift */; };
-		3E8F43AB26E2F1A8001153CC /* DayScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A626E2F1A8001153CC /* DayScreenInteractor.swift */; };
-		3E8F43B826E2F1D5001153CC /* WeekScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B326E2F1D5001153CC /* WeekScreenPresenter.swift */; };
-		3E8F43B926E2F1D5001153CC /* WeekScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B426E2F1D5001153CC /* WeekScreenRouter.swift */; };
-		3E8F43BA26E2F1D5001153CC /* WeekScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B526E2F1D5001153CC /* WeekScreenViewController.swift */; };
-		3E8F43BB26E2F1D5001153CC /* WeekScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B626E2F1D5001153CC /* WeekScreenAssembly.swift */; };
-		3E8F43BC26E2F1D5001153CC /* WeekScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B726E2F1D5001153CC /* WeekScreenInteractor.swift */; };
+		3E8F43A726E2F1A8001153CC /* DayDetailsScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A226E2F1A8001153CC /* DayDetailsScreenPresenter.swift */; };
+		3E8F43A826E2F1A8001153CC /* DayDetailsScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A326E2F1A8001153CC /* DayDetailsScreenRouter.swift */; };
+		3E8F43A926E2F1A8001153CC /* DayDetailsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43A426E2F1A8001153CC /* DayDetailsScreenViewController.swift */; };
+		3E8F43B826E2F1D5001153CC /* MainForecastScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B326E2F1D5001153CC /* MainForecastScreenPresenter.swift */; };
+		3E8F43B926E2F1D5001153CC /* MainForecastScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B426E2F1D5001153CC /* MainForecastScreenRouter.swift */; };
+		3E8F43BA26E2F1D5001153CC /* MainForecastScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B526E2F1D5001153CC /* MainForecastScreenViewController.swift */; };
+		3E8F43BB26E2F1D5001153CC /* MainForecastScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B626E2F1D5001153CC /* MainForecastScreenAssembly.swift */; };
+		3E8F43BC26E2F1D5001153CC /* MainForecastScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43B726E2F1D5001153CC /* MainForecastScreenInteractor.swift */; };
 		3E8F43C926E2F212001153CC /* SearchScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43C426E2F212001153CC /* SearchScreenPresenter.swift */; };
 		3E8F43CA26E2F212001153CC /* SearchScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43C526E2F212001153CC /* SearchScreenRouter.swift */; };
 		3E8F43CB26E2F212001153CC /* SearchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F43C626E2F212001153CC /* SearchScreenViewController.swift */; };
@@ -115,10 +114,10 @@
 		3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		3E292AC626E3DF3D00E0A119 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
 		3E292ACC26E4069600E0A119 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayScreenAssembly.swift; sourceTree = "<group>"; };
+		3E34B70226E7792B005C95B7 /* DayDetailsScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayDetailsScreenAssembly.swift; sourceTree = "<group>"; };
 		3E38995D26ED1A9B00F54DCA /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
-		3E38998E26ED2DF400F54DCA /* WeekScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenDataSource.swift; sourceTree = "<group>"; };
-		3E38999326ED2E0000F54DCA /* DayScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreenDataSource.swift; sourceTree = "<group>"; };
+		3E38998E26ED2DF400F54DCA /* MainForecastScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenDataSource.swift; sourceTree = "<group>"; };
+		3E38999326ED2E0000F54DCA /* DayDetailsScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsScreenDataSource.swift; sourceTree = "<group>"; };
 		3E38999826ED2E0D00F54DCA /* SearchScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenDataSource.swift; sourceTree = "<group>"; };
 		3E63192026ED80DB00D879EC /* SettingsScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenPresenter.swift; sourceTree = "<group>"; };
 		3E63192126ED80DB00D879EC /* SettingsScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenRouter.swift; sourceTree = "<group>"; };
@@ -149,15 +148,14 @@
 		3E8B829426E37B7A00D54F57 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		3E8B829526E37B7A00D54F57 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		3E8B829626E37B7A00D54F57 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
-		3E8F43A226E2F1A8001153CC /* DayScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreenPresenter.swift; sourceTree = "<group>"; };
-		3E8F43A326E2F1A8001153CC /* DayScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreenRouter.swift; sourceTree = "<group>"; };
-		3E8F43A426E2F1A8001153CC /* DayScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreenViewController.swift; sourceTree = "<group>"; };
-		3E8F43A626E2F1A8001153CC /* DayScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreenInteractor.swift; sourceTree = "<group>"; };
-		3E8F43B326E2F1D5001153CC /* WeekScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenPresenter.swift; sourceTree = "<group>"; };
-		3E8F43B426E2F1D5001153CC /* WeekScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenRouter.swift; sourceTree = "<group>"; };
-		3E8F43B526E2F1D5001153CC /* WeekScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenViewController.swift; sourceTree = "<group>"; };
-		3E8F43B626E2F1D5001153CC /* WeekScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenAssembly.swift; sourceTree = "<group>"; };
-		3E8F43B726E2F1D5001153CC /* WeekScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekScreenInteractor.swift; sourceTree = "<group>"; };
+		3E8F43A226E2F1A8001153CC /* DayDetailsScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsScreenPresenter.swift; sourceTree = "<group>"; };
+		3E8F43A326E2F1A8001153CC /* DayDetailsScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsScreenRouter.swift; sourceTree = "<group>"; };
+		3E8F43A426E2F1A8001153CC /* DayDetailsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailsScreenViewController.swift; sourceTree = "<group>"; };
+		3E8F43B326E2F1D5001153CC /* MainForecastScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenPresenter.swift; sourceTree = "<group>"; };
+		3E8F43B426E2F1D5001153CC /* MainForecastScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenRouter.swift; sourceTree = "<group>"; };
+		3E8F43B526E2F1D5001153CC /* MainForecastScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenViewController.swift; sourceTree = "<group>"; };
+		3E8F43B626E2F1D5001153CC /* MainForecastScreenAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenAssembly.swift; sourceTree = "<group>"; };
+		3E8F43B726E2F1D5001153CC /* MainForecastScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenInteractor.swift; sourceTree = "<group>"; };
 		3E8F43C426E2F212001153CC /* SearchScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenPresenter.swift; sourceTree = "<group>"; };
 		3E8F43C526E2F212001153CC /* SearchScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenRouter.swift; sourceTree = "<group>"; };
 		3E8F43C626E2F212001153CC /* SearchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +238,7 @@
 		3E38996B26ED1D5C00F54DCA /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43B426E2F1D5001153CC /* WeekScreenRouter.swift */,
+				3E8F43B426E2F1D5001153CC /* MainForecastScreenRouter.swift */,
 			);
 			name = Router;
 			sourceTree = "<group>";
@@ -248,8 +246,8 @@
 		3E38996F26ED1D8500F54DCA /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43B326E2F1D5001153CC /* WeekScreenPresenter.swift */,
-				3E38998E26ED2DF400F54DCA /* WeekScreenDataSource.swift */,
+				3E8F43B326E2F1D5001153CC /* MainForecastScreenPresenter.swift */,
+				3E38998E26ED2DF400F54DCA /* MainForecastScreenDataSource.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -257,7 +255,7 @@
 		3E38997026ED1DAB00F54DCA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43B526E2F1D5001153CC /* WeekScreenViewController.swift */,
+				3E8F43B526E2F1D5001153CC /* MainForecastScreenViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,7 +263,7 @@
 		3E38997126ED1DB300F54DCA /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43B626E2F1D5001153CC /* WeekScreenAssembly.swift */,
+				3E8F43B626E2F1D5001153CC /* MainForecastScreenAssembly.swift */,
 			);
 			name = Assembly;
 			sourceTree = "<group>";
@@ -273,7 +271,7 @@
 		3E38997226ED1DB700F54DCA /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43B726E2F1D5001153CC /* WeekScreenInteractor.swift */,
+				3E8F43B726E2F1D5001153CC /* MainForecastScreenInteractor.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";
@@ -281,7 +279,7 @@
 		3E38997326ED1E0300F54DCA /* Assemblty */ = {
 			isa = PBXGroup;
 			children = (
-				3E34B70226E7792B005C95B7 /* DayScreenAssembly.swift */,
+				3E34B70226E7792B005C95B7 /* DayDetailsScreenAssembly.swift */,
 			);
 			path = Assemblty;
 			sourceTree = "<group>";
@@ -289,8 +287,8 @@
 		3E38997426ED1E0900F54DCA /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43A226E2F1A8001153CC /* DayScreenPresenter.swift */,
-				3E38999326ED2E0000F54DCA /* DayScreenDataSource.swift */,
+				3E8F43A226E2F1A8001153CC /* DayDetailsScreenPresenter.swift */,
+				3E38999326ED2E0000F54DCA /* DayDetailsScreenDataSource.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -298,23 +296,15 @@
 		3E38997526ED1E0D00F54DCA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43A426E2F1A8001153CC /* DayScreenViewController.swift */,
+				3E8F43A426E2F1A8001153CC /* DayDetailsScreenViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		3E38997626ED1E0F00F54DCA /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				3E8F43A626E2F1A8001153CC /* DayScreenInteractor.swift */,
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		3E38997726ED1E1200F54DCA /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				3E8F43A326E2F1A8001153CC /* DayScreenRouter.swift */,
+				3E8F43A326E2F1A8001153CC /* DayDetailsScreenRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -324,7 +314,7 @@
 			children = (
 				3E63191F26ED80BC00D879EC /* SettingsScreen */,
 				3E8F43C026E2F1DE001153CC /* WeekScreen */,
-				3E8F43AF26E2F1AE001153CC /* DayScreen */,
+				3E8F43AF26E2F1AE001153CC /* DayDetailsScreen */,
 				3E8F43D126E2F222001153CC /* SearchScreen */,
 			);
 			path = Modules;
@@ -441,16 +431,15 @@
 			path = roboto;
 			sourceTree = "<group>";
 		};
-		3E8F43AF26E2F1AE001153CC /* DayScreen */ = {
+		3E8F43AF26E2F1AE001153CC /* DayDetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
 				3E38997326ED1E0300F54DCA /* Assemblty */,
 				3E38997526ED1E0D00F54DCA /* View */,
 				3E38997426ED1E0900F54DCA /* Presenter */,
-				3E38997626ED1E0F00F54DCA /* Interactor */,
 				3E38997726ED1E1200F54DCA /* Router */,
 			);
-			path = DayScreen;
+			path = DayDetailsScreen;
 			sourceTree = "<group>";
 		};
 		3E8F43C026E2F1DE001153CC /* WeekScreen */ = {
@@ -898,8 +887,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E38998F26ED2DF400F54DCA /* WeekScreenDataSource.swift in Sources */,
-				3E34B70326E7792B005C95B7 /* DayScreenAssembly.swift in Sources */,
+				3E38998F26ED2DF400F54DCA /* MainForecastScreenDataSource.swift in Sources */,
+				3E34B70326E7792B005C95B7 /* DayDetailsScreenAssembly.swift in Sources */,
 				3E8F43F626E31597001153CC /* JSONDecoder+Ext.swift in Sources */,
 				3E25705B26E7C83C00640CC3 /* CityCellModel.swift in Sources */,
 				3EAE966D26E2DD490089F82E /* WeatherCityResponse.swift in Sources */,
@@ -915,18 +904,18 @@
 				3E8566D426ECF7A800B1E951 /* WeatherService.swift in Sources */,
 				3EB06FD426E3C04C00118882 /* DaySectionModel.swift in Sources */,
 				3E63192726ED80DB00D879EC /* SettingsScreenAssembly.swift in Sources */,
-				3E8F43BA26E2F1D5001153CC /* WeekScreenViewController.swift in Sources */,
+				3E8F43BA26E2F1D5001153CC /* MainForecastScreenViewController.swift in Sources */,
 				3E8F43CC26E2F212001153CC /* SearchScreenAssembly.swift in Sources */,
 				3EB06FC626E3AD9F00118882 /* DayCell.swift in Sources */,
-				3E8F43BB26E2F1D5001153CC /* WeekScreenAssembly.swift in Sources */,
+				3E8F43BB26E2F1D5001153CC /* MainForecastScreenAssembly.swift in Sources */,
 				3E25706B26E7EBDC00640CC3 /* DesignableUITextField.swift in Sources */,
-				3E8F43B926E2F1D5001153CC /* WeekScreenRouter.swift in Sources */,
-				3E38999426ED2E0000F54DCA /* DayScreenDataSource.swift in Sources */,
+				3E8F43B926E2F1D5001153CC /* MainForecastScreenRouter.swift in Sources */,
+				3E38999426ED2E0000F54DCA /* DayDetailsScreenDataSource.swift in Sources */,
 				3E8F43EB26E2FB62001153CC /* WeatherDayResponse.swift in Sources */,
 				3E38995E26ED1A9B00F54DCA /* UIFont+Ext.swift in Sources */,
-				3E8F43A826E2F1A8001153CC /* DayScreenRouter.swift in Sources */,
+				3E8F43A826E2F1A8001153CC /* DayDetailsScreenRouter.swift in Sources */,
 				3EEB51DA26E2BCDC0069A3A1 /* WeatherTarget.swift in Sources */,
-				3E8F43A926E2F1A8001153CC /* DayScreenViewController.swift in Sources */,
+				3E8F43A926E2F1A8001153CC /* DayDetailsScreenViewController.swift in Sources */,
 				3E25707026E7EF6D00640CC3 /* SearchTextField.swift in Sources */,
 				3EB06FA726E3AADD00118882 /* WeatherCellModel.swift in Sources */,
 				3E8566C526ECF74200B1E951 /* DataFormatter+Ext.swift in Sources */,
@@ -943,12 +932,11 @@
 				3E8B826826E31BA100D54F57 /* WeatherSourceResponse.swift in Sources */,
 				3E8F43CD26E2F212001153CC /* SearchScreenInteractor.swift in Sources */,
 				3E25706626E7D51800640CC3 /* CitySectionModel.swift in Sources */,
-				3E8F43A726E2F1A8001153CC /* DayScreenPresenter.swift in Sources */,
+				3E8F43A726E2F1A8001153CC /* DayDetailsScreenPresenter.swift in Sources */,
 				3E6AFAA626ED5EF000A68E79 /* Date+Ext.swift in Sources */,
-				3E8F43AB26E2F1A8001153CC /* DayScreenInteractor.swift in Sources */,
 				3E25705A26E7C83C00640CC3 /* CityCell.swift in Sources */,
-				3E8F43BC26E2F1D5001153CC /* WeekScreenInteractor.swift in Sources */,
-				3E8F43B826E2F1D5001153CC /* WeekScreenPresenter.swift in Sources */,
+				3E8F43BC26E2F1D5001153CC /* MainForecastScreenInteractor.swift in Sources */,
+				3E8F43B826E2F1D5001153CC /* MainForecastScreenPresenter.swift in Sources */,
 				3EB06FAF26E3AB4800118882 /* DescriptionPropertyCellModel.swift in Sources */,
 				3EB06F9F26E3AA8800118882 /* CellsProtocols.swift in Sources */,
 			);

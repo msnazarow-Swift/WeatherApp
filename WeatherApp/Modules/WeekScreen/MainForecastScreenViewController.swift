@@ -1,5 +1,5 @@
 //
-//  WeekScreenViewController.swift
+//  MainForecastScreenViewController.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-protocol WeekScreenViewInput: class {
+protocol MainForecastScreenViewInput: class {
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
     func setDegreeLabel(degree: Int)
@@ -19,8 +19,8 @@ protocol WeekScreenViewInput: class {
     func viewWillSetup()
 }
 
-class WeekScreenViewController: UITableViewController {
-    var presenter: WeekScreenViewOutput?
+class MainForecastScreenViewController: UITableViewController {
+    var presenter: MainForecastScreenViewOutput?
     let vStack = DaySummaryStackView()
     let activityIndicator = UIActivityIndicatorView()
 
@@ -78,7 +78,7 @@ class WeekScreenViewController: UITableViewController {
     }
 }
 
-extension WeekScreenViewController: WeekScreenViewInput {
+extension MainForecastScreenViewController: MainForecastScreenViewInput {
     // TODO: - Я знаю что это нарушает инкапсуляцию, но по сути все эти labels принадлежат текущему view, а vstack просто удобный способ компановки
     func setCityLabel(city: String) {
         vStack.cityLabel.text = city
@@ -118,7 +118,7 @@ extension WeekScreenViewController: WeekScreenViewInput {
         })
     }
 }
-extension WeekScreenViewController {
+extension MainForecastScreenViewController {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let presenter = presenter {
             return presenter.tableViewDidSelect(row: indexPath.row)

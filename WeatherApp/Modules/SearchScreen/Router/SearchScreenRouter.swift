@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SearchScreenRouterInput {
-    func routeToWeekScreen(cityId: Int, cityName: String)
+    func routeToMainForecastScreen(cityId: Int, cityName: String)
 }
 
 class SearchScreenRouter: SearchScreenRouterInput {
@@ -21,14 +21,14 @@ class SearchScreenRouter: SearchScreenRouterInput {
         self.delegate = delegate
     }
 
-    func routeToWeekScreen(cityId: Int, cityName: String) {
+    func routeToMainForecastScreen(cityId: Int, cityName: String) {
         delegate?.pushNewCity(cityId: cityId, cityName: cityName)
-//        let weekScreen = WeekScreenAssembly.createWeekScreen(for: cityId, cityName: cityName)
-//        weekScreen.modalPresentationStyle = .fullScreen
-//        delegate.push(weekScreen)
-//        delegate?.pushViewController(weekScreen, animated: true)
+//        let MainForecastScreen = MainForecastScreenAssembly.createMainForecastScreen(for: cityId, cityName: cityName)
+//        MainForecastScreen.modalPresentationStyle = .fullScreen
+//        delegate.push(MainForecastScreen)
+//        delegate?.pushViewController(MainForecastScreen, animated: true)
 //        if let root = self.view?.view.window?.rootViewController, let view = root as? UINavigationController {
-//    		view.pushViewController(weekScreen, animated: true)
+//    		view.pushViewController(MainForecastScreen, animated: true)
 //        }
         view?.dismiss(animated: true, completion: nil)
     }

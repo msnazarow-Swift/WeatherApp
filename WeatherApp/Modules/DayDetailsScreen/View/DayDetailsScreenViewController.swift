@@ -1,5 +1,5 @@
 //
-//  DayScreenViewController.swift
+//  DayDetailsScreenViewController.swift
 //  WeatherApp
 //
 //  Created out-nazarov2-ms on 04.09.2021.
@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-protocol DayScreenViewInput: class {
+protocol DayDetailsScreenViewInput: class {
     func setTitle(_ title: String)
     func setCityLabel(city: String)
     func setWeatherLabel(weather: String)
@@ -18,8 +18,8 @@ protocol DayScreenViewInput: class {
     func update()
 }
 
-class DayScreenViewController: UITableViewController {
-    var presenter: DayScreenViewOutput?
+class DayDetailsScreenViewController: UITableViewController {
+    var presenter: DayDetailsScreenViewOutput?
     let vStack = DaySummaryStackView()
 
     override func viewDidLoad() {
@@ -56,7 +56,7 @@ class DayScreenViewController: UITableViewController {
     }
 }
 
-extension DayScreenViewController: DayScreenViewInput {
+extension DayDetailsScreenViewController: DayDetailsScreenViewInput {
     func setTitle(_ title: String) {
         self.title = title
     }
