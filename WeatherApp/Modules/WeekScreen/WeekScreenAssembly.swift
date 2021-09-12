@@ -9,10 +9,10 @@
 import UIKit
 
 enum WeekScreenAssembly {
-    static func createWeekScreen(for cityId: Int, isWeekMode: Bool) -> WeekScreenViewController {
+    static func createWeekScreen(for cityId: Int) -> UIViewController {
         let viewController = WeekScreenViewController(style: .grouped)
         let router = WeekScreenRouter(view: viewController)
-        let presenter = WeekScreenPresenter(router: router, cityId: cityId, isWeekMode: isWeekMode)
+        let presenter = WeekScreenPresenter(router: router, cityId: cityId)
         let interactor = WeekScreenInteractor()
 
         presenter.interactor = interactor

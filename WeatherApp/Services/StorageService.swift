@@ -17,4 +17,12 @@ class StorageService: NSObject {
     func getImageForKey(_ key: String) -> UIImage? {
         return images[key]
     }
+
+    var isWeekMode: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "mode")
+        } set {
+            UserDefaults.standard.setValue(newValue, forKey: "mode")
+        }
+    }
 }

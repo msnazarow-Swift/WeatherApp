@@ -9,9 +9,9 @@
 import UIKit
 
 enum SettingsScreenAssembly {
-    static func createSettingsScreen(isWeekMode: Bool) -> SettingsScreenViewController {
+    static func createSettingsScreen() -> SettingsScreenViewController {
         let router = SettingsScreenRouter()
-        let presenter = SettingsScreenPresenter(router: router, isWeekMode: isWeekMode)
+        let presenter = SettingsScreenPresenter(router: router)
         let viewController = SettingsScreenViewController()
 
         presenter.view = viewController

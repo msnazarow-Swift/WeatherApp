@@ -15,9 +15,9 @@ class SettingsScreenPresenter: SettingsScreenViewOutput {
 
     private let router: SettingsScreenRouter
 
-    init(router: SettingsScreenRouter, isWeekMode: Bool) {
+    init(router: SettingsScreenRouter) {
         self.router = router
-        self.isWeekMode = isWeekMode
+        self.isWeekMode = StorageService.shared.isWeekMode
     }
 
     func viewDidLoad() {
@@ -25,5 +25,6 @@ class SettingsScreenPresenter: SettingsScreenViewOutput {
     }
     func switcherValueChanged(_ isOn: Bool) {
         isWeekMode = isOn
+        StorageService.shared.isWeekMode = isWeekMode
     }
 }

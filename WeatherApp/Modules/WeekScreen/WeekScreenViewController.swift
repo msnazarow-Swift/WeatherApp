@@ -102,9 +102,11 @@ extension WeekScreenViewController: WeekScreenViewInput {
     @objc func searchButtonTapped() {
         presenter?.searchButtonTapped()
     }
+
     @objc func settingsButtonTapped() {
         presenter?.settingsButtonTapped()
     }
+
     func viewDidSetup() {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
             self?.navigationController?.setNavigationBarHidden(false, animated: true)
