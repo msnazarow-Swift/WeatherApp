@@ -17,7 +17,6 @@ protocol DayScreenViewOutput: class {
 
 class DayScreenPresenter: DayScreenViewOutput {
     weak var view: DayScreenViewInput?
-    var interactor: DayScreenInteractorInput?
     var dataSource = DayScreenDataSource()
 
     private let router: DayScreenRouter

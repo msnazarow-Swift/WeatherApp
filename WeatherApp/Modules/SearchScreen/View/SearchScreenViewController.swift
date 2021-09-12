@@ -23,6 +23,9 @@ class SearchScreenViewController: UIViewController {
         return label
     }()
 	let searchTextField = SearchTextField()
+
+    // TODO: - Button does not animate
+
     lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)

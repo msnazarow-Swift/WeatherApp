@@ -13,10 +13,8 @@ enum DayScreenAssembly {
         let viewController = DayScreenViewController()// (style: .grouped)
         let router = DayScreenRouter(view: viewController)
         let presenter = DayScreenPresenter(router: router, title: cityTitle, day: day)
-        let interactor = DayScreenInteractor()
         presenter.view = viewController
         viewController.presenter = presenter
-        presenter.interactor = interactor
         return viewController
     }
 }

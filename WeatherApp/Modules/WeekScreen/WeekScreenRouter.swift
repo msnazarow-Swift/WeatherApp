@@ -11,6 +11,7 @@ import UIKit
 protocol WeekScreenRouterInput {
     func routeToDaySrceen(cityName: String, day: WeatherDayResponse)
     func routeToSearchScreen()
+    func routeToSettingsScreen()
 }
 
 class WeekScreenRouter: WeekScreenRouterInput {
@@ -31,5 +32,11 @@ class WeekScreenRouter: WeekScreenRouterInput {
         let searchScreen = SearchScreenAssembly.createSearchScreen()
         searchScreen.modalPresentationStyle = .fullScreen
         view?.present(searchScreen, animated: true, completion: nil)
+    }
+
+    func routeToSettingsScreen() {
+        let settingScreen = SettingsScreenAssembly.createSettingsScreen(isWeekMode: true)
+        settingScreen.modalPresentationStyle = .fullScreen
+        view?.present(settingScreen, animated: true, completion: nil)
     }
 }

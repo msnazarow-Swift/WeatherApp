@@ -12,6 +12,7 @@ protocol WeekScreenViewOutput: class {
     func viewDidLoad()
     func tableViewDidSelect(row: Int)
     func searchButtonTapped()
+    func settingsButtonTapped()
     var dataSource: WeekScreenDataSource { get }
 }
 
@@ -100,5 +101,8 @@ class WeekScreenPresenter: WeekScreenViewOutput {
 
     func searchButtonTapped() {
         router.routeToSearchScreen()
+    }
+    func settingsButtonTapped() {
+        router.routeToSettingsScreen()
     }
 }
