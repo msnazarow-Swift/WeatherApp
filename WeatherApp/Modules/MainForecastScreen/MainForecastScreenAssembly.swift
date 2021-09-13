@@ -13,17 +13,23 @@ enum MainForecastScreenAssembly {
         let viewController = MainForecastScreenViewController()
         let router = MainForecastScreenRouter(view: viewController)
         let dataSource = MainForecastScreenDataSource()
-        let weatherService = WeatherService()
+        // TODO: - Используется класс из другого модуля
+        let settingsStorageService = SettingsStorageService()
         let presenter = MainForecastScreenPresenter(router: router,
                                                     cityId: cityId,
                                                     cityName: cityName,
-                                                    dataSource: dataSource)
-        let interactor = MainForecastScreenInteractor(weatherService: weatherService)
+                                                    dataSource: dataSource,
+                                                    settingsStorageService: settingsStorageService)
+
+        let weatherService = WeatherService()
+        let storageService = ImageStorageService()
+        let interactor = MainForecastScreenInteractor(weatherService: weatherService, storageService: storageService)
 
         presenter.interactor = interactor
         presenter.view = viewController
         viewController.presenter = presenter
         router.view = viewController
+        dataSource.presenter = presenter
 
         return viewController
     }

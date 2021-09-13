@@ -35,12 +35,17 @@ protocol MainForecastScreenDataSourceProtocol: UITableViewDataSource {
     func updateForSections(_ sections: [DaySectionModel])
 }
 
+protocol MainForecastScreenPresenterToCellsProtocol: AnyObject {
+    func getImage(for abbr: String) -> UIImage?
+}
+
 protocol MainForecastScreenInteractorProtocol: AnyObject {
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
     func getRestFourDaysForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
     func getWeekForecast(cityId: Int, complition: @escaping ([WeatherDayResponse]) -> Void)
-    func getImages(complition: @escaping ([String: Image]) -> Void)
-    func saveImages(_ images: [String: Image])
+    func getImages(complition: @escaping ([String: UIImage]) -> Void)
+    func saveImages(_ images: [String: UIImage])
+    func getImage(for abbr: String) -> UIImage?
 }
 
 protocol MainForecastScreenRouterProtocol {

@@ -8,6 +8,8 @@
 import UIKit
 
 class MainForecastScreenDataSource: NSObject, MainForecastScreenDataSourceProtocol {
+    weak var presenter: MainForecastScreenPresenterToCellsProtocol?
+
     var sections: [DaySectionModel] = []
 
     func updateForSections(_ sections: [DaySectionModel]) {
@@ -31,6 +33,7 @@ class MainForecastScreenDataSource: NSObject, MainForecastScreenDataSourceProtoc
         guard let cell = tableView.dequeueReusableCell(withIdentifier: model.cellIdentifier, for: indexPath) as? WeatherCell else {
             return UITableViewCell()
         }
+        cell.presenter = presenter
         cell.model = model
         return cell
     }

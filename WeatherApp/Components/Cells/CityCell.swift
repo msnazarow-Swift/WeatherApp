@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CityCell: WeatherCell {
+final class CityCell: WeatherCell {
     static let identifier = "CityCell"
 
     override init(style _: UITableViewCell.CellStyle, reuseIdentifier: String?) {

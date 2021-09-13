@@ -65,8 +65,8 @@ class WeatherService: WeatherServiceProtocol {
         }
     }
 
-    func getImage(imageAbbreviation: String, complition: @escaping (Result<Image, Error>) -> Void) {
-        provider.request(.getImage(abbreviation: imageAbbreviation)) { result in
+    func getImage(for arrb: String, complition: @escaping (Result<Image, Error>) -> Void) {
+        provider.request(.getImage(abbreviation: arrb)) { result in
             switch result {
             case let .success(response):
                 do {

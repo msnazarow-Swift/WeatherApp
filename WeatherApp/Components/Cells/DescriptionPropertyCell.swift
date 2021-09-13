@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DescriptionPropertyCell: WeatherCell {
+final class DescriptionPropertyCell: WeatherCell {
     static let identifier = "DescriptionPropertyCell"
 
     override init(style _: UITableViewCell.CellStyle, reuseIdentifier: String?) {

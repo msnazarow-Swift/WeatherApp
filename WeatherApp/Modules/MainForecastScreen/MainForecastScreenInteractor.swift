@@ -11,9 +11,11 @@ import Moya
 
 class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
     private let weatherService: WeatherServiceProtocol
+    private let imageStorageService: ImageStorageServiceProtocol
 
-    init(weatherService: WeatherServiceProtocol) {
+    init(weatherService: WeatherServiceProtocol, storageService: ImageStorageServiceProtocol) {
         self.weatherService = weatherService
+        self.imageStorageService = storageService
     }
 
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
@@ -57,12 +59,12 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
     func getImages(complition: @escaping ([String: Image]) -> Void) {
         var images: [String: Image] = [:]
         let group = DispatchGroup()
-        for abbr in abbreviations {
-            if let image = StorageService.shared.getImageForKey(abbr) {
+        for abbr in imageStorageService.abbreviations {
+            if let image = imageStorageService.getImage(for: abbr) {
                 images[abbr] = image
             } else {
                 group.enter()
-                weatherService.getImage(imageAbbreviation: abbr) { result in
+                weatherService.getImage(for: abbr) { result in
                     try? images[abbr] = result.get()
                     group.leave()
                 }
@@ -73,7 +75,26 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
         }
     }
 
+    func getImage(for abbr: String) -> UIImage? {
+        return imageStorageService.getImage(for: abbr)
+    }
+
     func saveImages(_ images: [String: Image]) {
-        StorageService.shared.saveImages(images)
+        imageStorageService.saveImages(images)
     }
 }
+
+/*          ---         Что если закачивать не сразу все фотки, а только те которые нужны? ---
+    func getImage(for abbr: String, complition: @escaping (Image?) -> Void) {
+        if let image = storageService.getImageForKey(abbr) {
+            complition(image)
+        } else {
+            weatherService.getImage(for: abbr) { [ weak self] result in
+                let image = try? result.get()
+                self?.storageService.saveImage(for: abbr, image: image)
+                complition(image)
+            }
+        }
+    }
+
+*/

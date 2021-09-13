@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F903D78CB135D3E6474F651 /* Pods_WeatherAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DFD52F80B61633998701949 /* Pods_WeatherAppTests.framework */; };
+		3E1A06A526EF828C00862A13 /* SettingsStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A06A426EF828C00862A13 /* SettingsStorageService.swift */; };
 		3E1E0F2026EE414800125F11 /* SettingsScreenContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E0F1F26EE414800125F11 /* SettingsScreenContract.swift */; };
 		3E25704526E7A88000640CC3 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E25704426E7A88000640CC3 /* Launch Screen.storyboard */; };
 		3E25705A26E7C83C00640CC3 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25705826E7C83C00640CC3 /* CityCell.swift */; };
@@ -16,7 +17,7 @@
 		3E25706B26E7EBDC00640CC3 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25706A26E7EBDC00640CC3 /* DesignableUITextField.swift */; };
 		3E25707026E7EF6D00640CC3 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */; };
 		3E292AC726E3DF3D00E0A119 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292AC626E3DF3D00E0A119 /* GlobalVars.swift */; };
-		3E292ACD26E4069600E0A119 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292ACC26E4069600E0A119 /* StorageService.swift */; };
+		3E292ACD26E4069600E0A119 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E292ACC26E4069600E0A119 /* ImageStorageService.swift */; };
 		3E34B70326E7792B005C95B7 /* DayDetailsScreenAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34B70226E7792B005C95B7 /* DayDetailsScreenAssembly.swift */; };
 		3E38995E26ED1A9B00F54DCA /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38995D26ED1A9B00F54DCA /* UIFont+Ext.swift */; };
 		3E38998F26ED2DF400F54DCA /* MainForecastScreenDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38998E26ED2DF400F54DCA /* MainForecastScreenDataSource.swift */; };
@@ -110,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		338EC61D5DF585E9ABA394FD /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E1A06A426EF828C00862A13 /* SettingsStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStorageService.swift; sourceTree = "<group>"; };
 		3E1E0F1F26EE414800125F11 /* SettingsScreenContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenContract.swift; sourceTree = "<group>"; };
 		3E25704426E7A88000640CC3 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3E25705826E7C83C00640CC3 /* CityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		3E25706A26E7EBDC00640CC3 /* DesignableUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		3E25706F26E7EF6D00640CC3 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		3E292AC626E3DF3D00E0A119 /* GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVars.swift; sourceTree = "<group>"; };
-		3E292ACC26E4069600E0A119 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		3E292ACC26E4069600E0A119 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorageService.swift; sourceTree = "<group>"; };
 		3E34B70226E7792B005C95B7 /* DayDetailsScreenAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayDetailsScreenAssembly.swift; sourceTree = "<group>"; };
 		3E38995D26ED1A9B00F54DCA /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		3E38998E26ED2DF400F54DCA /* MainForecastScreenDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainForecastScreenDataSource.swift; sourceTree = "<group>"; };
@@ -626,7 +628,8 @@
 		3EEB51C626E2BB290069A3A1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3E292ACC26E4069600E0A119 /* StorageService.swift */,
+				3E292ACC26E4069600E0A119 /* ImageStorageService.swift */,
+				3E1A06A426EF828C00862A13 /* SettingsStorageService.swift */,
 				3E8566D326ECF7A800B1E951 /* WeatherService.swift */,
 			);
 			path = Services;
@@ -980,7 +983,7 @@
 				3E1E0F2026EE414800125F11 /* SettingsScreenContract.swift in Sources */,
 				3E8B827226E32AD200D54F57 /* NotFoundResponse.swift in Sources */,
 				3E292AC726E3DF3D00E0A119 /* GlobalVars.swift in Sources */,
-				3E292ACD26E4069600E0A119 /* StorageService.swift in Sources */,
+				3E292ACD26E4069600E0A119 /* ImageStorageService.swift in Sources */,
 				3ED2464526E17C830036CE2E /* AppDelegate.swift in Sources */,
 				3E63192626ED80DB00D879EC /* SettingsScreenViewController.swift in Sources */,
 				3E63192526ED80DB00D879EC /* SettingsScreenRouter.swift in Sources */,
@@ -1001,6 +1004,7 @@
 				3E38995E26ED1A9B00F54DCA /* UIFont+Ext.swift in Sources */,
 				3E8F43A826E2F1A8001153CC /* DayDetailsScreenRouter.swift in Sources */,
 				3EEB51DA26E2BCDC0069A3A1 /* WeatherTarget.swift in Sources */,
+				3E1A06A526EF828C00862A13 /* SettingsStorageService.swift in Sources */,
 				3E8F43A926E2F1A8001153CC /* DayDetailsScreenViewController.swift in Sources */,
 				3E25707026E7EF6D00640CC3 /* SearchTextField.swift in Sources */,
 				3EB06FA726E3AADD00118882 /* WeatherCellModel.swift in Sources */,

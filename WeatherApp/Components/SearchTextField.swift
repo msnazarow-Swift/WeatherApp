@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTextField: DesignableUITextField {
+final class SearchTextField: DesignableUITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
 

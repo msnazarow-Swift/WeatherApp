@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DaySummaryStackView: UIView {
+final class DaySummaryStackView: UIView {
     let cityLabel: UILabel = {
         let label = UILabel()
         label.font = .medium(25 * verticalTranslation)

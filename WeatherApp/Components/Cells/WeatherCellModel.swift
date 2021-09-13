@@ -7,15 +7,9 @@
 
 import UIKit
 
-extension CellIdentifiable {
-    var automaticHeight: Float { return -1.0 }
-
-    var cellIdentifier: String { return "" }
-
-    var cellHeight: Float { return automaticHeight }
-}
-
 class WeatherCell: UITableViewCell, ModelRepresentable {
+    weak var presenter: MainForecastScreenPresenterToCellsProtocol?
+
     var model: CellIdentifiable? {
         didSet {
             updateViews()

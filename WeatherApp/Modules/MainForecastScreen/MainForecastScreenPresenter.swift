@@ -16,12 +16,17 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
     var cityId: Int
     var weatherDays: [WeatherDayResponse]?
     var dataSource: MainForecastScreenDataSourceProtocol
-
-    init(router: MainForecastScreenRouterProtocol, cityId: Int, cityName: String, dataSource: MainForecastScreenDataSourceProtocol) {
+    let settingsStorageService: SettingsStorageServiceProtocol
+    init(router: MainForecastScreenRouterProtocol,
+         cityId: Int,
+         cityName: String,
+         dataSource: MainForecastScreenDataSourceProtocol,
+         settingsStorageService: SettingsStorageServiceProtocol) {
         self.router = router
         self.cityId = cityId
-        title = cityName
+        self.title = cityName
         self.dataSource = dataSource
+        self.settingsStorageService = settingsStorageService
     }
 
     func viewDidLoad() {
@@ -67,7 +72,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
         interactor?.getImages { [weak self] images in
             self?.interactor?.saveImages(images)
         }
-        if StorageService.shared.isWeekMode {
+        if settingsStorageService.isWeekMode {
             loadWeek(for: cityId)
         } else {
             loadForecast(for: cityId)
@@ -128,5 +133,11 @@ extension MainForecastScreenPresenter: PresenterPushViewProtocol {
 extension MainForecastScreenPresenter: PresenterUpdateProtocol {
     func updateView() {
         view?.updateMode()
+    }
+}
+
+extension MainForecastScreenPresenter: MainForecastScreenPresenterToCellsProtocol {
+    func getImage(for abbr: String) -> UIImage? {
+        return interactor?.getImage(for: abbr)
     }
 }

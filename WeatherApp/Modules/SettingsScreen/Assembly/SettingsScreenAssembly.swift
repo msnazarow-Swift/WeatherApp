@@ -12,7 +12,10 @@ enum SettingsScreenAssembly {
     static func createSettingsScreen(delegate: PresenterUpdateProtocol?) -> UIViewController {
         let viewController = SettingsScreenViewController()
         let router = SettingsScreenRouter(view: viewController)
-        let presenter = SettingsScreenPresenter(router: router, delegate: delegate)
+        let settingsStorageService = SettingsStorageService()
+        let presenter = SettingsScreenPresenter(router: router,
+                                                settingsStorageService: settingsStorageService,
+                                                delegate: delegate)
 
         presenter.view = viewController
         viewController.presenter = presenter

@@ -6,8 +6,10 @@
 //
 
 import UIKit
-class DayCell: WeatherCell {
+
+final class DayCell: WeatherCell {
     static let identifier = "DayCell"
+
     let dayOfWeekLabel: UILabel = {
         let label = UILabel()
         label.font = .regular(14 * verticalTranslation)
@@ -72,8 +74,7 @@ class DayCell: WeatherCell {
     override func updateViews() {
         guard let model = model as? DayCellModel else { return }
         dayOfWeekLabel.text = model.dayOfWeek
-        // TODO: - Ячейка обращается напрямую к сервису
-        weatherImg.image = StorageService.shared.getImageForKey(model.weatherImg)
+        weatherImg.image = presenter?.getImage(for: model.weatherImg)
         maxTempLabel.text = String(model.maxTemp)
         minTempLabel.text = String(model.minTemp)
     }

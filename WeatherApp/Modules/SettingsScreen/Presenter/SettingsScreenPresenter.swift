@@ -10,16 +10,15 @@ import Foundation
 
 class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
     weak var view: SettingsScreenViewProtocol?
-
     weak var delegate: PresenterUpdateProtocol?
-
     private var isWeekMode: Bool
-
     private let router: SettingsScreenRouterProtocol
+    private var settingsStorageService: SettingsStorageServiceProtocol
 
-    init(router: SettingsScreenRouterProtocol, delegate: PresenterUpdateProtocol?) {
+    init(router: SettingsScreenRouterProtocol, settingsStorageService: SettingsStorageServiceProtocol, delegate: PresenterUpdateProtocol?) {
         self.router = router
-        isWeekMode = StorageService.shared.isWeekMode
+        self.settingsStorageService = settingsStorageService
+        isWeekMode = settingsStorageService.isWeekMode
         self.delegate = delegate
     }
 
@@ -29,7 +28,7 @@ class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
 
     func switcherValueChanged(_ isOn: Bool) {
         isWeekMode = isOn
-        StorageService.shared.isWeekMode = isWeekMode
+        settingsStorageService.isWeekMode = isWeekMode
     }
 
     func closeView() {
