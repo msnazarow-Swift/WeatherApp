@@ -24,7 +24,7 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
          settingsStorageService: SettingsStorageServiceProtocol) {
         self.router = router
         self.cityId = cityId
-        self.title = cityName
+        title = cityName
         self.dataSource = dataSource
         self.settingsStorageService = settingsStorageService
     }

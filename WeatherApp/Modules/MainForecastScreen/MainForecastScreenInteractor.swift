@@ -13,9 +13,9 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
     private let weatherService: WeatherServiceProtocol
     private let imageStorageService: ImageStorageServiceProtocol
 
-    init(weatherService: WeatherServiceProtocol, storageService: ImageStorageServiceProtocol) {
+    init(weatherService: WeatherServiceProtocol, imageStorageService: ImageStorageServiceProtocol) {
         self.weatherService = weatherService
-        self.imageStorageService = storageService
+        self.imageStorageService = imageStorageService
     }
 
     func getNextSixDaysForecast(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void) {
@@ -85,16 +85,16 @@ class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
 }
 
 /*          ---         Что если закачивать не сразу все фотки, а только те которые нужны? ---
-    func getImage(for abbr: String, complition: @escaping (Image?) -> Void) {
-        if let image = storageService.getImageForKey(abbr) {
-            complition(image)
-        } else {
-            weatherService.getImage(for: abbr) { [ weak self] result in
-                let image = try? result.get()
-                self?.storageService.saveImage(for: abbr, image: image)
-                complition(image)
-            }
-        }
-    }
+ func getImage(for abbr: String, complition: @escaping (Image?) -> Void) {
+     if let image = storageService.getImageForKey(abbr) {
+         complition(image)
+     } else {
+         weatherService.getImage(for: abbr) { [ weak self] result in
+             let image = try? result.get()
+             self?.storageService.saveImage(for: abbr, image: image)
+             complition(image)
+         }
+     }
+ }
 
-*/
+ */

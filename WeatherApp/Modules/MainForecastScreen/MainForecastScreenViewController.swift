@@ -51,7 +51,7 @@ class MainForecastScreenViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]
         navigationItem.rightBarButtonItems = [
             .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped)),
-            .init(image: UIImage(systemName: "gear"), style: .plain, target: self, action:  #selector(settingsButtonTapped))
+            .init(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonTapped))
         ]
         tableView.dataSource = presenter?.dataSource
 
@@ -102,6 +102,7 @@ extension MainForecastScreenViewController: MainForecastScreenViewProtocol {
     @objc func settingsButtonTapped() {
         presenter?.settingsButtonTapped()
     }
+
     func updateMode() {
         viewWillSetup()
         presenter?.viewDidLoad()
