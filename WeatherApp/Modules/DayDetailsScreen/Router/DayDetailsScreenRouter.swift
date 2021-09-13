@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DayDetailsScreenRouter: DayDetailsScreenRouterProtocol {
+final class DayDetailsScreenRouter: DayDetailsScreenRouterProtocol {
     weak var view: DayDetailsScreenViewController?
 
     init(view: DayDetailsScreenViewController?) {

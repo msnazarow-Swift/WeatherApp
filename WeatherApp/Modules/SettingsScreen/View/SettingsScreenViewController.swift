@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class SettingsScreenViewController: UIViewController {
+final class SettingsScreenViewController: UIViewController {
     var presenter: SettingsScreenPresenterProtocol?
 
     let switcher: UISwitch = {

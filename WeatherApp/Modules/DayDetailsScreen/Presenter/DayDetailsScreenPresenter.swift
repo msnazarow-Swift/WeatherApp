@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DayDetailsScreenPresenter: DayDetailsScreenPresenterProtocol, PresenterPushViewProtocol {
+final class DayDetailsScreenPresenter: DayDetailsScreenPresenterProtocol, PresenterPushViewProtocol {
     weak var view: DayDetailsScreenViewProtocol?
 
     let dataSource: DayDetailsScreenDataSourceProtocol

@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class MainForecastScreenViewController: UITableViewController {
+final class MainForecastScreenViewController: UITableViewController {
     var presenter: MainForecastScreenPresenterProtocol?
     let vStack = DaySummaryStackView()
     let activityIndicator = UIActivityIndicatorView()

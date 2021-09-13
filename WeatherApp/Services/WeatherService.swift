@@ -7,7 +7,7 @@
 
 import Moya
 
-class WeatherService: WeatherServiceProtocol {
+final class WeatherService: WeatherServiceProtocol {
     let provider = MoyaProvider<WeatherTarget>()
     enum ResponceError: Error {
         case noResponce

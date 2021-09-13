@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainForecastScreenDataSource: NSObject, MainForecastScreenDataSourceProtocol {
+final class MainForecastScreenDataSource: NSObject, MainForecastScreenDataSourceProtocol {
     weak var presenter: MainForecastScreenPresenterToCellsProtocol?
 
     var sections: [DaySectionModel] = []

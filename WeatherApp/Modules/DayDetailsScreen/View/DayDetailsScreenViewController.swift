@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class DayDetailsScreenViewController: UITableViewController {
+final class DayDetailsScreenViewController: UITableViewController {
     var presenter: DayDetailsScreenPresenterProtocol?
     let vStack = DaySummaryStackView()
 

@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class SearchScreenViewController: UIViewController {
+final class SearchScreenViewController: UIViewController {
     var presenter: SearchScreenPresenterProtocol?
 
     let titleLabel: UILabel = {

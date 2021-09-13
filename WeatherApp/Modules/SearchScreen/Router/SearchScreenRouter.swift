@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchScreenRouter: SearchScreenRouterProtocol {
+final class SearchScreenRouter: SearchScreenRouterProtocol {
     weak var view: UIViewController?
     weak var delegate: PresenterPushViewProtocol?
 

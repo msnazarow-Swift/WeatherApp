@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DaySectionModel: SectionRowsRepresentable {
+final class DaySectionModel: SectionRowsRepresentable {
     var rows: [CellIdentifiable] = []
 
     init(_ properties: [DayModel]) {

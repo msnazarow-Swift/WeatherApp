@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-class SearchScreenInteractor: SearchScreenInteractorProtocol {
+final class SearchScreenInteractor: SearchScreenInteractorProtocol {
     func searchWithSubstring(_ substring: String, complition: @escaping ([WeatherCityModel]) -> Void) {
         let provider = MoyaProvider<WeatherTarget>()
         provider.request(.getCities(query: substring)) { result in

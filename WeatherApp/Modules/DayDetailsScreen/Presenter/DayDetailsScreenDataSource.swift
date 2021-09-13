@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DayDetailsScreenDataSource: NSObject, DayDetailsScreenDataSourceProtocol {
+final class DayDetailsScreenDataSource: NSObject, DayDetailsScreenDataSourceProtocol {
     var sections: [DescriptionSectionModel] = []
 
     func updateForSections(_ sections: [DescriptionSectionModel]) {

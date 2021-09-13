@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
+final class MainForecastScreenInteractor: MainForecastScreenInteractorProtocol {
     private let weatherService: WeatherServiceProtocol
     private let imageStorageService: ImageStorageServiceProtocol
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
+final class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
     weak var view: SettingsScreenViewProtocol?
     weak var delegate: PresenterUpdateProtocol?
     private var isWeekMode: Bool

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
+final class MainForecastScreenRouter: MainForecastScreenRouterProtocol {
     weak var view: UIViewController?
 
     init(view: UIViewController) {

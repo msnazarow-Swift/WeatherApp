@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsScreenRouter: SettingsScreenRouterProtocol {
+final class SettingsScreenRouter: SettingsScreenRouterProtocol {
     weak var view: UIViewController?
     init(view: UIViewController?) {
         self.view = view

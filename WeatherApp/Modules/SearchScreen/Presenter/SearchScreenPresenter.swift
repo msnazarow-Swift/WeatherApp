@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchScreenPresenter {
+final class SearchScreenPresenter {
     weak var view: SearchScreenViewProtocol?
 
     private let router: SearchScreenRouter

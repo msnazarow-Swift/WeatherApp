@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageStorageService: ImageStorageServiceProtocol {
+final class ImageStorageService: ImageStorageServiceProtocol {
     // MARK: - Properties
 
     var images: [String: UIImage] = [:]

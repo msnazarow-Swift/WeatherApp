@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchScreenDataSource: NSObject, SearchScreenDataSourceProtocol {
+final class SearchScreenDataSource: NSObject, SearchScreenDataSourceProtocol {
     var sections: [CitySectionModel] = []
 
     func updateForSections(_ sections: [CitySectionModel]) {

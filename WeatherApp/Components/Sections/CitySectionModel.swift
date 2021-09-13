@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CitySectionModel: SectionRowsRepresentable {
+final class CitySectionModel: SectionRowsRepresentable {
     var rows: [CellIdentifiable] = []
 
     init(_ properties: [CityModel]) {

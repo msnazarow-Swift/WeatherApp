@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
+final class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
+    // MARK: - Properties
+
     weak var view: MainForecastScreenViewProtocol?
     private let router: MainForecastScreenRouterProtocol
     var interactor: MainForecastScreenInteractorProtocol?
@@ -17,6 +19,9 @@ class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
     var weatherDays: [WeatherDayResponse]?
     var dataSource: MainForecastScreenDataSourceProtocol
     let settingsStorageService: SettingsStorageServiceProtocol
+
+    // MARK: - Init
+
     init(router: MainForecastScreenRouterProtocol,
          cityId: Int,
          cityName: String,
