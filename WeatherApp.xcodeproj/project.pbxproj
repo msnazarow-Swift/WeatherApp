@@ -357,10 +357,10 @@
 			isa = PBXGroup;
 			children = (
 				3EA4C03326EE4CB2008067ED /* Contract */,
-				3E63191F26ED80BC00D879EC /* SettingsScreen */,
 				3E8F43C026E2F1DE001153CC /* MainForecastScreen */,
 				3E8F43AF26E2F1AE001153CC /* DayDetailsScreen */,
 				3E8F43D126E2F222001153CC /* SearchScreen */,
+				3E63191F26ED80BC00D879EC /* SettingsScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";

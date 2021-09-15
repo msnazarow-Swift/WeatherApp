@@ -1,8 +1,5 @@
 //
 //  Date+Extensions.swift
-//  TodoList
-//
-//  Created by George Prokopenko on 3/17/20.
 //
 
 import Foundation

@@ -44,6 +44,18 @@ final class MainForecastScreenPresenter {
         view?.setCityLabel(city: title)
     }
 
+    private func loadForCity(cityId: Int) {
+        weatherDays = []
+        interactor?.getImages { [weak self] images in
+            self?.interactor?.saveImages(images)
+        }
+        if settingsStorageService.isWeekMode {
+            loadWeek(for: cityId)
+        } else {
+            loadForecast(for: cityId)
+        }
+    }
+
     private func loadWeek(for cityId: Int) {
         var sections: [DaySectionModel] = []
         interactor?.getWeekForecast(cityId: cityId) { [weak self] days in
@@ -70,18 +82,6 @@ final class MainForecastScreenPresenter {
                 self?.updateView(sections: sections)
                 self?.view?.viewDidSetup()
             }
-        }
-    }
-
-    private func loadForCity(cityId: Int) {
-        weatherDays = []
-        interactor?.getImages { [weak self] images in
-            self?.interactor?.saveImages(images)
-        }
-        if settingsStorageService.isWeekMode {
-            loadWeek(for: cityId)
-        } else {
-            loadForecast(for: cityId)
         }
     }
 
