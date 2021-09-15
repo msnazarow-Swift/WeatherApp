@@ -11,35 +11,41 @@ import UIKit
 
 final class DayDetailsScreenViewController: UITableViewController {
     var presenter: DayDetailsScreenPresenterProtocol?
-    private let vStack = DaySummaryStackView()
+
+    // TODO: - По какой то причини конкретном на этом вью иначе накладывается на таблицу
+    private lazy var vStack = DaySummaryStackView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 170 * verticalTranslation))
 
     override func viewDidLoad() {
+        guard let presenter = presenter else {
+            print("DayDetailsScreenViewController Assemble Error")
+            return
+        }
         super.viewDidLoad()
         setUI()
-        tableView.autoresizesSubviews = true
-        presenter?.viewDidLoad()
+        presenter.viewDidLoad()
     }
 
-    // TODO: - Я знаю что это плохо, но по другому не робит
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if let header = tableView.tableHeaderView {
-            header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width, height: 0)).height
-        }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
     private func setUI() {
+        tableView.isHidden = true
+        tableView.backgroundColor = .white
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
         tableView.bounces = false
         tableView.tableHeaderView = vStack
-//        tableView.sectionHeaderHeight = 170 * verticalTranslation
+
         tableView.rowHeight = 85 * verticalTranslation
         tableView.tableFooterView = UIView()
         tableView.dataSource = presenter?.dataSource
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+        tableView.isHidden = false
     }
 }
 

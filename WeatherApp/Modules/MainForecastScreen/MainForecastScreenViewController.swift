@@ -52,7 +52,7 @@ final class MainForecastScreenViewController: UITableViewController {
         tableView.rowHeight = 61 * verticalTranslation
         tableView.tableFooterView = UIView()
         tableView.dataSource = presenter?.dataSource
-
+        tableView.autoresizesSubviews = false
         navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]

@@ -18,6 +18,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window?.windowScene = windowScene
         let navController = UINavigationController(rootViewController: MainForecastScreenAssembly.createMainForecastScreen(for: moscowCityId, cityName: "Москва"))
+        /*let navController = UINavigationController(
+            rootViewController: DayDetailsScreenAssembly.createDayDetailsScreen(
+                with: "Москва", for: WeatherDayResponse(
+                    airPressure: 20.3,
+                    applicableDate: Date(),
+                    created: Date(),
+                    humidity: 17,
+                    id: 3,
+                    maxTemp: 19.2,
+                    minTemp: 14.4,
+                    predictability: 65,
+                    theTemp: 20.3,
+                    visibility: 13.2,
+                    weatherStateAbbr: "hl",
+                    weatherStateName: "Тепло",
+                    windDirection: 340,
+                    windDirectionCompass: "Ю-З",
+                    windSpeed: 30.7)))*/
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }
