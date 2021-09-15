@@ -36,7 +36,7 @@ final class DaySummaryStackView: UIView {
     let stroke: UIView = {
         let view = UIView()
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
+        view.layer.borderColor = UIColor.grey07.cgColor
         return view
     }()
 
@@ -72,6 +72,13 @@ final class DaySummaryStackView: UIView {
         }
         snp.makeConstraints { make in
             make.height.equalTo(174 * verticalTranslation)
+        }
+    }
+
+    override func didMoveToSuperview() {
+        guard superview != nil else { return }
+        snp.makeConstraints { make in
+            make.width.equalToSuperview()
         }
     }
 

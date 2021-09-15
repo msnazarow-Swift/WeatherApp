@@ -29,7 +29,7 @@ final class DescriptionPropertyCell: WeatherCell {
         }
         textLabel.text = model.title.uppercased()
         textLabel.font = UIFont(name: "Roboto-Regular", size: 11 * verticalTranslation)
-        textLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        textLabel.textColor = .whiteHalfAlpha
         detailTextLabel.text = model.description
         detailTextLabel.font = UIFont(name: "Roboto-Regular", size: 30 * verticalTranslation)
     }

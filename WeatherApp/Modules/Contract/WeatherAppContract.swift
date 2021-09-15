@@ -7,6 +7,10 @@
 
 import Moya
 
+var verticalTranslation = UIDevice.current.orientation.isPortrait ? UIScreen.main.bounds.height / 667.0 : UIScreen.main.bounds.width / 375.0
+var horisontalTranslation = UIDevice.current.orientation.isPortrait ? UIScreen.main.bounds.width / 375.0 : UIScreen.main.bounds.height / 667.0
+let moscowCityId = 2_122_265
+
 protocol WeatherServiceProtocol {
     func getWeekForCity(cityId: Int, complition: @escaping (WeatherWeekResponse) -> Void)
     func getDayForCity(cityId: Int, day: Date, complition: @escaping (Result<WeatherDayResponse, Error>) -> Void)

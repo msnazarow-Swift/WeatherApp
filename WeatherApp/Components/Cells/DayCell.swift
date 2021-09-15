@@ -18,6 +18,7 @@ final class DayCell: WeatherCell {
 
     let weatherImg: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -39,30 +40,27 @@ final class DayCell: WeatherCell {
         [dayOfWeekLabel, weatherImg, maxTempLabel, minTempLabel].forEach { addSubview($0) }
 
         minTempLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.right.equalTo(-14)
+            make.centerY.equalTo(safeAreaLayoutGuide)
+            make.right.equalTo(safeAreaLayoutGuide).offset(-14)
             make.left.greaterThanOrEqualTo(maxTempLabel.snp.right).offset(18)
         }
 
         maxTempLabel.snp.makeConstraints { make in
             make.right.lessThanOrEqualTo(-48 * horisontalTranslation)
             make.right.lessThanOrEqualTo(minTempLabel.snp.left).offset(-18 * horisontalTranslation)
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(safeAreaLayoutGuide)
         }
 
         weatherImg.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview().offset(10)
-            make.right.lessThanOrEqualTo(-157 * horisontalTranslation)
-            make.height.equalTo(weatherImg.snp.width)
-            make.top.equalToSuperview().offset(18.5)
-            make.bottom.equalToSuperview().inset(18.5)
-            make.right.lessThanOrEqualTo(maxTempLabel.snp.left).offset(-93 * horisontalTranslation)
+            make.centerY.equalTo(safeAreaLayoutGuide)
+            make.centerX.equalTo(safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(safeAreaLayoutGuide).offset(18.5)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(18.5)
         }
 
         dayOfWeekLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(16)
-            make.centerY.equalToSuperview()
+            make.left.equalTo(safeAreaLayoutGuide).offset(16)
+            make.centerY.equalTo(safeAreaLayoutGuide)
         }
     }
 

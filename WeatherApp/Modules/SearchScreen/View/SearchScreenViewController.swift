@@ -35,7 +35,7 @@ final class SearchScreenViewController: UIViewController {
     let stroke: UIView = {
         let view = UIView()
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1).cgColor
+        view.layer.borderColor = UIColor.grey07.cgColor
         return view
     }()
 

@@ -10,14 +10,10 @@ import UIKit
 final class MainForecastScreenDataSource: NSObject, MainForecastScreenDataSourceProtocol {
     weak var presenter: MainForecastScreenPresenterToCellsProtocol?
 
-    var sections: [DaySectionModel] = []
+    private var sections: [DaySectionModel] = []
 
     func updateForSections(_ sections: [DaySectionModel]) {
         self.sections = sections
-    }
-
-    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
     }
 
     func numberOfSections(in _: UITableView) -> Int {

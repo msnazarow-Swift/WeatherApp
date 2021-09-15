@@ -13,9 +13,13 @@ enum DayDetailsScreenAssembly {
         let viewController = DayDetailsScreenViewController()
         let router = DayDetailsScreenRouter(view: viewController)
         let dataSource = DayDetailsScreenDataSource()
-        let presenter = DayDetailsScreenPresenter(router: router, title: cityTitle, day: day, dataSource: dataSource)
+        let presenter = DayDetailsScreenPresenter(router: router,
+                                                  title: cityTitle,
+                                                  day: day,
+                                                  dataSource: dataSource)
         presenter.view = viewController
         viewController.presenter = presenter
+
         return viewController
     }
 }

@@ -11,12 +11,10 @@ final class SearchTextField: DesignableUITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        // MARK: - Пришлось ставить SF чтоб найти лупу
-
-        leftImage = UIImage(systemName: "magnifyingglass")
+        leftImage = .search
         leftPadding = 7
         rightPadding = 7
-        layer.backgroundColor = UIColor(red: 0.922, green: 0.922, blue: 0.922, alpha: 1).cgColor
+        layer.backgroundColor = UIColor.grey0922.cgColor
         layer.cornerRadius = 8
     }
 

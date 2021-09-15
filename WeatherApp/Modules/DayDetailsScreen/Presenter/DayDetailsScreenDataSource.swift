@@ -14,10 +14,6 @@ final class DayDetailsScreenDataSource: NSObject, DayDetailsScreenDataSourceProt
         self.sections = sections
     }
 
-    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(sections[indexPath.section].rows[indexPath.row].cellHeight)
-    }
-
     func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }

@@ -12,7 +12,7 @@ import UIKit
 final class SettingsScreenViewController: UIViewController {
     var presenter: SettingsScreenPresenterProtocol?
 
-    let switcher: UISwitch = {
+    private let switcher: UISwitch = {
         let switcher = UISwitch()
         switcher.onTintColor = .clear
         switcher.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
@@ -20,19 +20,19 @@ final class SettingsScreenViewController: UIViewController {
         return switcher
     }()
 
-    let headerLabel: UILabel = {
+    private let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "Неделя"
         return label
     }()
 
-    let footerLabel: UILabel = {
+    private let footerLabel: UILabel = {
         let label = UILabel()
         label.text = "Прогноз"
         return label
     }()
 
-    lazy var closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
@@ -62,11 +62,11 @@ final class SettingsScreenViewController: UIViewController {
         presenter?.viewDidLoad()
     }
 
-    @objc func switcherValueChanged(mySwitcher: UISwitch) {
+    @objc private func switcherValueChanged(mySwitcher: UISwitch) {
         presenter?.switcherValueChanged(mySwitcher.isOn)
     }
 
-    @objc func closeButtonTapped() {
+    @objc private func closeButtonTapped() {
         presenter?.closeView()
     }
 }

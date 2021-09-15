@@ -16,7 +16,6 @@ enum SettingsScreenAssembly {
         let presenter = SettingsScreenPresenter(router: router,
                                                 settingsStorageService: settingsStorageService,
                                                 delegate: delegate)
-
         presenter.view = viewController
         viewController.presenter = presenter
 

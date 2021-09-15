@@ -10,7 +10,7 @@ import Foundation
 
 final class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
     weak var view: SettingsScreenViewProtocol?
-    weak var delegate: PresenterUpdateProtocol?
+    private weak var delegate: PresenterUpdateProtocol?
     private var isWeekMode: Bool
     private let router: SettingsScreenRouterProtocol
     private var settingsStorageService: SettingsStorageServiceProtocol

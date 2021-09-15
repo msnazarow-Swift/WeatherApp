@@ -11,8 +11,8 @@ import UIKit
 
 final class MainForecastScreenViewController: UITableViewController {
     var presenter: MainForecastScreenPresenterProtocol?
-    let vStack = DaySummaryStackView()
-    let activityIndicator = UIActivityIndicatorView()
+    private let vStack = DaySummaryStackView()
+    private let activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         guard let presenter = presenter else {
@@ -25,7 +25,7 @@ final class MainForecastScreenViewController: UITableViewController {
         presenter.viewDidLoad()
     }
 
-    func viewWillSetup() {
+    private func viewWillSetup() {
         navigationController?.view.backgroundColor = .init(white: 1.0, alpha: 0.7)
         tableView.isHidden = true
         navigationController?.view.addSubview(activityIndicator)
@@ -37,7 +37,13 @@ final class MainForecastScreenViewController: UITableViewController {
         activityIndicator.startAnimating()
     }
 
-    func setUI() {
+    private func setUI() {
+        /* TODO: - title = "Неделя" ломает чутка констрейнты
+        (
+            "<NSLayoutConstraint:0x600000a00c80 UILabel:0x7fb856e0c440.firstBaseline == UILayoutGuide:0x600001034540'TitleView(0x7fb856e07c20)'.top + 28   (active)>",
+            "<NSLayoutConstraint:0x600000a00eb0 UILabel:0x7fb856e0c440.top >= UILayoutGuide:0x600001034540'TitleView(0x7fb856e07c20)'.top   (active)>"
+        )*/
+        title = "Неделя"
         tableView.backgroundColor = .white
         tableView.register(DayCell.self, forCellReuseIdentifier: DayCell.identifier)
         tableView.separatorColor = .clear
@@ -45,21 +51,15 @@ final class MainForecastScreenViewController: UITableViewController {
         tableView.tableHeaderView = vStack
         tableView.rowHeight = 61 * verticalTranslation
         tableView.tableFooterView = UIView()
-        title = "Неделя"
+        tableView.dataSource = presenter?.dataSource
+
         navigationController?.navigationBar.tintColor = .black
         navigationItem.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]
         navigationItem.rightBarButtonItems = [
             .init(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped)),
-            .init(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(settingsButtonTapped))
+            .init(image: .settings, style: .plain, target: self, action: #selector(settingsButtonTapped))
         ]
-        tableView.dataSource = presenter?.dataSource
-
-        vStack.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-        }
     }
 
     func viewDidSetup() {
@@ -111,8 +111,6 @@ extension MainForecastScreenViewController: MainForecastScreenViewProtocol {
 
 extension MainForecastScreenViewController {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let presenter = presenter {
-            return presenter.tableViewDidSelect(row: indexPath.row)
-        }
+        presenter?.tableViewDidSelect(row: indexPath.row)
     }
 }

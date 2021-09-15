@@ -11,7 +11,7 @@ import UIKit
 
 final class DayDetailsScreenViewController: UITableViewController {
     var presenter: DayDetailsScreenPresenterProtocol?
-    let vStack = DaySummaryStackView()
+    private let vStack = DaySummaryStackView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +29,13 @@ final class DayDetailsScreenViewController: UITableViewController {
         }
     }
 
-    func setUI() {
+    private func setUI() {
         tableView.register(DescriptionPropertyCell.self, forCellReuseIdentifier: DescriptionPropertyCell.identifier)
         tableView.allowsSelection = false
         tableView.bounces = false
         tableView.tableHeaderView = vStack
+//        tableView.sectionHeaderHeight = 170 * verticalTranslation
         tableView.rowHeight = 85 * verticalTranslation
-        vStack.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-        }
         tableView.tableFooterView = UIView()
         tableView.dataSource = presenter?.dataSource
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.medium(16 * verticalTranslation)!]

@@ -19,11 +19,10 @@ enum MainForecastScreenAssembly {
                                                     cityName: cityName,
                                                     dataSource: dataSource,
                                                     settingsStorageService: settingsStorageService)
-
         let weatherService = WeatherService()
         let imageStorageService = ImageStorageService()
-        let interactor = MainForecastScreenInteractor(weatherService: weatherService, imageStorageService: imageStorageService)
-
+        let interactor = MainForecastScreenInteractor(weatherService: weatherService,
+                                                      imageStorageService: imageStorageService)
         presenter.interactor = interactor
         presenter.view = viewController
         viewController.presenter = presenter

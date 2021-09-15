@@ -8,17 +8,18 @@
 
 import UIKit
 
-final class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
+final class MainForecastScreenPresenter {
     // MARK: - Properties
 
     weak var view: MainForecastScreenViewProtocol?
-    private let router: MainForecastScreenRouterProtocol
     var interactor: MainForecastScreenInteractorProtocol?
-    var title: String
-    var cityId: Int
-    var weatherDays: [WeatherDayResponse]?
-    var dataSource: MainForecastScreenDataSourceProtocol
-    let settingsStorageService: SettingsStorageServiceProtocol
+    let dataSource: MainForecastScreenDataSourceProtocol
+    private let router: MainForecastScreenRouterProtocol
+
+    private var title: String
+    private var cityId: Int
+    private var weatherDays: [WeatherDayResponse]?
+    private let settingsStorageService: SettingsStorageServiceProtocol
 
     // MARK: - Init
 
@@ -72,7 +73,7 @@ final class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
         }
     }
 
-    func loadForCity(cityId: Int) {
+    private func loadForCity(cityId: Int) {
         weatherDays = []
         interactor?.getImages { [weak self] images in
             self?.interactor?.saveImages(images)
@@ -113,7 +114,8 @@ final class MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
         }
         view.reloadTableViewData()
     }
-
+}
+extension MainForecastScreenPresenter: MainForecastScreenPresenterProtocol {
     func tableViewDidSelect(row: Int) {
         if let weatherDays = weatherDays, row < weatherDays.count {
             router.routeToDaySrceen(cityName: title, day: weatherDays[row])
