@@ -28,13 +28,9 @@ final class DescriptionPropertyCell: WeatherCell {
             return
         }
         textLabel.text = model.title.uppercased()
-        textLabel.font = UIFont(name: "Roboto-Regular", size: 11 * verticalTranslation)
+        textLabel.font = .regular(11 * verticalTranslation)
         textLabel.textColor = .whiteHalfAlpha
         detailTextLabel.text = model.description
-        detailTextLabel.font = UIFont(name: "Roboto-Regular", size: 30 * verticalTranslation)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        detailTextLabel.font = .regular(30 * verticalTranslation)
     }
 }
