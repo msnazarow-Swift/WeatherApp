@@ -25,13 +25,6 @@ final class DayDetailsScreenViewController: UITableViewController {
         presenter.viewDidLoad()
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
     private func setUI() {
         tableView.isHidden = true
         tableView.backgroundColor = .white
